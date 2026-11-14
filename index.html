@@ -1,0 +1,4146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>现代齐民要术 • 平民生活要术</title>
+<style>
+  :root{
+    --paper:#F6F1E7;
+    --card:#FFFDF8;
+    --ink:#21201C;
+    --ink-soft:#57534A;
+    --red:#C2452D;
+    --red-deep:#A03520;
+    --green:#2F7D5B;
+    --green-deep:#256349;
+    --gold:#D9A441;
+    --blue:#3E6B8C;
+    --line:2px solid #21201C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.7;
+  }
+  .serif{font-family:"Songti SC","SimSun","Noto Serif SC",serif;}
+
+  /* ===== 页头 ===== */
+  header{
+    background:var(--red);
+    color:#FFF8EC;
+    border-bottom:var(--line);
+    padding:52px 24px 44px;
+    position:relative;
+    overflow:hidden;
+  }
+  header::after{
+    content:"齊民";
+    position:absolute;
+    right:-14px; bottom:-40px;
+    font-family:"Songti SC","SimSun",serif;
+    font-size:220px;
+    font-weight:900;
+    color:rgba(255,248,236,.09);
+    line-height:1;
+    pointer-events:none;
+  }
+  .head-inner{max-width:1080px;margin:0 auto;position:relative;z-index:1;}
+  .head-tag{
+    display:inline-block;
+    background:var(--ink);
+    color:#FFF8EC;
+    font-size:13px;
+    letter-spacing:4px;
+    padding:4px 14px;
+    margin-bottom:18px;
+  }
+  header h1{
+    font-family:"Songti SC","SimSun","Noto Serif SC",serif;
+    font-size:clamp(40px,7vw,64px);
+    font-weight:900;
+    letter-spacing:6px;
+    line-height:1.15;
+  }
+  header .sub{
+    margin-top:10px;
+    font-size:16px;
+    letter-spacing:2px;
+    opacity:.92;
+  }
+  header .motto{
+    margin-top:22px;
+    display:inline-block;
+    border-left:4px solid var(--gold);
+    padding:4px 16px;
+    font-family:"Songti SC","SimSun",serif;
+    font-size:15px;
+    background:rgba(0,0,0,.14);
+  }
+  .head-stats{
+    margin-top:26px;
+    display:flex;gap:12px;flex-wrap:wrap;
+  }
+  .head-stats span{
+    background:#FFF8EC;
+    color:var(--ink);
+    font-size:13px;
+    font-weight:700;
+    padding:5px 14px;
+    border:var(--line);
+    box-shadow:3px 3px 0 rgba(0,0,0,.35);
+  }
+
+  /* ===== 主容器 ===== */
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px;}
+
+  /* ===== 卷目导航 ===== */
+  .vol-nav{
+    background:var(--paper);
+    border-bottom:var(--line);
+    padding:14px 0 12px;
+    margin:0 -20px;padding-left:20px;padding-right:20px;
+  }
+  .vol-nav-inner{
+    max-width:1040px;margin:0 auto;
+    display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding-bottom:2px;
+  }
+  .vol-chip{
+    flex:none;
+    border:var(--line);
+    background:var(--card);
+    font-size:13px;
+    font-weight:700;
+    padding:6px 13px;
+    cursor:pointer;
+    box-shadow:2px 2px 0 var(--ink);
+    transition:transform .08s, box-shadow .08s;
+    user-select:none;
+  }
+  .vol-chip:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink);}
+  .vol-chip:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink);}
+  .vol-chip.active{background:var(--ink);color:#FFF8EC;}
+  .vol-chip.wip{opacity:.42;cursor:not-allowed;box-shadow:none;background:var(--paper);}
+  .vol-chip.wip:hover{transform:none;}
+  .vol-chip .star{color:var(--red-deep);font-weight:900;}
+  .vol-chip.active .star{color:var(--gold);}
+
+  /* ===== 筛选工具栏 ===== */
+  .toolbar{
+    margin:26px 0 8px;
+    display:flex;flex-wrap:wrap;gap:10px;
+    align-items:stretch;
+  }
+  .searchbox{
+    flex:1 1 300px;
+    display:flex;
+    border:var(--line);
+    background:var(--card);
+    box-shadow:3px 3px 0 var(--ink);
+    overflow:hidden;
+  }
+  .searchbox .icon{
+    display:flex;align-items:center;justify-content:center;
+    width:44px;background:var(--ink);color:#FFF8EC;font-size:17px;
+  }
+  .searchbox input{
+    flex:1;border:none;outline:none;
+    padding:11px 14px;font-size:15px;
+    background:transparent;color:var(--ink);
+    font-family:inherit;
+  }
+  .searchbox input::placeholder{color:#A39B8B;}
+  .searchbox .clear{
+    border:none;background:transparent;cursor:pointer;
+    font-size:16px;color:var(--ink-soft);padding:0 14px;
+  }
+  .searchbox .clear:hover{color:var(--red-deep);}
+  .filter-group{display:flex;border:var(--line);background:var(--card);box-shadow:3px 3px 0 var(--ink);overflow:hidden;}
+  .filter-group button{
+    border:none;background:transparent;cursor:pointer;
+    font-size:13px;font-weight:700;padding:0 14px;
+    color:var(--ink-soft);font-family:inherit;
+    border-right:2px solid rgba(33,32,28,.15);
+    white-space:nowrap;
+  }
+  .filter-group button:last-child{border-right:none;}
+  .filter-group button.on{background:var(--gold);color:var(--ink);}
+  .result-line{
+    font-size:13px;color:var(--ink-soft);
+    margin:14px 2px 0;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+  .result-line b{color:var(--red-deep);}
+  .empty{
+    display:none;
+    text-align:center;
+    padding:70px 20px;
+    border:var(--line);
+    background:var(--card);
+    box-shadow:4px 4px 0 var(--ink);
+    margin-top:30px;
+  }
+  .empty .big{font-size:44px;}
+  .empty h3{margin:12px 0 6px;font-size:18px;}
+  .empty p{color:var(--ink-soft);font-size:14px;}
+
+  /* ===== 卷区块 ===== */
+  .vol-block{margin-top:44px;}
+  .vol-head{
+    display:flex;align-items:center;gap:16px;
+    margin-bottom:22px;
+  }
+  .vol-num{
+    flex:none;
+    width:74px;height:74px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    border:var(--line);
+    box-shadow:4px 4px 0 var(--ink);
+    color:#FFF8EC;
+  }
+  .vol-num .n{font-family:"Songti SC","SimSun",serif;font-size:26px;font-weight:900;line-height:1;}
+  .vol-num .zh{font-size:11px;letter-spacing:2px;margin-top:2px;opacity:.85;}
+  .vol-title h2{
+    font-family:"Songti SC","SimSun",serif;
+    font-size:30px;font-weight:900;letter-spacing:3px;
+  }
+  .vol-title .desc{font-size:13.5px;color:var(--ink-soft);margin-top:2px;}
+  .vol-title .origin{
+    display:inline-block;margin-top:6px;
+    font-size:12px;color:var(--ink-soft);
+    background:#EFE7D6;border:1.5px solid var(--ink);
+    padding:2px 10px;
+  }
+
+  /* ===== 卡片 ===== */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
+    gap:22px;
+  }
+  .card{
+    background:var(--card);
+    border:var(--line);
+    box-shadow:5px 5px 0 var(--ink);
+    display:flex;flex-direction:column;
+    transition:transform .1s, box-shadow .1s;
+    position:relative;
+  }
+  .card:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink);}
+  .card-top{
+    display:flex;align-items:center;gap:10px;
+    padding:12px 16px;
+    border-bottom:var(--line);
+    color:#FFF8EC;
+  }
+  .card-top .c-icon{
+    width:38px;height:38px;flex:none;
+    background:rgba(255,255,255,.22);
+    border:2px solid rgba(255,248,236,.55);
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;
+  }
+  .card-top .c-chapter{font-size:12px;letter-spacing:1px;opacity:.9;}
+  .card-top .c-no{
+    margin-left:auto;
+    font-family:"Songti SC","SimSun",serif;
+    font-size:13px;font-weight:900;
+    background:rgba(0,0,0,.22);
+    padding:2px 9px;
+  }
+  .card-body{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column;}
+  .card h3{
+    font-size:18.5px;font-weight:800;
+    letter-spacing:.5px;
+    margin-bottom:10px;
+  }
+  .pain{
+    font-size:13.5px;color:var(--ink-soft);
+    background:#F3EDE0;
+    border-left:3px solid var(--gold);
+    padding:8px 12px;
+    margin-bottom:12px;
+  }
+  .pain b{color:var(--red-deep);}
+  .steps{list-style:none;counter-reset:s;margin-bottom:12px;}
+  .steps li{
+    counter-increment:s;
+    position:relative;
+    padding:5px 0 5px 30px;
+    font-size:14px;
+    border-bottom:1.5px dashed rgba(33,32,28,.16);
+  }
+  .steps li:last-child{border-bottom:none;}
+  .steps li::before{
+    content:counter(s,cjk-ideographic);
+    position:absolute;left:0;top:7px;
+    width:21px;height:21px;
+    background:var(--ink);color:#FFF8EC;
+    font-size:11px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .why{
+    font-size:13px;
+    background:#EAF2ED;
+    border:1.5px solid var(--green);
+    padding:9px 12px;
+    margin-bottom:14px;
+  }
+  .why b{color:var(--green-deep);}
+  .tagrow{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+  .tag{
+    font-size:11.5px;font-weight:700;
+    padding:2px 9px;
+    border:1.5px solid var(--ink);
+    background:#F3EDE0;color:var(--ink-soft);
+  }
+  .tag.easy{background:#E8F0E4;color:var(--green-deep);border-color:var(--green);}
+  .tag.hard{background:#F7E3DE;color:var(--red-deep);border-color:var(--red);}
+  .tag.fast{background:#FBF1DC;color:#8A6516;border-color:var(--gold);}
+  .tag.slow{background:#E4EBF2;color:var(--blue);border-color:var(--blue);}
+  .links{display:flex;flex-wrap:wrap;gap:8px;}
+  .link-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:12.5px;font-weight:700;
+    text-decoration:none;
+    padding:6px 12px;
+    border:var(--line);
+    box-shadow:2px 2px 0 var(--ink);
+    background:#FFF8EC;color:var(--ink);
+    transition:transform .08s, box-shadow .08s;
+  }
+  .link-btn:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink);color:var(--red-deep);}
+  .link-btn.video{background:var(--red);color:#FFF8EC;}
+  .link-btn.video:hover{color:#fff;}
+  .link-btn .lt{font-size:10px;opacity:.85;border:1px solid currentColor;padding:0 4px;}
+
+  /* 古法溯源彩蛋 */
+  .classic{
+    margin:14px 18px 18px;
+    background:#21201C;color:#EFE6D2;
+    padding:10px 14px;
+    font-family:"Songti SC","SimSun",serif;
+    font-size:13px;
+    position:relative;
+  }
+  .classic .cl-tag{
+    position:absolute;top:-11px;left:10px;
+    background:var(--gold);color:var(--ink);
+    font-size:11px;font-weight:700;
+    padding:1px 8px;
+    font-family:"PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  .classic em{color:var(--gold);font-style:normal;}
+
+  /* ===== 页脚 ===== */
+  footer{
+    border-top:var(--line);
+    background:var(--ink);
+    color:#B9B2A3;
+    padding:34px 24px;
+    text-align:center;
+    font-size:13px;
+  }
+  footer .f-title{
+    font-family:"Songti SC","SimSun",serif;
+    color:#EFE6D2;font-size:17px;letter-spacing:3px;margin-bottom:8px;
+  }
+  footer p{max-width:640px;margin:4px auto;}
+
+  mark{background:var(--gold);color:var(--ink);padding:0 2px;}
+
+  @media (max-width:560px){
+    header h1{letter-spacing:3px;}
+    .grid{grid-template-columns:1fr;}
+    .vol-num{width:60px;height:60px;}
+    .vol-num .n{font-size:20px;}
+    .vol-title h2{font-size:24px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <div class="head-tag">全 量 版</div>
+    <h1>现代齐民要术</h1>
+    <div class="sub">平民生活要术 • 现代人的衣食住行百工谱</div>
+    <div class="motto">起自耕农，终于醯醢（xī hǎi，酱醋之属）—— 北魏•贾思勰《齐民要术》序 &nbsp;｜&nbsp; 今日之用：起自灶台，终于人情</div>
+    <div class="head-stats">
+      <span>📚 全书收录 <b id="statTotal">0</b> 条</span>
+      <span>📖 全量十三卷</span>
+      <span>🔗 深度知识点 • 真实来源直达</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 卷目导航 -->
+  <nav class="vol-nav">
+    <div class="vol-nav-inner" id="volNav"></div>
+  </nav>
+
+  <!-- 检索工具栏 -->
+  <div class="toolbar">
+    <div class="searchbox">
+      <div class="icon">🔍</div>
+      <input id="q" type="text" placeholder="搜索妙招、食材、痛点……如：蒸蛋 / 去腥 / 泡菜">
+      <button class="clear" id="qClear" title="清空">×</button>
+    </div>
+    <div class="filter-group" id="fDiff">
+      <button data-v="all" class="on">难度•全部</button>
+      <button data-v="新手">新手入门</button>
+      <button data-v="进阶">进阶修炼</button>
+    </div>
+    <div class="filter-group" id="fTime">
+      <button data-v="all" class="on">耗时•全部</button>
+      <button data-v="快手">快手</button>
+      <button data-v="慢工">慢工</button>
+    </div>
+  </div>
+  <div class="result-line">
+    <span>当前筛出 <b id="hitCount">0</b> 条妙招</span>
+    <span>检索范围：标题 / 痛点 / 步骤 / 原理 / 标签</span>
+  </div>
+
+  <div class="empty" id="emptyBox">
+    <div class="big">📜</div>
+    <h3 class="serif">查无此术</h3>
+    <p>换个关键词试试？或者清空筛选，翻翻两卷样刊找找灵感。</p>
+  </div>
+
+  <!-- 卷内容由 JS 渲染 -->
+  <main id="content"></main>
+
+</div>
+
+<footer>
+  <div class="f-title">现代齐民要术 • 样张试刊</div>
+  <p>体例仿北魏贾思勰《齐民要术》，以"卷—篇—术"三级编排；每术录痛点、步骤、格物（原理），深处附来源直达。</p>
+  <p>条目整理自 B 站、人民日报、环球网、下厨房等权威与生活平台，以及小红书、抖音、微信公众号与评论区实测验证的民间智慧；外链直达视频或原文，评论区高赞技法已在「格物」中注明验证来源。</p>
+  <p style="margin-top:10px;color:#7A7466;">全量十三卷 • 收录二百二十四条妙招 • 起自灶台，终于人情</p>
+</footer>
+
+<script>
+/* ================= 数据区 ================= */
+const VOLS = [
+  {id:1,  name:"爨食篇", field:"厨房烹饪", ready:true,  color:"var(--red)",   origin:"对应原著《饼法》《羹臛》诸篇"},
+  {id:2,  name:"酿菹篇", field:"腌渍发酵", ready:true,  color:"var(--green)", origin:"对应原著《作酱》《作醋》《作菹》诸篇"},
+  {id:3,  name:"洒扫篇", field:"清洁收纳", ready:true,  color:"#3E6B8C", origin:"参考河北卫视《家政女皇》诸期技法"},
+  {id:4,  name:"营缮篇", field:"居家修缮", ready:true,  color:"#7A5C3D", origin:"对应原著《杂说》百工之意"},
+  {id:5,  name:"器用篇", field:"数码通讯", ready:true,  color:"#4A6FA5", origin:"今人新编 • 数码时代的器物养护"},
+  {id:6,  name:"艺植篇", field:"阳台园艺", ready:true,  color:"#5B8C3E", origin:"对应原著《种瓜》《栽树》诸篇"},
+  {id:7,  name:"畜养篇", field:"宠物饲养", ready:true,  color:"#C97B4A", origin:"对应原著《养牛马》《养鸡》诸篇"},
+  {id:8,  name:"调护篇", field:"健康护理", ready:true,  color:"#C25B6E", origin:"参原著所录医方诸条之意"},
+  {id:9,  name:"行止篇", field:"出行居住", ready:true,  color:"#4E7A9E", origin:"今人新编 • 出行居住之道"},
+  {id:10, name:"货殖篇", field:"省钱理财", ready:true,  color:"#B8860B", origin:"对应原著《货殖》篇"},
+  {id:11, name:"礼俗篇", field:"节令人情", ready:true,  color:"#A85560", origin:"参《齐民要术》四时农令之意"},
+  {id:12, name:"结绳篇", field:"绳结捆扎", ready:true,  color:"#6B5B95", origin:"呼应上古结绳记事 • 今人新编"},
+  {id:13, name:"育雏篇", field:"育儿照护", ready:true,  color:"#2E8B8B", origin:"参原著家禽育雏之意 • 育儿内容采自权威医源"},
+];
+
+const TIPS = [
+/* ============ 卷一 • 爨食篇 ============ */
+{
+  vol:1, chapter:"米面主食", icon:"🍚",
+  title:"煮饭不糊底，剩饭回甘术",
+  pain:"电饭煲煮饭不是夹生就是糊底；剩饭第二天硬得像石头，回锅又干又柴。",
+  steps:[
+    "淘米不超过 2 遍，用力搓洗会丢掉表层营养和香气；淘好加水，水面高出一个指节（约1.2倍）。",
+    "加几滴食用油和一小撮盐再煮——油亮不粘，盐提甜。",
+    "跳闸后再焖 10 分钟再开盖，米芯才透；开盖前用饭勺把饭翻松散掉多余水汽。",
+    "剩饭装盒趁热封冷藏；回锅时洒一小勺水，盖盖小火蒸热，口感接近新饭。"
+  ],
+  why:"油在米粒表面形成隔膜减少粘锅；焖饭是让水汽均匀渗入米芯的过程，提前开盖等于打断回甘。洒水回热靠水蒸气重新软化淀粉（回生淀粉复糊化）。",
+  tags:["新手","快手","主食"],
+  links:[]
+},
+{
+  vol:1, chapter:"米面主食", icon:"🥚",
+  title:"蒸蛋嫩滑如布丁 • 黄金比例",
+  pain:"蒸蛋总是出蜂窝、口感老，孩子不爱吃，白蒸一场。",
+  steps:[
+    "按 蛋 : 温水 = 1 : 1.5 的黄金比例兑水（40°C 左右温水，不烫手）。",
+    "蛋液加盐后轻轻划散，忌疯狂搅打（气泡=蜂窝的元凶）。",
+    "过筛 1~2 遍滤掉泡沫和没打散的蛋清，表面浮泡用勺撇净。",
+    "盖保鲜膜并戳几个小孔，水开后中火蒸 10 分钟，关火焖 5 分钟再揭盖。"
+  ],
+  why:"高温开水会直接把蛋液冲成蛋花；冷水则蒸不嫩。过筛与封膜隔绝水汽滴落和气泡膨胀，蛋面才能平滑如镜。",
+  tags:["新手","快手","蒸制"],
+  links:[
+    {type:"video", name:"B站 • 肉沫蒸蛋 滑嫩教程", url:"https://www.bilibili.com/video/BV1YM1iYVEJE/"},
+    {type:"video", name:"B站 • 鸡蛋一周不重样吃法", url:"https://bilibili.com/video/BV1LxhCzVEZ4/"}
+  ]
+},
+{
+  vol:1, chapter:"米面主食", icon:"🍜",
+  title:"煮面不粘不坨不断条",
+  pain:"面条粘连成坨、汤浑发稠，捞晚了直接断成面糊。",
+  steps:[
+    "水宽火大：锅要深水要多，水开后再下面，下时用筷子拨散。",
+    "点水法：沸腾即添半碗凉水，重复 2~3 次，面芯熟得均匀不外烂。",
+    "煮捞面（拌面/炸酱面用）别把面煮全熟，八分熟捞出过一遍凉开水，根根分明。",
+    "若做汤面，碗底先放调料再冲面汤，面条最后入碗，久泡不坨。"
+  ],
+  why:"点水降温让面皮收缩而芯部继续糊化，内外同步熟透；过凉水洗去表面淀粉（防粘根源），并让面条回弹更筋道。",
+  tags:["新手","快手","主食"],
+  links:[]
+},
+{
+  vol:1, chapter:"肉禽处理", icon:"🍖",
+  title:"去腥三板斧：浸泡 • 焯水 • 香料",
+  pain:"炖汤爆炒总有腥味、血沫，怎么压都压不住。",
+  steps:[
+    "浸泡：肉类冷水下盆浸泡 30 分钟，中途换水 1~2 次，泡出血水（腥味大头）。",
+    "焯水：冷水下锅加姜片、料酒，水开后撇净浮沫再煮 2 分钟捞出，温水冲洗（忌冷水，肉质骤缩变柴）。",
+    "爆炒去腥：热锅热油下姜蒜末爆香再下肉，沿锅边烹料酒，酒遇高温瞬间汽化带走腥味。",
+    "炖煮去腥：香料包宜少不宜多——两片姜、一段葱、一两粒八角足矣，多则药味压鲜。"
+  ],
+  why:"腥味物质多溶于水且易随酒精挥发：浸泡换水是稀释，焯水是集中清除，烹料酒是挥发带走。三层接力，腥味无处可逃。",
+  tags:["新手","快手","肉类"],
+  links:[]
+},
+{
+  vol:1, chapter:"肉禽处理", icon:"🔪",
+  title:"切肉口诀：横切牛羊 竖切猪 斜切鸡",
+  pain:"同样的肉同样的腌法，自己炒出来就是又老又柴塞牙缝。",
+  steps:[
+    "牛羊肉逆纹横切：刀与纹理呈 90° 垂直，切断粗纤维，切片纹路呈井字状。",
+    "猪肉顺纹竖切：刀与纹理平行，切出川字纹，炒时不散碎、锁住汁水。",
+    "鸡肉斜切：刀与纹理约 45°，肉质嫩，斜切既不散也不断。",
+    "小诀窍：肉放冷冻室冻到半硬（约30分钟）最好切，片薄且不易打滑。"
+  ],
+  why:"肉的口感由肌肉纤维走向决定：牛羊纤维粗必须截断，猪肉纤维细怕散要顺护，鸡肉居中取斜。下刀方向对了，腌制都可以省一半功夫。",
+  tags:["进阶","快手","刀工"],
+  links:[
+    {type:"doc", name:"环球网 • 横切牛羊竖切猪详解", url:"https://health.huanqiu.com/article/9CaKrnJCXTM"},
+    {type:"doc", name:"新华网 • 厨房窍门合集", url:"http://news.xinhuanet.com/politics/2017-02/16/c_129481890.htm"}
+  ]
+},
+{
+  vol:1, chapter:"火候心法", icon:"🐟",
+  title:"煎鱼不破皮 • 热锅凉油定型法",
+  pain:"鱼一下锅皮就粘锅，一翻面碎成两半，端上桌全无卖相。",
+  steps:[
+    "鱼身内外用厨房纸彻底擦干（不溅油、不粘锅的第一关），可薄拍一层干淀粉。",
+    "热锅凉油：空锅大火烧到微微冒青烟，倒油润锅后倒出，重新加凉油。",
+    "中小火下鱼，前 1~2 分钟千万别动——晃锅时鱼能整体滑动即已定型。",
+    "翻面用锅铲+筷子双保险，一次翻定，煎至两面金黄。怕粘可先用姜片擦一遍热锅。"
+  ],
+  why:"鱼皮富含蛋白质，遇冷锅会与金属表面结合（粘锅本质）。热锅让蛋白质瞬间凝固定型，凉油隔离，加上足够的静置定型时间，鱼皮完整离锅。",
+  tags:["进阶","快手","火候"],
+  links:[
+    {type:"doc", name:"B站 • 煎鱼不粘锅不破皮三技巧", url:"https://bilibili.com/read/cv19909132"}
+  ]
+},
+{
+  vol:1, chapter:"蔬果处理", icon:"🌿",
+  title:"绿叶菜返鲜 & 冰箱分区保鲜",
+  pain:"绿叶菜放两天就蔫头耷脑；冰箱塞得满满当当，还是烂得快。",
+  steps:[
+    "返鲜术：蔫掉的绿叶菜剪根，泡冷水 15~30 分钟，细胞重新吸水挺立如初。",
+    "绿叶菜保存：厨房纸包住根部吸潮，装入保鲜袋立放冷藏（直立存放比平放多存 3~5 天）。",
+    "分区法则：冰箱门（温度波动大）放调味酱料；上层熟食剩菜；下层生肉海鲜；蔬果抽屉单独放。",
+    "苹果香蕉单独放——它们释放乙烯，是催熟其他果蔬的隐形杀手。"
+  ],
+  why:"蔬菜采后仍在呼吸，直立摆放顺应其生长姿态减少损耗；乙烯气体是植物催熟激素，隔离存放可延缓整箱蔬菜成熟腐败。",
+  tags:["新手","快手","保鲜"],
+  links:[]
+},
+{
+  vol:1, chapter:"蔬果处理", icon:"🥔",
+  title:"土豆不发芽 • 洋葱不催泪",
+  pain:"土豆没放几天就发绿发芽；切个洋葱泪流满面像看悲情剧。",
+  steps:[
+    "土豆与苹果同袋存放：苹果释放的乙烯能抑制土豆芽眼萌动，多存数周不发芽。",
+    "土豆忌光照、忌冷藏——放阴凉通风的纸箱（避光防发绿，低温会让淀粉转糖影响口感）。",
+    "洋葱提前冷藏半小时再切，催泪物质挥发大减；刀沾点水或嘴含一口水切，也有奇效。",
+    "发芽土豆挖芽去绿后深削再烹；发绿面积大的直接丢弃，龙葵碱加热也不分解。"
+  ],
+  why:"催泪素（丙硫醛-S-氧化物）遇水易溶易挥发：降温减挥发、水层挡扩散。苹果乙烯抑制芽的分化，是天然抑芽剂。",
+  tags:["新手","快手","保存"],
+  links:[]
+},
+{
+  vol:1, chapter:"火候心法", icon:"🔥",
+  title:"下料顺序口诀：糖先盐中醋后",
+  pain:"炒菜调味全靠感觉，同样一勺盐，别人提鲜我做齁。",
+  steps:[
+    "炒糖色/拔丝类：糖最先下，小火慢熬出琥珀色——糖需要时间焦化。",
+    "日常炒菜：盐宜在出锅前放，早放会让蔬菜出水、肉质变柴。",
+    "醋分两次：炝锅沿边烹一半（挥发成香），出锅前补一半（留酸提味）。",
+    "味精/鸡精关火再放——高温久煮鲜味物质（谷氨酸钠）会转成焦谷氨酸钠而失鲜。"
+  ],
+  why:"调味料的溶点、挥发性与作用时机不同：糖要焦化、盐要控渗透、醋要留香、鲜味剂怕高温。顺序对了，量减半而味更足。",
+  tags:["进阶","快手","调味"],
+  links:[]
+},
+/* ============ 卷二 • 酿菹篇 ============ */
+{
+  vol:2, chapter:"快手腌渍", icon:"🥕",
+  title:"一夜渍快手泡菜 • 隔天开吃",
+  pain:"想吃口酸辣脆，正经泡菜要养坛等半月，远水解不了近馋。",
+  steps:[
+    "白萝卜/黄瓜切条，撒盐抓匀腌 30~60 分钟，杀出水分倒掉（脆的关键）。",
+    "调渍汁：凉开水 200ml + 白醋 100ml + 糖 60g + 生抽 30ml + 小米辣圈 + 蒜片。",
+    "食材挤干水分入干净无油的密封罐，倒渍汁没过，冷藏一夜即成。",
+    "三天内吃完风味最佳；取食务必用干净筷子，沾油即坏。"
+  ],
+  why:"盐渍先脱水使细胞壁更脆，醋酸环境快速抑菌并渗入风味。它是「醋渍」而非「发酵」，所以无需养坛，冰箱冷抑即可久存小几日。",
+  tags:["新手","快手","腌渍"],
+  links:[]
+},
+{
+  vol:2, chapter:"坛养发酵", icon:"🏺",
+  title:"四川泡菜起坛 • 养一坛传家老盐水",
+  pain:"想吃正宗酸香回甘的泡菜，第一次起坛不是生花就是烂缸，白瞎一坛菜。",
+  steps:[
+    "选坛：首选带水封槽的土陶坛；点火测试密封——纸条燃后入坛盖盖，坛沿水倒吸即密封合格。",
+    "起盐水：凉开水/矿泉水 3L + 泡菜盐（无碘）约 200g（盐度约7%）+ 冰糖 + 花椒 + 高度白酒 30~50ml。",
+    "一切入坛之物洗净后必须完全晾干——生水和油是泡菜坛的两大死敌。",
+    "头坛泡耐泡的：老姜、大蒜、红皮萝卜、豇豆打底养水；约 10~15 天成熟，越泡越醇。",
+    "日常养护：坛沿水常满常换；生白花淋少许高度白酒；每次添新菜补对应盐量。"
+  ],
+  why:"泡菜是乳酸菌的厌氧发酵：盐水提供高渗抑菌环境，水封隔氧而放出发酵气。养好的老盐水菌群稳定，是「越老越好用」的活传家宝。",
+  tags:["进阶","慢工","发酵"],
+  links:[
+    {type:"doc", name:"B站 • 泡菜第一坛水注意事项", url:"https://www.bilibili.com/read/cv2278237"},
+    {type:"doc", name:"下厨房 • 老盐水制作全解", url:"https://m.xiachufang.com/recipe/100360999/"}
+  ]
+},
+{
+  vol:2, chapter:"坛养发酵", icon:"🥚",
+  title:"咸鸭蛋起沙流油 • 饱和盐水法",
+  pain:"腌出的咸鸭蛋蛋白齁咸蛋黄发白，不沙不油，跟买来的差一个次元。",
+  steps:[
+    "挑蛋：壳青白厚实、摇之无声的新鲜鸭蛋；裂纹蛋一颗都不能进坛。",
+    "洗净后彻底晾干（可晒半小时太阳），入 50 度以上白酒滚一圈再裹盐或入坛。",
+    "饱和盐水法：水烧开加盐至不再溶解（约水:盐 = 5:1），完全放凉后加高度白酒少许，倒入蛋坛。",
+    "密封阴凉处腌 20~30 天；中途不要开坛。煮时冷水下锅，水开后煮 8 分钟。"
+  ],
+  why:"蛋黄油脂本被蛋白质均匀包裹；盐渗入使蛋白质「盐析」沉淀，脂肪被挤出聚成油滴——这便是流油的来历。白酒杀菌促油分离，是流油加速器。",
+  tags:["进阶","慢工","腌渍"],
+  classic:"《齐民要术》早已记载咸鸭蛋古法：<em>「浸鸭子一月，煮而食之，酒食具用。」</em>——盐水浸一月，正是本条饱和盐水法的千年祖版。",
+  links:[
+    {type:"doc", name:"人民日报 • 怎么腌出流油的咸鸭蛋", url:"https://www.peopleapp.com/rmharticle/30029457634"},
+    {type:"doc", name:"B站 • 7天速成起沙流油法", url:"https://www.bilibili.com/read/mobile/2419086"}
+  ]
+},
+{
+  vol:2, chapter:"快手腌渍", icon:"🍯",
+  title:"糖蒜速成 • 脆甜不辣嘴",
+  pain:"新蒜上市买一堆，不会处理又辣又冲，放久了还发霉。",
+  steps:[
+    "新蒜剥去外皮留内皮两层，剪去长梗，清水浸泡 24 小时去辛辣（中途换水 2 次）。",
+    "捞出彻底晾干表面水分，装无油无水的密封罐。",
+    "糖醋汁：白醋 500ml + 白糖 250g + 盐 10g，小火煮开搅化后彻底放凉。",
+    "糖醋汁倒入没过蒜瓣，密封冷藏 15~20 天后开吃；颜色渐变琥珀为佳。"
+  ],
+  why:"浸泡让蒜氨酸酶底物流失降低辛辣；糖醋高糖高酸双重抑菌环境使生蒜能长期存放，且糖分渗透让蒜瓣透亮如蜜蜡。",
+  tags:["新手","慢工","腌渍"],
+  links:[]
+},
+{
+  vol:2, chapter:"自制酱料", icon:"🌶",
+  title:"蒜蓉辣酱 • 香而不坏存两月",
+  pain:"自制辣酱三天长白膜，蒜香也总是发苦发糊。",
+  steps:[
+    "辣椒、蒜、姜洗净后必须彻底晾干，料理机打成粗颗粒（忌打成泥，留口感）。",
+    "蒜蓉分两份：一份热油小火炒至微黄出香，一份出锅前放入——层次翻倍。",
+    "下辣椒碎小火慢熬 5~8 分钟炒干水汽，加盐、糖、生抽调味。",
+    "关火淋 2~3 勺高度白酒拌匀，趁热装入开水烫过晾干的玻璃罐，油面封顶。",
+    "冷藏保存，随吃随取干净勺挖取，可存两个月。"
+  ],
+  why:"生水与杂菌是长白花的元凶：全程无水 + 白酒酒精杀菌 + 油封隔绝空气，三重防线让自制酱料远超想象地耐存。蒜蓉先洗去粘液再炒，则可避免苦糊。",
+  tags:["进阶","快手","酱料"],
+  links:[
+    {type:"doc", name:"B站 • 蒜蓉辣椒酱耐存三窍门", url:"https://www.bilibili.com/read/cv8620482"},
+    {type:"doc", name:"下厨房 • 自制蒜蓉辣椒酱", url:"https://www.xiachufang.com/recipe/105947543/"}
+  ]
+},
+{
+  vol:2, chapter:"发面烘焙", icon:"🍞",
+  title:"发面成败诀 • 馒头暄软不塌陷",
+  pain:"馒头蒸出来像死面疙瘩，或发起后又塌陷回缩，全凭运气。",
+  steps:[
+    "配比黄金公式：面粉 500g + 酵母 5g + 白糖 5g + 温水 260ml（30°C，手温不烫）。",
+    "酵母先入温水静置 5 分钟，表面浮起泡沫说明活性良好——这是成败的第一道检验。",
+    "揉面到位：揉至「三光」（面光、手光、盆光），一发至两倍大、戳洞不回缩。",
+    "整形后必须二次醒发 15~20 分钟（到 1.5 倍大），这是暄软的关键一步。",
+    "凉水上锅，水开蒸 20 分钟；关火焖 3~5 分钟再揭盖，防骤冷塌陷。"
+  ],
+  why:"酵母是活菌：温水唤醒、白糖供能、二次醒发让面团内部重新构建气孔网络。关火即揭盖的温差会让气孔塌缩——焖一会儿是给面团缓冲。",
+  tags:["新手","慢工","发酵"],
+  links:[
+    {type:"video", name:"B站 • 懒人手揉馒头教程", url:"https://bilibili.com/video/BV1xxgAzbEEo/"},
+    {type:"doc", name:"B站 • 快速发面正确做法", url:"https://www.bilibili.com/read/cv3866913/"}
+  ]
+},
+{
+  vol:2, chapter:"发面烘焙", icon:"🥛",
+  title:"电饭煲自制酸奶 • 一夜酸奶自由",
+  pain:"市售酸奶越来越贵，想自制又没有酸奶机，望而却步。",
+  steps:[
+    "消毒是命门：电饭煲内胆、保鲜盒、勺子全部开水烫一遍，之后不再碰生水生物。",
+    "纯牛奶 500ml 加热到微沸离火，放凉至 40°C 左右（手感：乍摸是温的）。",
+    "加入原味无糖酸奶 50g（或菌粉），搅匀后加盖放入电饭煲。",
+    "煲内倒 40~45°C 温水至瓶身一半，盖盖不通电静置发酵 8~10 小时（睡前做正好）。",
+    "凝固如豆腐脑状即成；冷藏钝化 4 小时风味更佳，留一勺可作下一批菌种。"
+  ],
+  why:"乳酸菌在 40°C 左右把乳糖转为乳酸，使酪蛋白凝固成冻。酸奶机本质只是恒温箱——电饭煲的一锅温水就是零成本的恒温环境。",
+  tags:["新手","慢工","发酵"],
+  links:[
+    {type:"doc", name:"下厨房 • 电饭煲自制酸奶", url:"https://www.xiachufang.com/recipe/100582627"},
+    {type:"doc", name:"什么值得买 • 电饭锅酸奶自由实测", url:"https://post.m.smzdm.com/p/al39p9dg"}
+  ]
+},
+{
+  vol:2, chapter:"剩馔改造", icon:"🍛",
+  title:"剩饭黄金改造 • 炒饭粒粒分明",
+  pain:"隔夜剩饭回蒸难吃，扔了又心疼，一锅炒饭还总是湿黏成坨。",
+  steps:[
+    "用隔夜冷饭——淀粉回生后水分收干，正是粒粒分明的先天条件。",
+    "冷饭入盆淋少许蛋液抓匀，让每粒米都裹上蛋衣（金包银）。",
+    "热锅热油先炒散米饭，中火煸到米粒在锅里跳舞，再下配料。",
+    "调味沿锅边淋入生抽，最后撒葱花关火余温拌开。",
+    "升级吃法：剩饭加水煮粥、捏饭团空气炸锅脆皮、铺芝士焗烤皆宜。"
+  ],
+  why:"新鲜米饭含水量高，炒时淀粉糊化发黏；隔夜回生淀粉（抗性淀粉）结构稳定，高温翻炒粒粒分离。蛋液隔层再锁一层水分，外香内软。",
+  tags:["新手","快手","改造"],
+  links:[]
+},
+/* ============ 卷三 · 洒扫篇 ============ */
+{
+  vol:3, chapter:"玻璃镜面", icon:"✨",
+  title:"玻璃明净术 • 家政女皇黄金配方",
+  pain:"玻璃擦完全是水痕和毛絮，越擦越花，越擦越累。",
+  steps:[
+    "按配方兑清洁剂：白醋 150ml + 酒精 50ml + 洗衣粉一勺 + 清水 500ml，摇匀。",
+    "海绵蘸清洁剂把整面玻璃涂匀，让药剂先「吃」进去。",
+    "刮板紧贴玻璃自上而下刮，每一刮用布擦净刮条再刮下一道。",
+    "外面的玻璃不好刮就横向刮；最后干布收边框水痕。"
+  ],
+  why:"白醋溶解矿物水痕，酒精快挥发不留水迹，洗衣粉降低表面张力让污膜松脱。刮板是物理成膜，比抹布反复蹭少留毛絮十倍。",
+  tags:["新手","快手","清洁"],
+  classic:"本方录自河北卫视《家政女皇》20150206 期「厨卫清洁有魔法」现场演示。",
+  links:[
+    {type:"doc", name:"家政女皇 • 厨卫清洁有魔法（节目要点）", url:"https://www.caidaoke.com/jznf/2015/15233.html"}
+  ]
+},
+{
+  vol:3, chapter:"厨卫重污", icon:"💨",
+  title:"油烟机网罩 • 小苏打湿敷蒸浴",
+  pain:"网罩油垢厚结，钢丝球刷到手酸也刷不净，还全是划痕。",
+  steps:[
+    "小苏打倒入盆中冲入开水搅匀，装入喷壶。",
+    "油污上厚厚喷一层，铺一层卫生纸，再喷透——让纸吸饱药剂贴住油污。",
+    "静置 10~15 分钟，纸巾连油污整张揭下。",
+    "网罩过一遍热水冲净，擦干装回。"
+  ],
+  why:"小苏打碱性可皂化油脂，开水加速反应；卫生纸是「湿敷」载体，让药剂持续贴附油垢而不是流走——这是比干喷高效的核心。",
+  tags:["进阶","快手","厨卫"],
+  classic:"同出《家政女皇》20150206 期，小苏打加开水是节目原方。",
+  links:[
+    {type:"doc", name:"家政女皇 • 节目要点全录", url:"https://www.caidaoke.com/jznf/2015/15233.html"},
+    {type:"doc", name:"什么值得买 • 家政女皇十年验证版", url:"https://post.smzdm.com/p/avgxz9k7"}
+  ]
+},
+{
+  vol:3, chapter:"织物养护", icon:"🛁",
+  title:"毛巾复活术 • 硬滑臭三连击",
+  pain:"毛巾用久了又硬又滑还有馊味，怎么晒都不软。",
+  steps:[
+    "锅中烧约 60°C 热水，加两勺小苏打化开，毛巾入内泡 20 分钟。",
+    "另起一盆清水加白醋，续泡 10 分钟。",
+    "清水搓洗两遍，通风处晾晒，忌长期闷在卫生间。"
+  ],
+  why:"硬是钙镁皂垢沉积，滑是油脂皮屑滋生细菌——普通洗衣液只洗表面。小苏打分解油垢除味，白醋溶皂垢杀菌，两步接力各司其职。",
+  tags:["新手","快手","织物"],
+  links:[
+    {type:"doc", name:"什么值得买 • 家政女皇清洁妙招", url:"https://post.smzdm.com/p/avgxz9k7"}
+  ]
+},
+{
+  vol:3, chapter:"干式清洁", icon:"🐻",
+  title:"毛绒玩具干洗 • 粗盐摇摇袋",
+  pain:"毛绒玩具不能水洗，一洗结块打结，脏了只能干瞪眼。",
+  steps:[
+    "半碗大粒盐与玩具同入塑料袋，系紧袋口。",
+    "用力摇晃几十下，让盐在袋里反复摩擦玩具。",
+    "取出抖净，盐已变成灰黑色——污垢被吸走了。",
+    "同法可用于毛领、车用毛绒靠垫。"
+  ],
+  why:"食盐正负离子对污垢有吸附作用，干式清洁不打湿绒毛、不结块，还顺带杀菌。",
+  tags:["新手","快手","清洁"],
+  classic:"《家政女皇》生活妙招整理版头号经典，网友口口相传二十年的招。",
+  links:[
+    {type:"doc", name:"家政女皇 • 妙招整理版（妈妈网）", url:"http://www.tjmama.com/forum.php?mod=viewthread&tid=831175"}
+  ]
+},
+{
+  vol:3, chapter:"厨卫重污", icon:"🔥",
+  title:"灶台老油垢 • 一敷一擦净",
+  pain:"灶台焦油状老油垢，钢丝球刮花台面也去不掉。",
+  steps:[
+    "小苏打加少量温水调成稠糊（米糊状）。",
+    "厚敷油污处，静置 15 分钟，什么都不用干。",
+    "海绵蘸洗洁精擦去；顽固处补洒食盐增加摩擦。",
+    "清水抹布收尾，台面光亮如新。"
+  ],
+  why:"碱性糊敷让皂化慢慢发生，比硬刮温和；食盐是天然摩擦剂，不伤釉面。钢丝球的划痕是永久伤害，能不用就不用。",
+  tags:["新手","快手","厨卫"],
+  links:[
+    {type:"doc", name:"B站 • 灶台一擦净窍门", url:"https://www.bilibili.com/read/cv12970787"}
+  ]
+},
+{
+  vol:3, chapter:"管道疏通", icon:"🚿",
+  title:"下水道疏通除味 • 先分步再气泡",
+  pain:"水槽下水慢、返臭味，管道剂又贵又呛鼻。",
+  steps:[
+    "先倒半杯小苏打入管口。",
+    "再缓缓倒入半杯白醋，冒泡后等 10 分钟。",
+    "用不烫手的热水（忌沸水）分两三次冲下。",
+    "半小时内少用水，让存水弯重新蓄水形成水封。"
+  ],
+  why:"格物辟谣：白醋与小苏打混在一起其实会酸碱中和、互相拆台——真正起效的是气泡的物理冲刷松动油垢，加碱与酸分步各自动作。沸水则可能烫变形塑料管道。",
+  tags:["新手","快手","厨卫"],
+  links:[
+    {type:"doc", name:"B站 • 小苏打通下水道", url:"https://www.bilibili.com/read/cv13558335"}
+  ]
+},
+{
+  vol:3, chapter:"家电自洁", icon:"👕",
+  title:"洗衣机槽自查自洁",
+  pain:"洗衣机用久了衣服越洗越「脏」，内筒里全是霉斑黏液。",
+  steps:[
+    "200ml 白醋浸湿一条毛巾，放入洗衣机甩干——让醋布满内筒每一处。",
+    "静置 1 小时让醋慢慢反应。",
+    "50g 小苏打溶解，注满水运转 5 分钟，再静置 2 小时。",
+    "最后单独跑一次漂洗程序冲净。"
+  ],
+  why:"醋软化水垢与洗涤剂残留，小苏打分解生物膜与异味；甩干是把醋「甩上」筒壁的巧办法，比直接倒进筒均匀得多。",
+  tags:["进阶","慢工","家电"],
+  links:[]
+},
+{
+  vol:3, chapter:"家电自洁", icon:"❄",
+  title:"冰箱除味与除冰",
+  pain:"冰箱串味像杂货铺；冷冻室厚冰层费电又难撬。",
+  steps:[
+    "除味：敞口小盒装小苏打或干茶叶渣放角落，每月一换。",
+    "除冰：断电，冷冻室放一碗约 60°C 的温水，关门等十几分钟。",
+    "冰层整块自行脱落，抹干复电。",
+    "忌用刀铲硬撬——内胆后面就是制冷管。"
+  ],
+  why:"小苏打多孔结构吸附气味分子；温水蒸汽破坏冰层与内壁的附着力。硬撬一旦戳破内胆，制冷剂泄漏，几百块维修费起步。",
+  tags:["新手","快手","家电"],
+  links:[]
+},
+{
+  vol:3, chapter:"织物养护", icon:"👟",
+  title:"白鞋晾晒不黄边",
+  pain:"白鞋刷得干干净净，晒干后鞋边一圈黄印。",
+  steps:[
+    "刷洗后甩去水分。",
+    "整鞋用卫生纸包裹两三层，贴紧鞋面。",
+    "阴凉通风处晾干，忌暴晒。",
+    "干后撕纸——黄渍全在纸上。"
+  ],
+  why:"发黄是洗涤剂残留随水分「迁移」到鞋面边缘并氧化；湿卫生纸的纤维吸附迁移中的残液，替鞋面背了锅。暴晒会加速氧化发黄，阴干是正解。",
+  tags:["新手","慢工","织物"],
+  links:[
+    {type:"doc", name:"网易 • 家政女皇十年小技巧回顾", url:"https://m.163.com/news/article/LABUE3H70556E96Z.html"}
+  ]
+},
+/* ============ 卷四 · 营缮篇 ============ */
+{
+  vol:4, chapter:"水路小修", icon:"🚰",
+  title:"水龙头花洒漏水 • 一听二紧三换芯",
+  pain:"龙头关紧了仍滴水，半夜「嗒、嗒」吵人；花洒软管接头渗水。",
+  steps:[
+    "先关下方角阀，打开龙头放尽余水。",
+    "撬开手柄顶部装饰帽，拧下螺丝取下手柄。",
+    "用扳手紧固阀芯压盖——多数滴水到这一步就止住。",
+    "仍漏则取出旧阀芯，带样品买同规格换新。",
+    "花洒软管漏水：拆开接头换密封垫，或剪去漏点前一段软管重装。"
+  ],
+  why:"出水口滴水=阀芯密封面不贴合；手柄根部渗水=转轴密封圈老化。水从哪漏基本指明坏在哪——螺丝刀加扳手能解决九成漏水，换整套龙头是大冤种行为。",
+  tags:["进阶","快手","水电"],
+  links:[
+    {type:"doc", name:"B站 • 水龙头花洒漏水小方法", url:"https://www.bilibili.com/read/cv20850457"},
+    {type:"doc", name:"阀芯更换五步图解", url:"http://www.fjdnweixiu.com/zixun/31436.html"}
+  ]
+},
+{
+  vol:4, chapter:"水路小修", icon:"🚽",
+  title:"马桶水箱补水不止",
+  pain:"马桶冲完水箱一直响，水在悄悄流走，水费悄悄涨。",
+  steps:[
+    "开水箱盖，看水位——应低于溢水管口约 1cm。",
+    "水位过高则调低浮筒高度（旋螺杆或掰浮球杆）。",
+    "仍漏则检查排水阀底部密封圈，老化变形就换新。",
+    "密封圈几十块钱，网上按马桶型号买。"
+  ],
+  why:"水位超过溢水口就缓慢流入下水道形成「长流水」；「冲完还流」多是排水阀密封圈老化——它决定水封得住封不住。",
+  tags:["进阶","快手","水电"],
+  links:[]
+},
+{
+  vol:4, chapter:"水路小修", icon:"🌀",
+  title:"地漏头发清理",
+  pain:"浴室地漏排水越来越慢，一捞全是头发团。",
+  steps:[
+    "铁丝衣架拉直，前端弯成小钩。",
+    "伸入地漏或存水弯，旋转勾拉毛发团。",
+    "每月预防性清理一次，配一次性地漏滤网。",
+    "勾完冲一壶温水顺冲管道。"
+  ],
+  why:"头发与皂垢缠结成「毛毡」阻塞水路；机械勾取最彻底，化学疏通剂对毛发效果差还腐蚀管件。滤网是十块钱的终身防线。",
+  tags:["新手","快手","水电"],
+  links:[]
+},
+{
+  vol:4, chapter:"墙与家具", icon:"🎨",
+  title:"墙面钉孔与胶痕修补",
+  pain:"搬走挂画墙上全是钉孔；撕标签留下黑胶痕，强迫症当场发作。",
+  steps:[
+    "钉孔：白牙膏填入抹平，干后细砂纸轻磨，同色墙面漆补点。",
+    "强力胶痕：用橡皮反复擦除。",
+    "泡棉胶：先塑料片刮掉表层，白醋浸捂约 1 小时后湿布擦除。",
+    "面积大的破损才需要补墙膏。"
+  ],
+  why:"牙膏中的碳酸钙与墙体成分近似，干后就是「微缩补墙剂」；白醋软化压敏胶的粘性树脂，捂足时间是关键。",
+  tags:["新手","快手","修缮"],
+  classic:"胶痕二法录自《家政女皇》20120228 期「墙上的胶痕巧去除」。",
+  links:[]
+},
+{
+  vol:4, chapter:"墙与家具", icon:"🛋",
+  title:"家具划痕隐形术",
+  pain:"木家具磕出白印划痕，整件家具都显旧。",
+  steps:[
+    "核桃仁掰开，用果肉反复涂抹划痕。",
+    "静置让油脂渗入，软布抛光。",
+    "浅痕也可用同色鞋油或家具修补蜡笔描补。",
+    "深凹痕：热毛巾捂湿后熨斗低温隔布熨烫，让木纤维回弹。"
+  ],
+  why:"核桃油填充木质纤维间隙并氧化变深色，与木色天然融合；凹痕熨烫利用木材遇热湿回弹的特性——老木匠的传家招。",
+  tags:["新手","快手","修缮"],
+  links:[]
+},
+{
+  vol:4, chapter:"门窗五金", icon:"🔑",
+  title:"门锁卡涩润滑法",
+  pain:"钥匙插拔发涩，锁芯转不动，喷了油反而更粘灰。",
+  steps:[
+    "铅笔芯刮出石墨粉，吹入锁孔。",
+    "插入钥匙反复抽拉转动，让石墨分布均匀。",
+    "严禁向锁孔喷 WD40 或食用油。",
+    "钥匙本身就涩的，用铅笔芯涂钥匙齿一圈。"
+  ],
+  why:"石墨是固体干性润滑剂，顺滑不粘灰；油性润滑剂与灰尘结成油泥，是锁具大忌——越油越涩是时间问题。",
+  tags:["新手","快手","修缮"],
+  links:[]
+},
+{
+  vol:4, chapter:"门窗五金", icon:"📺",
+  title:"遥控器复活术",
+  pain:"遥控器按键不灵，要按好几下才反应，差点买新的。",
+  steps:[
+    "先换新电池，并用橡皮打磨电池仓触点的氧化层。",
+    "仍不灵则拆开，棉签蘸酒精擦电路板按键触点。",
+    "按键导电层磨损的，剪一小块锡纸贴在胶垫背面。",
+    "装回测试，一般满血复活。"
+  ],
+  why:"九成「按键失灵」是触点氧化或导电橡胶磨损；锡纸导电可替代导电层——这是维修店不说但人人能做的招。",
+  tags:["新手","快手","家电"],
+  links:[]
+},
+{
+  vol:4, chapter:"家电延寿", icon:"☕",
+  title:"电水壶白醋除垢",
+  pain:"水壶内壁白垢一层，烧出来的水有水碱味。",
+  steps:[
+    "壶内按水:白醋约 5:1 加至满，煮沸。",
+    "静置 1 小时让反应充分。",
+    "倒掉后用清水再煮两次去醋味。",
+    "每月一次，垢厚可隔夜浸泡。"
+  ],
+  why:"水垢是碳酸钙沉积，醋酸与其反应生成可溶性醋酸盐；静置是给化学反应时间，煮沸是给反应温度。",
+  tags:["新手","快手","家电"],
+  links:[]
+},
+{
+  vol:4, chapter:"用电安全", icon:"⚡",
+  title:"插座安全自查",
+  pain:"插座摸着发烫、插拔松旷，总觉得是个隐患又说不出哪不对。",
+  steps:[
+    "摸面板：异常发热立即停用排查。",
+    "看插孔：铜片松动夹不紧插头，直接换新插座。",
+    "空调、热水器等大功率电器单独走插座，忌一插排串接。",
+    "长期不用的电器断电，出远门关总闸。"
+  ],
+  why:"发热=接触电阻过大，是插排起火的前兆信号；大功率电器串在同一插排会过载过流，绝缘层老化加速。",
+  tags:["新手","快手","安全"],
+  links:[]
+},
+/* ============ 卷五 · 器用篇 ============ */
+{
+  vol:5, chapter:"手机养护", icon:"🔋",
+  title:"手机电池延寿 • 20-80 法则",
+  pain:"手机用一年电池健康狂掉，一天三充，出门全靠充电宝续命。",
+  steps:[
+    "电量掉到 20%~30% 就补电，忌用到自动关机（深度放电最伤）。",
+    "日常充到 80% 即可拔——系统设置里能直接设充电上限。",
+    "避免边玩大型游戏边充电：高温是电池头号杀手。",
+    "整夜充电记得开启「智能充电保护」。"
+  ],
+  why:"锂电池「浅充浅放」最舒服：深度放电和长期满电都让电芯处于高压状态加速老化；35°C 以上环境充电，老化速率可快 3 倍。旧时代「用完再充」是镍电池的规矩，早过时了。",
+  tags:["新手","快手","数码"],
+  links:[
+    {type:"doc", name:"太平洋科技 • 电池保养科学依据", url:"https://g.pconline.com.cn/ask/231735.html"}
+  ]
+},
+{
+  vol:5, chapter:"网络优化", icon:"📶",
+  title:"WiFi 信号翻倍 • 摆位学",
+  pain:"人在卧室，视频转圈；信号看着满格，网速却像 3G 时代。",
+  steps:[
+    "路由器放房屋几何中心、位置偏高、四周开阔——「C 位」覆盖最均衡。",
+    "远离弱电箱（金属箱体直接闷死信号）、微波炉、冰箱、鱼缸。",
+    "双天线的一根竖直一根横放，覆盖不同平面。",
+    "承重墙衰减大，尽量让信号「多走门、少穿墙」。"
+  ],
+  why:"WiFi 是电磁波球形扩散，中心位对各方覆盖最均衡；金属与水对信号吸收极强。另辟谣：路由器标注的 450M 是速率单位 Mbps，不是 450 米，功率也受国家 100mW 上限管着，买「穿墙王」不如挪位置。",
+  tags:["新手","快手","数码"],
+  links:[
+    {type:"doc", name:"B站 • 路由器摆放心动位指南", url:"https://www.bilibili.com/read/cv2466654"},
+    {type:"doc", name:"B站 • WiFi 穿墙原理科普", url:"https://www.bilibili.com/read/mobile/1719200"}
+  ]
+},
+{
+  vol:5, chapter:"网络优化", icon:"📡",
+  title:"2.4G 与 5G 频段各司其职",
+  pain:"双频路由器不知道该连哪个，网速忽快忽慢。",
+  steps:[
+    "同屋近距离连 5G：带宽高、干扰少、速度起飞。",
+    "远距离或隔墙连 2.4G：穿透强、覆盖广。",
+    "2.4G 下微波炉一开会卡——那是频段干扰，不是路由器坏了。",
+    "两个频段建议分开命名，手机别自动乱跳。"
+  ],
+  why:"5G 频段带宽高但衰减快，2.4G 穿透好但人人都在用（邻居家的也在挤）。按距离选频段，不花钱就能显著提速。",
+  tags:["进阶","快手","数码"],
+  links:[]
+},
+{
+  vol:5, chapter:"数据安全", icon:"💾",
+  title:"数据备份 3-2-1 法则",
+  pain:"手机一丢、硬盘一坏，几年的照片文件说没就没。",
+  steps:[
+    "3 份副本：原件之外再留两份。",
+    "2 种介质：比如电脑硬盘 + 移动硬盘/网盘。",
+    "1 份异地：云盘，或同步到老家电脑。",
+    "手机开自动云相册，重要文件每月手动同步一次。"
+  ],
+  why:"任何单一存储都必然会坏——硬盘有寿命、手机会丢、误删除不商量。冗余加异地才叫备份：拷进 U 盘放同一个抽屉，坏起来是一起坏的。",
+  tags:["新手","快手","数码"],
+  links:[]
+},
+{
+  vol:5, chapter:"数据安全", icon:"🔒",
+  title:"密码防忘防撞 • 句子首字母法",
+  pain:"密码全用同一个，一处泄露处处沦陷；全不同又根本记不住。",
+  steps:[
+    "选一句只有自己懂的话：「2010年在成都吃火锅辣哭」。",
+    "取首字母加数字造主密码：2010nwcdchgl!k。",
+    "各网站加平台前缀实现一站一密：淘宝 TB2010…、微博 WB2010…。",
+    "支付与邮箱等核心账号单独设完全不同的密码。"
+  ],
+  why:"长句首字母兼具长度与伪随机性，好记难破解；平台前缀是「一站一密」的降级实现。撞库攻击偷的就是「一套密码走天下」的人。",
+  tags:["进阶","快手","数码"],
+  links:[]
+},
+{
+  vol:5, chapter:"电脑养护", icon:"💻",
+  title:"电脑卡顿急救三步",
+  pain:"电脑越用越卡，第一反应是重装系统，第二反应是买新的。",
+  steps:[
+    "查开机启动项：任务管理器禁用非必要自启软件。",
+    "看 C 盘余量：低于 10% 必卡，清理或把大文件搬去 D 盘。",
+    "用两三年后风扇狂转、机身发烫——是积灰了，清灰换硅脂立竿见影。",
+    "三步无效才考虑重装，多数情况到不了那步。"
+  ],
+  why:"卡顿三大病根：后台进程抢内存、磁盘写满寻道变慢、散热差被迫降频。三步各对应一个，九成的卡不用重装就能救。",
+  tags:["进阶","快手","数码"],
+  links:[]
+},
+{
+  vol:5, chapter:"电脑养护", icon:"🎧",
+  title:"耳机线材养护",
+  pain:"耳机总在同一个位置断线，寿命不过半年。",
+  steps:[
+    "收线绕大圈或 8 字，忌紧紧缠绕打结。",
+    "用理线器固定，减少插头根部弯折。",
+    "拔耳机捏住插头拔，忌拽线。",
+    "蓝牙耳机不用时入盒，比裸放长寿。"
+  ],
+  why:"断线几乎都发生在插头根部与分线处——反复小半径弯折让内部铜丝金属疲劳断裂；大圈收纳等于把弯折半径放大十倍。",
+  tags:["新手","快手","数码"],
+  links:[]
+},
+{
+  vol:5, chapter:"电脑养护", icon:"👓",
+  title:"屏幕清洁正法",
+  pain:"手机屏幕油膜擦不净，越擦越花，还总怕擦出划痕。",
+  steps:[
+    "先关屏，微纤维布（眼镜布）干擦浮尘。",
+    "顽固油膜：清洁剂或清水喷在布上——不是喷在屏上。",
+    "用布轻擦后干布收干。",
+    "忌酒精直喷屏幕、忌纸巾干蹭。"
+  ],
+  why:"纸巾纤维硬，干摩擦会留下细微划痕，日积月累屏幕成雾面；液体直喷容易顺边缝渗进机身。部分屏幕镀膜怕酒精，稀释更稳。",
+  tags:["新手","快手","数码"],
+  links:[]
+},
+{
+  vol:5, chapter:"旧物新生", icon:"📱",
+  title:"旧手机改造指南",
+  pain:"旧手机卖不上价，放抽屉里吃灰又可惜。",
+  steps:[
+    "先恢复出厂设置、取出 SIM 卡。",
+    "变行车记录仪：装记录仪 App 加车充。",
+    "变家用监控：装监控 App 看家、看宠物、看娃。",
+    "变专用音乐盒、电子相册、厨房菜谱屏。",
+    "或当万能遥控器、网课播放器。"
+  ],
+  why:"旧手机芯片跑单一任务绰绰有余；「专用设备化」是吃灰手机再战三年的正确姿势，比三五十块回收价划算得多。",
+  tags:["新手","快手","数码"],
+  links:[]
+},
+/* ============ 卷六 · 艺植篇 ============ */
+{
+  vol:6, chapter:"再生种植", icon:"🌱",
+  title:"葱蒜再生 • 水培自给",
+  pain:"做饭总缺一把葱花，买的葱用一半蔫一半。",
+  steps:[
+    "买带根须的小葱，切用时留 3~5cm 葱白和完整根须。",
+    "透明杯加水没过根部约 1cm，忌没过葱白。",
+    "每 2 天换一次水，放散射光窗台。",
+    "4~5 天冒新叶，长到 20cm 剪上部吃，留底继续长。",
+    "蒜瓣剥皮竖放浅水，同法操作。"
+  ],
+  why:"葱白的基盘有分生组织，遇水就能持续抽新叶；勤换水防绿藻防烂根。一茬葱能吃一个月，阳台秒变小菜园。",
+  tags:["新手","快手","种植"],
+  links:[
+    {type:"doc", name:"B站 • 奶茶杯种香葱 18 天采收", url:"https://www.bilibili.com/read/cv19731307/"},
+    {type:"doc", name:"B站 • 水培种植入门", url:"https://www.bilibili.com/read/cv16236008/"}
+  ]
+},
+{
+  vol:6, chapter:"养护心法", icon:"💧",
+  title:"浇水判断三法",
+  pain:"花不是旱死就是涝死，浇水全靠缘分。",
+  steps:[
+    "插指法：食指插入土下 2cm，感觉干再浇。",
+    "掂盆法：记干盆重量，明显变轻就该浇。",
+    "竹签法：竹签插土半小时拔出，不带湿土就浇。",
+    "浇必浇透（盆底出水），忌天天来点「半截水」。"
+  ],
+  why:"表土干不等于根层干；烂根多因盆底长期积水无氧。浇透让根往下扎，半截水养出浅根弱苗——浇水的学问不在勤，在透。",
+  tags:["新手","快手","种植"],
+  links:[]
+},
+{
+  vol:6, chapter:"养护心法", icon:"🍂",
+  title:"黄叶诊断书",
+  pain:"叶子说黄就黄，不知道是缺水、缺肥还是病了。",
+  steps:[
+    "老叶先黄且整体枯黄 = 缺水或缺氮肥。",
+    "新叶先黄但叶脉仍绿 = 缺铁，补硫酸亚铁或调酸。",
+    "嫩叶暗黄无光泽 = 多半水涝，先停水松土。",
+    "施肥后急速焦边 = 肥害，大量清水冲洗盆土。",
+    "有斑点或叶背有虫 = 病虫害，对症下药。"
+  ],
+  why:"植物会把老叶中的氮调往新叶——老叶先黄是「缺」的信号；新叶异常多是微量元素或根系出了问题。看黄在哪儿，比黄本身重要。",
+  tags:["进阶","快手","种植"],
+  links:[]
+},
+{
+  vol:6, chapter:"繁殖扩盆", icon:"🌵",
+  title:"扦插生根术 • 一盆变十盆",
+  pain:"想让绿萝多肉一盆变十盆，插啥死啥。",
+  steps:[
+    "绿萝：剪带气根的枝条，两节一段，水培或直插湿土，散射光养。",
+    "多肉叶插：完整掰下叶片平放在微潮土面，忌插进土里。",
+    "月季：剪半木质化枝条斜剪切口，蘸生根粉插湿沙。",
+    "未生根前忌暴晒忌施肥，保持微潮。"
+  ],
+  why:"多肉靠叶基完整分生组织出根出芽，插进土里反而切口感染腐烂——「平放」是反直觉但正确的做法；绿萝气根遇湿土直接转正为真根。",
+  tags:["进阶","慢工","种植"],
+  links:[]
+},
+{
+  vol:6, chapter:"病虫防治", icon:"🐞",
+  title:"蚜虫绿色防治",
+  pain:"月季新梢爬满蚜虫，打药又怕室内污染。",
+  steps:[
+    "先水冲：水流物理冲掉大部分蚜虫。",
+    "肥皂水（1 升水加几滴洗洁精）喷叶背，隔 3 天一次。",
+    "盆边挂黄色粘板，诱杀白粉虱和小黑飞。",
+    "严重才上吡虫啉，且只在室外通风处用。"
+  ],
+  why:"洗洁精破坏蚜虫体表蜡质使其脱水，物理杀虫无残留；蚜虫白粉虱有趋黄性，粘板是利用天性的陷阱。叶背是虫卵大本营，喷那里才治本。",
+  tags:["新手","快手","种植"],
+  links:[]
+},
+{
+  vol:6, chapter:"病虫防治", icon:"⚠",
+  title:"小黑飞断根法",
+  pain:"花盆边总有小黑虫飞舞，赶不尽杀不绝。",
+  steps:[
+    "认准根源：幼虫孳生在潮湿表土里。",
+    "表层 3cm 土干透再浇（干湿循环），打破产卵环境。",
+    "表土铺 1cm 干净河沙，隔离成虫产卵。",
+    "黄色粘板抓成虫；严重时直接换掉表层土。"
+  ],
+  why:"成虫寿命只有一周，杀不绝是因为土壤里的卵在持续孵化——切断孳生介质（湿土）比喷药灭成虫治本得多。",
+  tags:["进阶","快手","种植"],
+  links:[]
+},
+{
+  vol:6, chapter:"繁殖扩盆", icon:"🌷",
+  title:"换盆与缓苗",
+  pain:"好心换个大盆，花反而蔫了，有的直接死掉。",
+  steps:[
+    "选春季或秋季凉季换盆。",
+    "新盆比旧盆大一号即可，忌一步到位换大盆。",
+    "脱盆带原土球不散根，新土填四周压实。",
+    "浇透定根水，阴凉处缓苗 5~7 天再逐步见光。",
+    "缓苗期不施肥——根还无力吃。"
+  ],
+  why:"大盆土多干得慢，极易涝根；原土球保护的是根毛——吸收水分的绝对主力。缓苗期是给根毛在稳定湿度里复工的时间。",
+  tags:["进阶","慢工","种植"],
+  links:[]
+},
+{
+  vol:6, chapter:"堆肥再生", icon:"🍌",
+  title:"厨余变肥 • 慢堆肥",
+  pain:"蛋壳咖啡渣全扔垃圾桶，回头还花钱买营养土。",
+  steps:[
+    "蛋壳洗净捏碎，混入土里补钙松土。",
+    "咖啡渣晒干后薄铺土表——忌厚敷（会霉）。",
+    "香蕉皮泡水密封腐熟两周，稀释 10 倍浇花。",
+    "落叶果皮与土分层堆进旧箱，3 个月得腐叶土。"
+  ],
+  why:"蛋壳碳酸钙缓释钙质并调酸；生厨余直接埋盆土会在土里发酵产热烧根——「先腐熟、再进盆」是家庭堆肥铁律。",
+  tags:["新手","慢工","种植"],
+  links:[]
+},
+/* ============ 卷七 · 畜养篇 ============ */
+{
+  vol:7, chapter:"猫犬日常", icon:"✂",
+  title:"猫剪趾甲 • 避开血线",
+  pain:"给猫剪指甲像打仗，剪一次记仇一次，还剪出血。",
+  steps:[
+    "时机选刚睡醒或吃饱犯懒时，忌玩嗨时上手。",
+    "拇指按住爪垫，指甲自然全伸出。",
+    "认准指甲中段粉红色「血线」——血管神经都在里面。",
+    "只剪尖端透明部分，距血线约 5mm，斜剪防劈裂。",
+    "手边备止血粉或玉米淀粉应急。"
+  ],
+  why:"剪到血线一次，猫会记住疼痛，从此看见指甲剪就应激；透明角质层没有痛感神经，斜剪让断口平整不劈层。人的指甲刀会压碎猫的层叠结构指甲，必须用宠物专用剪。",
+  tags:["新手","快手","猫犬"],
+  links:[
+    {type:"doc", name:"B站 • 科学吸猫剪指甲图解", url:"https://www.bilibili.com/read/mobile/2597157"},
+    {type:"doc", name:"喵工具箱 • 剪甲全流程", url:"https://www.meowfanyi.cn/guide/beginner/nail-trimming.html"}
+  ]
+},
+{
+  vol:7, chapter:"猫犬日常", icon:"🐱",
+  title:"剪甲脱敏 • 毛巾卷猫",
+  pain:"猫死活不让碰爪子，一按就炸，剪甲变成全家总动员。",
+  steps:[
+    "平时撸猫顺手摸爪，摸到就给零食——把「摸爪」和「好事」绑定。",
+    "剪甲从一只爪开始，剪一个给一个奖励，分几天完成。",
+    "激烈反抗用大毛巾把身体裹成「猫卷」，只露一爪。",
+    "忌把猫翻过来露肚皮硬按——那是被捕食姿势，应激加倍。"
+  ],
+  why:"脱敏训练让「摸爪=零食」覆盖「摸爪=要剪甲」的恐惧记忆；猫卷给猫包裹感和边界感，挣扎空间小反而更镇定。",
+  tags:["进阶","快手","猫犬"],
+  links:[
+    {type:"doc", name:"头条 • 新手剪甲温柔指南", url:"https://m.toutiao.com/article/7639960999965819432"}
+  ]
+},
+{
+  vol:7, chapter:"猫犬日常", icon:"👃",
+  title:"宠物异味三源排查",
+  pain:"家里总有股猫狗味，喷雾除味剂治标不治本。",
+  steps:[
+    "闻口腔：黄牙口臭是牙结石——换磨牙棒洁齿水，严重的洗牙。",
+    "查耳道：褐色油垢加腥臭 = 耳螨，洗耳液清洁两周。",
+    "挤肛门腺：狗洗澡时由宠物店处理，是「狗味」大头。",
+    "排查完源头，最后才是环境吸尘拖地。"
+  ],
+  why:"异味多由腺体分泌物被细菌分解产生，堵住口腔、耳道、肛门腺三个源头，比喷雾遮盖有效十倍。",
+  tags:["进阶","快手","猫犬"],
+  links:[]
+},
+{
+  vol:7, chapter:"猫犬日常", icon:"🐶",
+  title:"换毛季梳毛管理",
+  pain:"换毛季毛满天飞，猫舔毛吐毛球，黑衣服全阵亡。",
+  steps:[
+    "短毛猫每周梳 2~3 次，长毛猫每日一梳。",
+    "顺毛梳加逆毛梳结合，浮毛才梳得净。",
+    "换毛季（春秋）加大频次。",
+    "配化毛膏或猫草，帮舔进的毛排出。",
+    "掉毛期喂点鱼油，美毛少掉毛。"
+  ],
+  why:"梳下来的毛 = 猫舔不进肚子的毛；胃内毛球积累过多会呕吐甚至肠道堵塞。梳毛还是体检机会——顺手摸肿块、看皮肤。",
+  tags:["新手","快手","猫犬"],
+  links:[]
+},
+{
+  vol:7, chapter:"水族小宠", icon:"🐠",
+  title:"鱼缸换水法则",
+  pain:"一换水鱼就死，不换水又浑得像雾里看鱼。",
+  steps:[
+    "自来水晾晒 24~48 小时除氯（行话叫「困水」）。",
+    "每次只换四分之一到三分之一，忌整缸换。",
+    "新水与缸内水温相差不超过 2°C。",
+    "沿缸壁缓慢加入，不直冲鱼身。",
+    "换水当日停食一次。"
+  ],
+  why:"鱼靠水体里稳定的硝化菌群活命——整缸换水等于推翻整个生态系统重开；氯和温差是「换水死鱼」的两大元凶。",
+  tags:["进阶","快手","水族"],
+  links:[]
+},
+{
+  vol:7, chapter:"水族小宠", icon:"🐹",
+  title:"仓鼠饲养基础",
+  pain:"仓鼠买来没几天就不精神，垫料随手垫了报纸。",
+  steps:[
+    "垫料用纸棉或杨木屑——忌松柏木屑（含酚伤呼吸道）、忌报纸（油墨）。",
+    "笼子越大越好，跑轮必备且直径要够大（跑起来不打弯腰）。",
+    "喂专用粮为主，蔬果少量当零食。",
+    "务必一鼠一笼——合笼会打架致死。",
+    "磨牙备苹果枝，防牙齿过长。"
+  ],
+  why:"仓鼠是独居领地动物，「看着孤独」是人的投射，合笼必斗；松木酚和油墨都是慢性刺激源，垫料是仓鼠健康的第一道墙。",
+  tags:["新手","快手","小宠"],
+  links:[]
+},
+{
+  vol:7, chapter:"居家安全", icon:"☠",
+  title:"家有猫狗 • 植物黑名单",
+  pain:"想养绿植又怕宠物误食中毒，不知道哪些能买。",
+  steps:[
+    "绝对黑名单：百合（猫接触花粉即可致急性肾衰）、绿萝、滴水观音、杜鹃、常春藤。",
+    "安全名单：猫草、吊兰、散尾葵、波士顿蕨。",
+    "「有毒的挂高处」对猫无效——猫能跳上任何高度。",
+    "新绿植进家先查宠物毒性，再决定摆哪儿。"
+  ],
+  why:"百合对猫的肾毒性机制至今未完全明确，但微量即致命；按「猫能到达一切高度」来布置家居，是养猫家庭的基本假设。",
+  tags:["新手","快手","安全"],
+  links:[]
+},
+{
+  vol:7, chapter:"居家安全", icon:"🚑",
+  title:"宠物误食应急",
+  pain:"狗吃了巧克力、药片、洋葱，主人慌得只会哭。",
+  steps:[
+    "先确认：吃了什么、大概多少、什么时候吃的。",
+    "带上包装或残留物一起就医。",
+    "两小时内是催吐黄金期，但必须遵医嘱——腐蚀性物质严禁催吐。",
+    "巧克力（狗）、百合（猫）、木糖醇口香糖（狗）都是急症，别观察等奇迹。"
+  ],
+  why:"催吐方法不当会造成二次伤害（腐蚀物反流灼伤食管）；包装成分表直接决定医生用药方案，比「大概是巧克力」这种描述快得多。",
+  tags:["进阶","快手","安全"],
+  links:[]
+},
+/* ============ 卷八 · 调护篇 ============ */
+{
+  vol:8, chapter:"急救常识", icon:"♨",
+  title:"烫伤急救五字诀 • 冲脱泡盖送",
+  pain:"烫伤第一反应涂牙膏抹酱油，结果越涂越糟。",
+  steps:[
+    "冲：流动冷水冲 15~30 分钟，至疼痛明显缓解——忌冰块直敷。",
+    "脱：边冲边小心脱除衣物饰品；粘连处用剪刀剪开，勿硬撕。",
+    "泡：手足等处继续冷水浸泡 10~30 分钟。",
+    "盖：干净纱布或保鲜膜覆盖创面，别涂任何东西。",
+    "送：面积大、起水泡、伤及面部手足的，盖好就送医。"
+  ],
+  why:"持续冷疗把余热带走，阻止热力向深层蔓延——这一步直接决定烫伤深度。牙膏酱油覆盖创面既影响散热，又干扰医生判断深度，是「好心办坏事」的典型。",
+  tags:["新手","快手","急救"],
+  links:[
+    {type:"doc", name:"人民网 • 卫健委发布会权威解答", url:"https://health.people.com.cn/n1/2026/0617/c14739-40742639.html"},
+    {type:"doc", name:"科普中国 • 冲脱泡盖送详解", url:"https://www.kepuchina.cn/article/articleinfo?ar_id=135071&business_type=100"}
+  ]
+},
+{
+  vol:8, chapter:"急救常识", icon:"🆘",
+  title:"异物卡喉 • 海姆立克急救法",
+  pain:"吃饭说笑突然噎住，拍背灌水都是错的，分分钟要命。",
+  steps:[
+    "识别窒息信号：手抓颈部、说不出话、面色青紫——立即施救并让人打 120。",
+    "成人：站身后弓步，一手握拳、拳眼置于肚脐上两横指，另一手包住拳头。",
+    "快速向内向上冲击腹部，像要把人「抬起来」，重复 6~10 次至异物排出。",
+    "婴儿：5 次拍背 + 5 次压胸交替，头低于躯干。",
+    "独自一人：用椅背顶上腹自救。"
+  ],
+  why:"原理是骤然挤压腹部让膈肌上抬，把肺里残留的空气变成一股向上冲击的气流「发射」异物。拍背会让异物越陷越深，喝水可能彻底封死气道——这两件事千万别做。",
+  tags:["进阶","快手","急救"],
+  links:[
+    {type:"doc", name:"B站 • 海姆立克救命手法图解", url:"https://www.bilibili.com/read/cv13908458/"},
+    {type:"doc", name:"北京市卫健委 • 生命的拥抱", url:"https://wjw.beijing.gov.cn/bmfw_20143/jkzs/jksh/202406/t20240613_3711496.html"}
+  ]
+},
+{
+  vol:8, chapter:"急救常识", icon:"❗",
+  title:"流鼻血正姿止血",
+  pain:"流鼻血第一反应仰头——血咽进肚子，还以为止住了。",
+  steps:[
+    "身体前倾低头，别仰。",
+    "捏住鼻翼两侧软的部分，压向鼻中隔，持续 10~15 分钟。",
+    "用嘴呼吸，可冷敷鼻梁辅助血管收缩。",
+    "止住后 2 小时内别抠鼻、别弯腰提重物。",
+    "持续 20 分钟不止或频繁出血，就医查因。"
+  ],
+  why:"仰头让血流进咽喉咽进胃——既刺激呕吐又掩盖真实出血量；九成鼻出血在鼻中隔前下区，所以要捏鼻翼软处，捏鼻梁骨压不到出血点。",
+  tags:["新手","快手","急救"],
+  links:[]
+},
+{
+  vol:8, chapter:"作息调理", icon:"😴",
+  title:"4-7-8 快速入睡法",
+  pain:"躺下脑子开演唱会，越想睡越清醒，睁眼到天亮。",
+  steps:[
+    "舌尖轻抵上颚，用鼻子吸气 4 秒。",
+    "屏住呼吸 7 秒。",
+    "用嘴缓缓呼气 8 秒，发轻声「呼」。",
+    "循环 4 轮；配合从脚趾到额头逐块放松身体。",
+    "白天咖啡因下午 2 点后别碰。"
+  ],
+  why:"延长呼气激活副交感神经（身体的「刹车系统」），心率血压随之下降；数秒的专注把胡思乱想的注意力拉回呼吸本身——双通道哄神经系统入睡。",
+  tags:["新手","快手","作息"],
+  links:[]
+},
+{
+  vol:8, chapter:"作息调理", icon:"💺",
+  title:"久坐急救 • 20-20-20 与起身法",
+  pain:"久坐一天肩颈硬成板，眼睛干涩发花，腰像生了锈。",
+  steps:[
+    "护眼：每 20 分钟看 6 米外 20 秒。",
+    "起身：每 45~60 分钟站起来活动 2 分钟，接水走动都算。",
+    "颈椎：用下巴慢写「米」字，忌快速转圈甩头。",
+    "腰部：坐满靠背，脚下加个踏板垫高。",
+    "睡前猫式伸展 10 次，把白天压紧的椎间盘松一松。"
+  ],
+  why:"近距离用眼时睫状肌持续痉挛，望远是它唯一的放松姿势；久坐时椎间盘压力是站立的约 1.4 倍，定时「卸载」比周末报复性运动有效得多。",
+  tags:["新手","快手","作息"],
+  links:[]
+},
+{
+  vol:8, chapter:"皮肤小恙", icon:"🐜",
+  title:"蚊虫叮咬止痒",
+  pain:"包越挠越大，痒到失眠，挠破还留疤。",
+  steps:[
+    "肥皂水或小苏打糊涂抹患处。",
+    "冷敷收缩血管，双管齐下止痒。",
+    "忌挠破——感染留疤都从挠开始。",
+    "起大包可薄涂弱效激素药膏（按说明书）。",
+    "抓破皮用碘伏消毒防感染。"
+  ],
+  why:"蚊子注入的蚁酸与唾液蛋白引发组胺释放（痒的本质）；碱性物中和蚁酸，冷敷减少组胺向周围扩散——两个方向同时下手，痒感减半。",
+  tags:["新手","快手","护理"],
+  links:[]
+},
+{
+  vol:8, chapter:"家庭药箱", icon:"💊",
+  title:"家庭药箱分层清单",
+  pain:"生病翻箱倒柜找不到药，找出来的早就过期了。",
+  steps:[
+    "器械层：体温计、纱布、创可贴、碘伏棉签、镊子、剪刀。",
+    "内服层：退烧（布洛芬/对乙酰氨基酚）、口服补液盐、氯雷他定（抗过敏）。",
+    "外用层：烫伤膏、红霉素软膏、云南白药喷雾。",
+    "每半年清一次效期，药盒上写购买日期。",
+    "儿童药与成人药分区存放，高处上锁。"
+  ],
+  why:"家庭药箱解决的是「黄金前 30 分钟」，不替代就医；口服补液盐是被严重低估的必备品——腹泻脱水才是真正的危险源，补液比止泻重要。",
+  tags:["新手","快手","药箱"],
+  links:[]
+},
+{
+  vol:8, chapter:"急救常识", icon:"👀",
+  title:"眼睛进异物",
+  pain:"沙子睫毛进眼，第一反应使劲揉，越揉越伤。",
+  steps:[
+    "忌揉！先闭眼眨动数次，让泪水自然冲刷。",
+    "拉开眼皮对镜子找异物位置。",
+    "用干净清水冲洗（洗眼杯或水勺舀冲）。",
+    "冲不出：翻眼皮用湿棉签轻粘出。",
+    "化学品入眼持续冲水 15 分钟并就医；嵌入眼球直接就医。"
+  ],
+  why:"揉眼让带颗粒的异物在角膜上划伤——角膜划伤会畏光流泪数日还可能感染；眼泪和清水是最温和的输送带，先让它干活。",
+  tags:["新手","快手","急救"],
+  links:[]
+},
+/* ============ 卷九 · 行止篇 ============ */
+{
+  vol:9, chapter:"居住一门", icon:"📋",
+  title:"租房验房清单",
+  pain:"入住不验房，退租时被扣押金，有理说不清。",
+  steps:[
+    "墙面地面天花拍全景视频留档，划痕污渍水印逐一记录。",
+    "水龙头、马桶、热水器、空调逐项开机实测。",
+    "抄下水电气表底数拍照，避免接手别人欠账。",
+    "检查门窗锁具，建议直接换锁芯——前任租客可能有钥匙。",
+    "清单发房东微信留痕确认，作为合同附件。"
+  ],
+  why:"押金纠纷的胜负全在入住当天的证据链；「可留痕渠道确认」的文字记录比口头承诺硬十倍——验房一小时，退租省千块。",
+  tags:["新手","快手","居住"],
+  links:[
+    {type:"doc", name:"头条 • 3 分钟验房清单", url:"https://m.toutiao.com/article/7643801072363913782"}
+  ]
+},
+{
+  vol:9, chapter:"居住一门", icon:"📦",
+  title:"搬家打包法",
+  pain:"搬一次家一片狼藉，到新家三天找不到东西。",
+  steps:[
+    "按房间打包并编号：1卧室-1、2厨房-1……",
+    "箱外写清单或直接拍箱内照，找东西不用开箱。",
+    "重物小箱、轻物大箱——书用小箱是保腰铁律。",
+    "易碎品用衣物裹住塞缝隙，一举两得。",
+    "单独备一个「第一晚箱」：床品、洗漱、充电器、换洗衣物、纸巾、工具刀。"
+  ],
+  why:"编号加照片让拆箱变成查字典；「第一晚箱」解决搬家当晚最崩溃的两小时——那是人最累最不想动的时候。",
+  tags:["新手","快手","居住"],
+  links:[]
+},
+{
+  vol:9, chapter:"出行一门", icon:"🎒",
+  title:"自驾应急包",
+  pain:"半路爆胎、电瓶亏电、暴雨困住，两眼一抹黑。",
+  steps:[
+    "安全件：三角牌 + 反光背心、破窗器（挂驾驶位伸手可及）。",
+    "救援件：搭电线、拖车绳、胎压计、手电。",
+    "补给件：饮用水、充电宝、简易医药包、雨伞。",
+    "冬季追加：防冻玻璃水、防滑链。",
+    "每半年检查一次有效期与电量。"
+  ],
+  why:"高速停车三角牌要放到车后 150 米——这一步每年都在救命；电瓶亏电是车辆抛锚第一名，一根搭电线能省几百块救援费。",
+  tags:["新手","快手","出行"],
+  links:[]
+},
+{
+  vol:9, chapter:"出行一门", icon:"🔌",
+  title:"电瓶搭电不死法则",
+  pain:"冬天车子打不着火，朋友来搭电，接错线差点烧电路。",
+  steps:[
+    "两车头对头靠近，但不接触，都熄火。",
+    "红线：先接两车电瓶正极。",
+    "黑线：救援车负极 → 故障车发动机金属件搭铁（不接负极桩）。",
+    "先启动救援车充几分钟，再启动故障车。",
+    "拆除按反序：先黑后红。"
+  ],
+  why:"负极接车身远离电瓶，是因为电瓶充电会释放氢气——接负极桩打火可能引爆；先正后负、拆先负后正的顺序，避开电弧烧端子。",
+  tags:["进阶","快手","出行"],
+  links:[]
+},
+{
+  vol:9, chapter:"出行一门", icon:"🚲",
+  title:"电动车充电安全",
+  pain:"电池拎上楼充电提心吊胆，新闻里的火灾不敢细想。",
+  steps:[
+    "用原装或同规格充电器——电压不匹配是起火首因。",
+    "充满即拔，长期过充会鼓包。",
+    "充电器通风放置，忌盖布、忌放座垫上。",
+    "电池忌暴晒雨淋，进水后晾干再充。",
+    "换电池选同品牌正品，贪便宜电池是最大隐患。"
+  ],
+  why:"锂电池热失控后常规手段无法扑灭，起火多发生在过充与劣质充电器组合场景；通风散热是唯一免费的防线。",
+  tags:["新手","快手","安全"],
+  links:[]
+},
+{
+  vol:9, chapter:"出行一门", icon:"🎫",
+  title:"火车票捡漏与候补",
+  pain:"放票秒没，节假日抢票全靠玄学。",
+  steps:[
+    "首选 12306 官方候补——免预付，成功率高于第三方抢票软件。",
+    "蹲退票回流节点：开车前 48 小时、24 小时、前几小时。",
+    "跨站买：买长乘短上车补票，或买前一站在中途下车（先咨询规则）。",
+    "候补多选几个车次和日期，命中率高数倍。"
+  ],
+  why:":第三方抢票软件本质也是帮你提交候补，还要加钱；退票与改签的余票回流有明确时间规律，蹲节点比蹲点抢靠谱。",
+  tags:["新手","快手","出行"],
+  links:[]
+},
+{
+  vol:9, chapter:"出行一门", icon:"✈",
+  title:"旅行卷衣打包法",
+  pain:"箱子永远不够装，衣服到酒店全是折痕。",
+  steps:[
+    "衣服卷成紧实圆筒——比折叠省约 40% 空间且少折痕。",
+    "重物靠轮轴一侧放，衣物填上层与缝隙。",
+    "鞋内塞袜子：省空间又保鞋型。",
+    "洗漱用品分装小瓶，单袋隔离。",
+    "回程留一个空袋专装脏衣服。"
+  ],
+  why:"折叠的死褶来自折痕应力点，卷筒把应力分散掉；重量压衣会压出死印，重物贴轮轴侧还能防止箱子倾倒。",
+  tags:["新手","快手","出行"],
+  links:[]
+},
+{
+  vol:9, chapter:"居住一门", icon:"🔇",
+  title:"邻里噪音处理 • 先礼后兵四步走",
+  pain:"楼上半夜蹦跳拖凳子，忍着伤身，撕破脸又难看。",
+  steps:[
+    "第一次：礼貌上门说明——多数人真的不知道，一次解决八成。",
+    "再犯：手机录音记录时间与频次。",
+    "第三次：请物业出面调解。",
+    "仍无效：报警留记录——出警记录是后续诉讼的核心证据。",
+    "最终手段：按环境噪声污染防治起诉，证据链在手就赢。"
+  ],
+  why:"分贝记录加报警回执构成法律证据链；「忍」与「骂」之间其实有一条标准化路径——先礼后兵的每一步都在为最后一步攒证据。",
+  tags:["进阶","慢工","居住"],
+  links:[]
+},
+/* ============ 卷十 · 货殖篇 ============ */
+{
+  vol:10, chapter:"省水省电", icon:"📉",
+  title:"待机功耗排查",
+  pain:"没怎么用电，电费就是降不下来。",
+  steps:[
+    "排查三大待机王：机顶盒、电热水器（反复保温）、饮水机（反复烧）。",
+    "插排带总开关，出门或睡前一键断电。",
+    "空调换季后拔插头，别让它待机过冬。",
+    "电热水壶烧完就拔，别保温。"
+  ],
+  why:"单件待机功耗不起眼，全家叠加一年能到上百元级别；保温型电器是「隐性大户」——你以为它闲着，其实它 24 小时在悄悄工作。",
+  tags:["新手","快手","省钱"],
+  links:[]
+},
+{
+  vol:10, chapter:"省水省电", icon:"❄",
+  title:"冰箱省电三招",
+  pain:"冰箱是全年不停机的电费大户，也没见少干活。",
+  steps:[
+    "离墙 10cm 以上散热——贴墙等于让压缩机戴围巾干活。",
+    "温度档按季节调：夏季开 1~2 档（弱冷够用），冬季 4~5 档。",
+    "热食凉透再入箱；食物装七分满，留出冷气循环通道。",
+    "门封条老化漏冷的及时换，一张纸夹门缝掉落就该换了。"
+  ],
+  why:"压缩机按「温差 × 时长」工作：散热差、开门频繁、塞得太满，都在拉大温差延长工时。纸夹门缝测试是判断漏冷的老技师手法。",
+  tags:["新手","快手","省钱"],
+  links:[]
+},
+{
+  vol:10, chapter:"购物心法", icon:"💰",
+  title:"临期食品捡漏学",
+  pain:"正价商品贵，临期区又怕不新鲜。",
+  steps:[
+    "超市晚 8 点后逛面包、生鲜区，常贴折扣签。",
+    "认准「保质期 1/3 黄金期」：长保面包、罐头、零食此时品质仍在线。",
+    "看包装：胀袋、漏液、生锈罐坚决不买。",
+    "临期折扣店与进口零食店性价比最高。",
+    "买回优先吃，开封日写在包装上。"
+  ],
+  why:"商家在保质期过 1/3 时就开始降价——此时品质远未崩坏，是商家与顾客的双赢窗口；但生鲜短保类不赌，省的那点钱不够跑一趟医院。",
+  tags:["新手","快手","省钱"],
+  links:[]
+},
+{
+  vol:10, chapter:"购物心法", icon:"📊",
+  title:"大促比价心法",
+  pain:"双十一买完一比，比平时还贵。",
+  steps:[
+    "大促前 1~2 周把想买的加购，记下当时价格。",
+    "用比价工具看历史价格曲线，一眼识破真假折扣。",
+    "「先涨后降」识别法：原价突然上调再打折 = 假优惠。",
+    "含赠品算单价，剔除赠品看是否仍划算。",
+    "非刚需不凑单；要凑就凑纸巾洗衣液这类高消耗品。"
+  ],
+  why:"价格锚点被商家操纵是促销设计的第一原理；历史价格是唯一诚实的参照系——收藏夹是你自己的价格数据库。",
+  tags:["进阶","快手","省钱"],
+  links:[]
+},
+{
+  vol:10, chapter:"购物心法", icon:"🔄",
+  title:"自动续费大扫除",
+  pain:"每月被不知道的会员悄悄扣钱，一年下来好几百。",
+  steps:[
+    "支付宝：设置 → 支付设置 → 免密支付/自动扣款。",
+    "微信：服务 → 钱包 → 支付设置 → 自动续费。",
+    "逐项停用不再使用的服务。",
+    "视频网盘会员到期前 3 天设提醒，决定续不续。",
+    "新开会员先看清「次月起恢复原价」小字。"
+  ],
+  why:"「首月低价+自动续费」是设计好的遗忘漏斗——商家赌的就是你不记得；每个被遗忘的自动续费都是纯利润。",
+  tags:["新手","快手","省钱"],
+  links:[]
+},
+{
+  vol:10, chapter:"旧物流通", icon:"🎣",
+  title:"旧物出手定价法",
+  pain:"闲鱼挂了半个月没人问，白白占地方。",
+  steps:[
+    "定价：成色好的按原价 30%~50% 起，挂不出每周降一档。",
+    "标题含品牌 + 型号 + 关键参数——买家搜索靠型号。",
+    "自然光拍 9 张图，瑕疵如实特写。",
+    "描述写清购买渠道、使用时长、配件是否齐全。",
+    "同城当面交易，省邮费也省到手刀纠纷。"
+  ],
+  why:"「九成新小家电」不如「XX牌 XX型号 空气炸锅 5L」——搜索词决定曝光量；瑕疵如实展示是防「到手刀」的唯一解，也是好评价的来源。",
+  tags:["新手","快手","理财"],
+  links:[]
+},
+{
+  vol:10, chapter:"记账预算", icon:"📒",
+  title:"先存后花记账法",
+  pain:"月月月光，记账坚持不过一周。",
+  steps:[
+    "发薪日先把 20% 转进不动账户——先存后花是第一原则。",
+    "日常只记「超预期支出」，不必每笔记，月底对账单补全。",
+    "大额消费设 24 小时冷静期。",
+    "现金族用信封法：按类装信封，花完即止。",
+    "每月复盘一次：钱花哪儿了，下月怎么调。"
+  ],
+  why:"记账的目的是「改变下个月」，不是「审判上个月」——太细的记录只会让人放弃；先存后花把储蓄从「剩余动作」变成「第一支出」，顺序一换，结局就换。",
+  tags:["新手","快手","理财"],
+  links:[]
+},
+{
+  vol:10, chapter:"购物心法", icon:"🎭",
+  title:"节庆促销防坑清单",
+  pain:"节日促销套路多，总在冲动下单后后悔。",
+  steps:[
+    "直播间「最后 XX 单」是话术，下播前一直在上链接。",
+    "「原价 XXX 今日 XX」先查历史价再激动。",
+    "砍价、转盘类抽奖默认概率极低，别投入人情成本。",
+    "低价团靠购物回本，旅游选纯玩更划算。",
+    "家电在换季淡季（3~5 月、9~11 月）反而更便宜。"
+  ],
+  why:"稀缺话术制造决策时间压力，逼你在信息不全时下单——绕开「限时」「限量」的情绪判断就赢了一半；旺季定价常是淡季的 1.5~3 倍。",
+  tags:["新手","快手","省钱"],
+  links:[]
+},
+/* ============ 卷十一 · 礼俗篇 ============ */
+{
+  vol:11, chapter:"人情往来", icon:"💴",
+  title:"随份子行情学",
+  pain:"请柬一来就慌：随多少不丢面儿、也不心疼？",
+  steps:[
+    "看关系：至亲 > 好友 > 同事 > 泛泛之交，梯度分明。",
+    "看行情：问同圈层已随的人，跟中位数走。",
+    "看回礼账：对方当年随过你的数是底线参考。",
+    "量力而行不打肿脸——超预算的份子钱是负担不是心意。",
+    "关系一般的，礼到人不到也是体面选项。"
+  ],
+  why:"份子钱源于民间互助传统，本义是凑份子帮人把大事办了，不是面子竞赛；跟中位数让全桌无人尴尬——这才是它的社交功能。",
+  tags:["新手","快手","人情"],
+  links:[
+    {type:"doc", name:"头条 • 份子钱的讲究", url:"https://m.toutiao.com/article/7700399324836971017"}
+  ]
+},
+{
+  vol:11, chapter:"人情往来", icon:"🤝",
+  title:"回礼铁律与人情账本",
+  pain:"对方办事该回多少礼？多一分少一分都尴尬。",
+  steps:[
+    "铁律：回礼不低于对方原数，普通关系等额，亲近的加一档（500 回 600~800）。",
+    "隔多年的按当前行情上调，别拿十年前的价还人情。",
+    "手机备忘录建「人情账」：日期、事项、金额、关系四栏。",
+    "白事红事规矩不同，拿不准就问家里长辈。"
+  ],
+  why:"低于原数在人情语义里等于「断交价」；账本不是算计，是防止「礼轻情意重」在时间冲刷下变成「礼轻情意断」。",
+  tags:["新手","快手","人情"],
+  links:[
+    {type:"doc", name:"易有料 • 份子钱的分寸", url:"https://h5detail.yiyouliao.com/rivers/newsfeed/1536235174142947329/ID3FUZIZQQ1H6M9.html"}
+  ]
+},
+{
+  vol:11, chapter:"人情往来", icon:"💵",
+  title:"红包数字讲究",
+  pain:"红包金额怎么定？数字里全是学问，写错还闹误会。",
+  steps:[
+    "双数为喜：600、800、1000、1200 常用。",
+    "避 4（谐音不吉）；单数多用于白事（各地有异）。",
+    "6 顺、8 发、9 久，是万能吉利数字。",
+    "给小孩压岁钱取 200、600 一类整数，好记又吉利。",
+    "红包封面写祝福语加署名——主人记账要对得上人。"
+  ],
+  why:"数字谐音是中国人情社会的通用加密语言；署名不只是礼貌——主人家的记账本靠它对上每一份往来。",
+  tags:["新手","快手","人情"],
+  links:[]
+},
+{
+  vol:11, chapter:"送礼之道", icon:"🎁",
+  title:"送礼避雷指南",
+  pain:"好心送礼，却送了忌讳物，钱花了还得罪人。",
+  steps:[
+    "大忌清单：钟（送终）、伞（散）、梨（离）、给情侣送鞋（要走）、刀剪（断情义）。",
+    "看望病人送苹果、橙子、葡萄；忌送梨。",
+    "长辈送实用（茶、围巾、按摩仪），小孩送成长类。",
+    "拿不准就送消耗品：水果、糕点，永不出错。",
+    "异地送礼先查当地忌讳，十里不同俗。"
+  ],
+  why:"谐音忌讳是民俗的底层操作系统，违反它的人往往还不知道自己错在哪；消耗品是社交安全区——送的人无负担，收的人无压力。",
+  tags:["新手","快手","人情"],
+  links:[]
+},
+{
+  vol:11, chapter:"宴请之道", icon:"🍷",
+  title:"宴请座次入门",
+  pain:"家庭宴商务宴落座没规矩，坐错位置很失礼。",
+  steps:[
+    "面门为尊：正对门口的是主陪（东道主）位。",
+    "主宾坐主陪右侧，副宾坐左侧。",
+    "副陪（二主人）坐主陪对面、背对门，负责招呼和买单。",
+    "散客入席：请长辈或领导先落主陪右侧，自己再补空位。",
+    "正式商务宴，提前问清主人安排再落座。"
+  ],
+  why:"座次是「谁负责招呼谁」的空间语言：面门者视野全、掌控全局，所以是主人；右侧为上源于古人尚右。懂座次不是老派，是让人舒服的软实力。",
+  tags:["进阶","快手","人情"],
+  links:[]
+},
+{
+  vol:11, chapter:"送礼之道", icon:"💐",
+  title:"探病宜忌",
+  pain:"去医院探望病人，不知道带什么、说什么、待多久。",
+  steps:[
+    "时间宜上午——病人刚休息好、治疗多在下午。",
+    "宜带：应季水果（苹果、橙子）、易消化点心、保温杯。",
+    "忌带：香味浓的花（刺激病房呼吸道）、梨。",
+    "停留 15~30 分钟为宜，让病人多休息。",
+    "话题多讲康复案例，忌「怎么这么严重」。"
+  ],
+  why:"上午是病人精力与情绪的窗口期；浓香在病房是真实负担而非情调。探望的价值在「来过」的暖意，不在久坐。",
+  tags:["新手","快手","人情"],
+  links:[]
+},
+{
+  vol:11, chapter:"做客之道", icon:"🚪",
+  title:"串门做客礼节",
+  pain:"去朋友家做客，不知道带啥、坐哪、几点该走。",
+  steps:[
+    "空手不登门：水果、点心、小酒任选，心意在不在贵。",
+    "进门前问「要换鞋吗」，进屋不乱逛、不进卧室。",
+    "主人留饭就帮忙摆碗筷，饭后主动收拾。",
+    "「茶倒七分，酒满敬人」——满茶烫手是逐客。",
+    "看主人状态告辞：频繁看表看手机就是送客信号。"
+  ],
+  why:"七分茶、满杯酒是待客的空间语言：茶满烫手难以端起，酒满才见敬意；做客的分寸感全在观察力——让主人放松，就是客人最大的礼貌。",
+  tags:["新手","快手","人情"],
+  links:[]
+},
+{
+  vol:11, chapter:"节令生活", icon:"📅",
+  title:"顺天时 • 二十四节气生活表",
+  pain:"二十四节气只会背，不知道跟过日子有什么关系。",
+  steps:[
+    "春（立春~谷雨）：养肝疏泄，衣「下厚上薄」，阳台育苗黄金期。",
+    "夏（立夏~大暑）：晚睡早起午补觉，防暑湿，绿豆汤常备。",
+    "秋（立秋~霜降）：缓补贴秋膘，早卧早起，登高解秋郁。",
+    "冬（立冬~大寒）：早卧晚起待日光，温补收藏，睡前泡脚。",
+    "每个节气换季时，给全家的饮食与作息调一次频。"
+  ],
+  why:"节气是黄河流域千年物候数据库，核心智慧是「顺天时，量地利」——用在种地上是丰收，用在身体上是少生病。换季调频，就是现代人的「顺天时」。",
+  tags:["新手","慢工","节令"],
+  classic:"《齐民要术•种谷第三》：<em>「顺天时，量地利，则用力少而成功多。任情返道，劳而无获。」</em>——全书第一原理，也是本卷题眼。",
+  links:[]
+},
+/* ====== 补遗卷：多平台民间智慧（小红书/抖音/公众号/评论区实测）====== */
+{
+  vol:1, chapter:"快手处理", icon:"🍶",
+  title:"剥蒜抖瓶脱皮法",
+  pain:"剥蒜一颗一颗抠，指甲缝全是蒜味，一顿饭剥十分钟。",
+  steps:[
+    "蒜瓣掰散，装入带盖的瓶罐（玻璃瓶或保鲜盒均可）。",
+    "盖紧后用力上下摇晃 15~20 秒。",
+    "开盖一看，蒜皮已大面积碎裂脱落。",
+    "顽固的个别蒜瓣再徒手一挤，皮肉分离。"
+  ],
+  why:"摇晃让蒜瓣互相碰撞、蒜皮与蒜肉因质地不同产生剪切错位——皮的纤维结构受不住反复撞击而碎裂。这是抖音点赞百万级的经典招。",
+  tags:["新手","快手","处理","抖音"],
+  classic:"本招出自抖音点赞 100w+ 生活技能合集，被人民日报客户端等多家媒体收录验证。",
+  links:[
+    {type:"doc", name:"抖音爆款 • 100 个生活小妙招整理", url:"https://www.mengdaoshe.cn/115766.html"}
+  ]
+},
+{
+  vol:1, chapter:"餐桌心法", icon:"🍲",
+  title:"火锅冰勺沥油法",
+  pain:"火锅汤面浮着厚厚一层红油，既怕热量爆表又怕汤变腻。",
+  steps:[
+    "不锈钢汤勺里放一两块冰块。",
+    "勺底贴着汤面缓慢转一圈。",
+    "油脂遇冷凝固，直接挂在勺底被带出。",
+    "重复两三次，汤面立刻清爽。"
+  ],
+  why:"油脂的凝固点远高于水温——冰勺让贴底的油瞬间凝成半固态挂在金属上，比用吸油纸高效且不浪费汤。是小红书居家博主「朱丽爱生活」的爆款招，网友直呼活了三十年才知道。",
+  tags:["新手","快手","餐桌","小红书"],
+  classic:"录自小红书博主@朱丽爱生活 12 个厨房实用技巧，经元氣网等媒体整理传播，评论区大量网友交作业验证。",
+  links:[
+    {type:"doc", name:"元氣网 • 小红书 12 个厨房妙招", url:"https://health.udn.com/health/story/6006/8809311"}
+  ]
+},
+{
+  vol:1, chapter:"米面主食", icon:"🥄",
+  title:"豆子冷冻速煮法",
+  pain:"黄豆绿豆泡半天还是硬芯，煮一小时汤都熬没了豆还没烂。",
+  steps:[
+    "豆子按正常流程浸泡至吸水饱满。",
+    "沥水装袋，放冰箱冷冻 2 小时以上。",
+    "直接取冻豆下锅煮——软糯速度大幅提前。",
+    "一次多冻几袋，随取随用。"
+  ],
+  why:"冷冻让豆内水分结冰膨胀，撑破细胞壁与种皮结构——解冻加热后水汽直捣豆芯，组织早已「酥」。这是物理破壁，比加碱煮省味又省火。",
+  tags:["新手","快手","主食","小红书"],
+  links:[
+    {type:"doc", name:"易有料 • 近期热门新鲜妙招", url:"https://h5detail.yiyouliao.com/rivers/newsfeed/1536235174142947329/ID3FU1AGRUWKPRO.html"}
+  ]
+},
+{
+  vol:1, chapter:"快手处理", icon:"❄",
+  title:"解冻加速 • 盐醋薄涂法",
+  pain:"下班到家肉还冻得像砖头，等到失去做饭的欲望。",
+  steps:[
+    "冻肉表面薄薄抹一层盐。",
+    "淋几滴白醋，静置 10~15 分钟。",
+    "肉面微化时即可下刀改刀，再做常规烹饪。",
+    "忌热水冲泡——外层烫熟内层仍冻。"
+  ],
+  why:"盐降低冰点让表层冰晶提前融化，醋同理且顺带减腥；两者只是打开「化冻通道」，后续加热均匀。微波解冻档是备选，但边缘易半熟。",
+  tags:["新手","快手","处理","小红书"],
+  links:[
+    {type:"doc", name:"易有料 • 50 个生活实用小技巧", url:"https://h5detail.yiyouliao.com/rivers/newsfeed/1536235174142947329/ID3FZSPC72I21N8.html"}
+  ]
+},
+{
+  vol:1, chapter:"零成本神器", icon:"🔧",
+  title:"厨房零成本小工具四连",
+  pain:"挤柠檬弄得满手汁、零食袋没封口机全受潮、倒酱油滴滴答答流瓶身。",
+  steps:[
+    "筷子挤柠檬：筷子反向插入柠檬片切口，像拧毛巾一样拧转，汁出一滴不剩。",
+    "吸管封袋口：吸管剪开纵向剖开，袋口折两折后用吸管段夹住，密封性极佳。",
+    "瓶盖防洒：调料瓶的小拉环别扔，反扣在瓶口，倒油倒醋自动控流。",
+    "叉子固葱：洋葱对半切开后插一把叉子固定，切片时不打滑不伤手。"
+  ],
+  why:"这四招的共同哲学：先看懂「物性」再用「废件」——杠杆（筷子拧转）、卡扣（吸管弹夹）、限流（拉环孔径）、固定（叉子锚点）。小红书「邪修」流派的精髓：不买东西，把已有物件的第二个用法找出来。",
+  tags:["新手","快手","神器","小红书"],
+  classic:"录自小红书六项生活秘方与网友亲测清单，「塑料袋打包汤水的交叉打结法」同出此源。",
+  links:[
+    {type:"doc", name:"元氣网 • 六个生活秘方", url:"https://health.udn.com/health/story/6006/8445026"},
+    {type:"doc", name:"头条 • 网友亲测生活小窍门", url:"https://www.toutiao.com/article/7236940400836149795/"}
+  ]
+},
+{
+  vol:3, chapter:"金属抛光", icon:"💠",
+  title:"锡纸团擦不锈钢 • 邪修清洁之王",
+  pain:"不锈钢水槽、龙头发乌有黑印，钢丝球一擦全是密密麻麻的划痕。",
+  steps:[
+    "取一小段烘焙锡纸，揉成紧实的小球。",
+    "蘸一点洗洁精，直接擦拭水槽、龙头、水壶外壁的黑印水垢。",
+    "划圈轻擦，黑印随氧化层脱落。",
+    "清水冲净后干布抛光，亮如新购。"
+  ],
+  why:"锡的硬度低于不锈钢——只带走氧化脏污，不伤基底拉丝面；钢丝球硬度太高，划痕不可逆。这是物理 hardness 梯度的胜利，与「用核桃油补木器」同一思路。",
+  tags:["新手","快手","清洁","评论区验证"],
+  classic:"本招经小红书 64 万赞「邪修清洁」实测视频与评论区数百条交作业返图双重验证——什么值得买把全网 12 种邪修清洁法筛到最后，它是幸存者之一。",
+  links:[
+    {type:"doc", name:"什么值得买 • 邪修清洁评论区实测甄别", url:"https://post.m.smzdm.com/p/a704688l"}
+  ]
+},
+{
+  vol:3, chapter:"厨卫重污", icon:"🌟",
+  title:"瓷砖缝牙膏刷洗法",
+  pain:"厨房卫生间瓷砖缝黑乎乎，刷子使劲刷还留黑边。",
+  steps:[
+    "旧牙刷挤上普通白牙膏。",
+    "对着缝隙来回刷刷刷，让牙膏渗进去。",
+    "静置两三分钟后，湿毛巾一抹收尾。",
+    "缝隙常年发黑的，刷完可涂美缝剂一劳永逸。"
+  ],
+  why:"牙膏含温和摩擦剂与表面活性剂，缝隙窄到刷子毛刚好施展；湿抹布收走浮污而不把脏水抹回缝里。抖音百万赞家务技巧的常青树。",
+  tags:["新手","快手","清洁","抖音"],
+  links:[
+    {type:"doc", name:"网易 • 抖音获赞百万的 22 个技巧", url:"https://m.163.com/dy/article/E266DJKP0524958A.html"}
+  ]
+},
+{
+  vol:3, chapter:"表面除胶", icon:"📌",
+  title:"撕贴纸 • 苏打油膏软化法",
+  pain:"桌上柜上贴纸撕不干净，指甲抠半天留一片黏痕。",
+  steps:[
+    "小苏打与食用油按约 1:1 调成糊。",
+    "用刷子涂满贴纸表面，静置 5~10 分钟。",
+    "用手轻轻一撕，整张脱落不留痕。",
+    "残胶用同一油膏补涂擦拭即可。"
+  ],
+  why:"油溶解压敏胶的树脂成分，小苏打增稠挂附并轻微研磨——「以油攻胶」是厨房贴纸、标签、双面胶的通用解法。剪标签时先涂再撕，从容优雅。",
+  tags:["新手","快手","清洁","抖音"],
+  links:[
+    {type:"doc", name:"网易 • 抖音获赞百万的 22 个技巧", url:"https://m.163.com/dy/article/E266DJKP0524958A.html"}
+  ]
+},
+{
+  vol:3, chapter:"家电自洁", icon:"📀",
+  title:"微波炉蒸汽自洁",
+  pain:"微波炉内壁溅满油点饭渣，干擦擦不掉，拆洗又麻烦。",
+  steps:[
+    "取一碗清水加几滴白醋（家政女皇方），或直接一碗白醋水。",
+    "放入微波炉高火 3~5 分钟，让蒸汽充满内腔。",
+    "闷 2 分钟再开门，防蒸汽烫手。",
+    "湿布一擦，油污饭渣整体脱落。"
+  ],
+  why:"蒸汽把干结的污渍重新泡软（复水化），醋酸顺带分解油膜——不费一滴洗洁精。《家政女皇》与抖音技巧在此殊途同归：让蒸汽替你干活。",
+  tags:["新手","快手","家电","抖音"],
+  classic:"《家政女皇》十年验证版与抖音百万赞技巧双源一致，可靠性拉满。",
+  links:[
+    {type:"doc", name:"什么值得买 • 家政女皇清洁妙招", url:"https://post.smzdm.com/p/avgxz9k7"},
+    {type:"doc", name:"网易 • 抖音 22 个技巧", url:"https://m.163.com/dy/article/E266DJKP0524958A.html"}
+  ]
+},
+{
+  vol:3, chapter:"收纳整理", icon:"📚",
+  title:"T恤立式折叠收纳",
+  pain:"T恤叠一摞，抽底下一件全乱；抽屉永远翻成战后现场。",
+  steps:[
+    "T恤两侧袖子向内折，再对折成紧实小方块。",
+    "按「竖立」方向码进抽屉，像文件卡片一样。",
+    "抽一件不倒一片，颜色款式一眼扫全。",
+    "裤子毛巾同法，厚薄分格。"
+  ],
+  why:"平叠的痛点是「压在最下面」，立式让每件单品都有独立取放路径——这是整理术里的「文件化」思维。抖音收纳话题下翻拍最多的经典。",
+  tags:["新手","快手","收纳","抖音"],
+  links:[
+    {type:"doc", name:"抖音收纳技巧整理", url:"https://www.hyhmzx.com/16175.html"}
+  ]
+},
+{
+  vol:4, chapter:"装修小技", icon:"🔨",
+  title:"钻墙防尘罩 • 空瓶接灰",
+  pain:"家里钻个孔，粉尘落满一地一沙发，打扫半小时。",
+  steps:[
+    "取一个干净的空塑料瓶（矿泉水瓶最佳）。",
+    "在瓶身侧面开口，把电钻钻头穿入瓶内再顶住墙面。",
+    "开钻，粉尘全部落进瓶底。",
+    "打完孔拔瓶倒灰，地面干干净净。"
+  ],
+  why:"把「灰尘自由落体」改成「灰尘进容器」——零成本改造，比贴便利贴接灰、请人扶簸箕都体面。抖音点赞百万的工程智慧。",
+  tags:["新手","快手","修缮","抖音"],
+  classic:"收录于人民日报客户端「抖音点赞 100w+ 生活技能」专题。",
+  links:[
+    {type:"doc", name:"人民日报 • 抖音百万赞生活技能", url:"https://www.peopleapp.com/rmharticle/30008690312"}
+  ]
+},
+{
+  vol:4, chapter:"装修小技", icon:"📎",
+  title:"粘胶挂钩无痕摘除",
+  pain:"免钉胶挂钩想换位置，硬扯掉一层墙皮，胶印还在墙上嘲讽你。",
+  steps:[
+    "吹风机热风对着胶体吹 30~60 秒，加热软化。",
+    "取一截牙线或细鱼线，两端拉紧。",
+    "从挂钩上缘切入，沿墙面向下一拉到底。",
+    "残胶用卷四的苏打油膏或白醋捂除。"
+  ],
+  why:"热使压敏胶软化失去粘性，细线产生线切割般的集中应力——「加热+切割」双管齐下，墙面毫发无损。这是抖音百万赞家政技巧里最「工程学」的一条。",
+  tags:["新手","快手","修缮","抖音"],
+  links:[
+    {type:"doc", name:"网易 • 抖音 22 个技巧", url:"https://m.163.com/dy/article/E266DJKP0524958A.html"}
+  ]
+},
+{
+  vol:4, chapter:"门窗五金", icon:"🔇",
+  title:"柜门降噪 • 静音胶带帖",
+  pain:"晚上开柜门「砰」一声，全家都知道你半夜在翻零食。",
+  steps:[
+    "裁静音硅胶胶带（或普通泡棉双面胶应急）。",
+    "贴在柜门与柜体的接触面、门碰位置。",
+    "马桶水箱内贴消音垫，冲水声也减半。",
+    "抽屉滑轨末端同法处理。"
+  ],
+  why:"硬碰硬的撞击声来自刚性接触，弹性胶层把冲击能量吸收成微小形变——与汽车保险杠同原理。抖音「生活最妙招」账号的招牌改造，被央视视频官方认可过。",
+  tags:["新手","快手","修缮","抖音"],
+  links:[
+    {type:"doc", name:"百度百科 • 生活最妙招（抖音账号）", url:"https://baike.baidu.com/item/%E7%94%9F%E6%B4%BB%E6%9C%80%E5%A6%99%E6%8B%9B/66128623"}
+  ]
+},
+{
+  vol:4, chapter:"水路小修", icon:"🌪",
+  title:"保鲜膜通马桶法",
+  pain:"马桶堵了没皮搋子，冲水眼看要漫出来，急得原地转圈。",
+  steps:[
+    "马桶口擦干，用保鲜膜把整个坐口密封多层，边缘压实。",
+    "确认密封无漏后，按下冲水。",
+    "膜面受气压鼓起，用手轻压再松开——形成往复气压。",
+    "一两次后堵塞物被气压顶通，撕膜收尾。"
+  ],
+  why:"皮搋子的本质是「密闭空间里的往复气压」——保鲜膜就是一层皮搋子膜，水压顶膜鼓包再回弹，把推拉力传给堵塞物。抖音百万赞物理流派代表。",
+  tags:["进阶","快手","水电","抖音"],
+  classic:"同收录于人民日报客户端「抖音点赞 100w+ 生活技能」专题，评论区实测反馈两极但原理成立，适合轻堵。",
+  links:[
+    {type:"doc", name:"人民日报 • 抖音百万赞生活技能", url:"https://www.peopleapp.com/rmharticle/30008690312"}
+  ]
+},
+{
+  vol:6, chapter:"鲜切养护", icon:"🌹",
+  title:"鲜花保鲜三件套",
+  pain:"买回家的鲜花三天就蔫，花瓶成了花钱流水器。",
+  steps:[
+    "剪根：45° 斜剪新口，增大吸水截面，水中剪最佳防气泡栓塞。",
+    "加料：水里加一小勺糖（养分）加几滴白醋（抑菌调酸）。",
+    "隔离：远离苹果香蕉等水果——乙烯会催花凋谢。",
+    "每两天换水并再剪短一截根。"
+  ],
+  why:"切花断水的主因是导管气泡栓塞与细菌繁殖：斜剪重开口+醋抑菌+糖供能，三招对应三个死因。微信公众号「生活技巧」类文章的常青条目。",
+  tags:["新手","快手","种植","公众号"],
+  classic:"「鲜花里加一点醋」出自微信公众号技巧文长期流传的老配方，与本卷水培、堆肥条目同一套植物生理学。",
+  links:[]
+},
+{
+  vol:9, chapter:"车内百科", icon:"🚗",
+  title:"车内隐藏功能两则",
+  pain:"开几年车才知道，好多设计从来没用过。",
+  steps:[
+    "遮阳板可侧转：卡扣掰下来旋向侧面，挡住从侧窗斜射的太阳。",
+    "安全带高度可调：B柱上的按钮按住上下滑动，调到贴肩不勒脖。",
+    "后备箱逃生拉扣：很多车后排座椅有放倒拉手、尾盖内有机械开锁——记位置，关键时救命。",
+    "油表旁的小三角：指向加油口在左边还是右边，借车加油不懵。"
+  ],
+  why:"厂商把功能藏在细节里，说明书没人读——但这几条一个是防晒、一个是安全、一个是应急逃生，属于「知道一次受用终身」的层级。",
+  tags:["新手","快手","出行","抖音"],
+  links:[
+    {type:"doc", name:"头条 • 抖音超火的生活小技巧", url:"https://www.toutiao.com/article/6544466034747769347/"}
+  ]
+},
+{
+  vol:9, chapter:"出行一门", icon:"👜",
+  title:"塑料袋打包汤水 • 交叉结法",
+  pain:"外卖打包的汤汤水水，塑料袋说漏就漏，背包遭殃。",
+  steps:[
+    "袋子中间先提起来，让袋底悬空。",
+    "两侧提手在袋身前方交叉打一个结。",
+    "再绕到袋身后交叉打第二个结。",
+    "提着走不漏不洒，袋身受力均匀。"
+  ],
+  why:"两次交叉让袋口产生相互锁紧的分力，等效于「自制提篮」——袋口不再是被单点勒紧，而是整体承力。小红书几秒学会型秘方，动手 10 秒见效。",
+  tags:["新手","快手","出行","小红书"],
+  links:[
+    {type:"doc", name:"元氣网 • 六个生活秘方", url:"https://health.udn.com/health/story/6006/8445026"}
+  ]
+},
+{
+  vol:10, chapter:"旧物新生", icon:"♻",
+  title:"阳台邪修收纳 • 废物改造三连",
+  pain:"收纳盒越买越多，钱花了东西还是乱；扔掉的「废品」其实都是宝。",
+  steps:[
+    "草莓塑料筐 → 衣柜/阳台收纳筐：带孔透气，叠放即用。",
+    "食用油桶剪开 → 厨房分格收纳：勺子筷子、干货杂粮各有其位。",
+    "外卖袋清理干净 → 冰箱分类收纳盒：荤素分区，一秒清爽。",
+    "矿泉水瓶剪半 → 杂粮袋封口器：袋口穿瓶口翻折拧盖，防潮防虫。"
+  ],
+  why:"「邪修收纳」的爆火逻辑：收纳的成本大头不是盒子，是「给东西找到固定路径」——废物改造零成本提供路径，还自带尺寸多样性。年轻人抢着学阿姨土法的本质，是把消费主义换成了工程思维。",
+  tags:["新手","快手","收纳","小红书"],
+  classic:"录自头条「邪修收纳」话题整理——小红书与头条双平台高赞，是民间土法对网红收纳盒的漂亮反击。",
+  links:[
+    {type:"doc", name:"头条 • 邪修收纳火了", url:"https://m.toutiao.com/article/7661080674350268947"}
+  ]
+},
+/* ====== 200 条扩充计划 • 第一叠 ====== */
+{
+  vol:1, chapter:"米面主食", icon:"🌽",
+  title:"煮玉米加奶加盐 • 更甜更糯",
+  pain:"煮出来的玉米寡淡发硬，跟摊上买的软糯香甜差一截。",
+  steps:[
+    "玉米留最内层苞叶一起煮，锁住清香与水分。",
+    "水中加一小盒纯牛奶和一小撮盐，甜糯感立升。",
+    "水开后中小火煮 15 分钟，关火再焖 5 分钟。",
+    "吃前在淡盐水里过一下，甜味更突出。"
+  ],
+  why:"牛奶的乳脂与乳糖给玉米「镀」上一层奶香；盐是甜味的放大器（对比效应）；苞叶是天然蒸笼纸。这三招加起来，摊主们的秘密就全在里面了。",
+  tags:["新手","快手","主食"],
+  links:[]
+},
+{
+  vol:1, chapter:"锅具使用", icon:"⏱",
+  title:"高压锅安全使用心法",
+  pain:"高压锅嗞嗞作响让人心慌，新闻里的爆炸事故更是吓人。",
+  steps:[
+    "食物总量不超过锅容量的三分之二，粥类豆类减半（膨胀堵排气孔是事故首因）。",
+    "合盖时上下手柄对齐卡到位，没到位不加压。",
+    "上压后转中小火计时；泄压必须自然冷却或排气完成，忌冷水浇锅强行开盖。",
+    "每次使用前检查排气孔通畅、密封圈无老化裂纹。"
+  ],
+  why:"高压锅的事故九成源于「堵孔+强开」：排气孔被食物糊住等于压力无处泄，强制开盖就是让剩余压力炸给你看。尊重物理，它就是最快最省火的锅。",
+  tags:["进阶","快手","锅具"],
+  links:[]
+},
+{
+  vol:1, chapter:"肉禽处理", icon:"🥩",
+  title:"腌肉嫩化三部曲",
+  pain:"炒肉丝总是又老又柴，饭店的滑嫩感怎么都做不出来。",
+  steps:[
+    "第一步补水：肉片中加少量清水或葱姜水，搅打至水分吃进。",
+    "第二步锁水：加蛋清或水淀粉抓匀，形成保水膜。",
+    "第三步封油：最后淋一层食用油拌匀，下锅不粘、水分不跑。",
+    "全程忌放盐过早——盐让蛋白质收缩出水，柴的根源。"
+  ],
+  why:"肉的嫩是水分问题：先补、再锁、后封，三步把水焊在纤维里。饭店的「上浆」就是这套流程的专业版——盐一定要在锅边或出锅前给。",
+  tags:["进阶","快手","肉类"],
+  links:[]
+},
+{
+  vol:1, chapter:"火候心法", icon:"🍳",
+  title:"滑蛋如云朵 • 水温与油温双诀",
+  pain:"炒蛋要么老成饼，要么出水发黑，餐厅那种云朵滑蛋做不出来。",
+  steps:[
+    "蛋液中加约为蛋量五分之一的水或高汤，顺一个方向打匀。",
+    "油温四成热（筷子插入冒小泡）下蛋液。",
+    "蛋液边缘刚凝固时用铲轻推，让未凝部分流到锅底。",
+    "八成熟即出锅——余温会继续催熟它。"
+  ],
+  why:"加水让蛋白凝胶更蓬松柔软（同蒸蛋原理）；四成油温和八成熟出锅，都是给「余温熟成」留余量——滑蛋是靠耐心等的，不是靠火候硬催的。",
+  tags:["进阶","快手","火候"],
+  links:[]
+},
+{
+  vol:1, chapter:"米面主食", icon:"🌾",
+  title:"煮粥防溢 • 一根勺子稳乾坤",
+  pain:"煮粥总是扑锅，溢出的米浆把灶台糊得一塌糊涂。",
+  steps:[
+    "米提前泡 30 分钟，熬煮时米油不易起大泡。",
+    "水开转小火后，在锅口横放一根筷子再盖盖，留出蒸汽通道。",
+    "或滴几滴香油入锅，泡沫表面张力被破坏自动消泡。",
+    "熬到 20 分钟后开盖勤搅，越搅越稠还不粘底。"
+  ],
+  why:"溢锅是米浆泡沫堵死蒸汽通道所致：筷子留缝是给蒸汽出路，香油破泡沫的表面张力。两个都是「泄压」思路，和高压锅排气孔是同一个物理。",
+  tags:["新手","快手","主食"],
+  links:[
+    {type:"doc", name:"易有料 • 50 个生活实用小技巧", url:"https://h5detail.yiyouliao.com/rivers/newsfeed/1536235174142947329/ID3FZSPC72I21N8.html"}
+  ]
+},
+{
+  vol:1, chapter:"刀工养护", icon:"⚒",
+  title:"磨刀棒养刀法",
+  pain:"刀越用越钝，乱磨一气反而卷刃，好刀全废在错误保养上。",
+  steps:[
+    "磨刀棒竖直固定（棒头抵案板），刀以约 15~20° 角贴棒。",
+    "从刀根到刀尖顺势向下拉，两面交替各 5~8 次。",
+    "日常钝了用磨刀棒「养」；真卷刃了才用磨刀石重开刃。",
+    "刀用完洗净擦干立放，忌泡水、忌洗碗机。"
+  ],
+  why:"磨刀棒其实不磨掉金属，是让卷曲的刃口「扶正」回直——日常养刃频率高、损耗小；磨刀石是深加工，用一次薄一层。角度恒定是关键，乱磨等于给刀判缓刑。",
+  tags:["进阶","快手","刀工"],
+  links:[]
+},
+{
+  vol:1, chapter:"厨具养护", icon:"🍋",
+  title:"砧板分类与养护",
+  pain:"一块砧板切生切熟，腥味串味洗不掉，还容易开裂发霉。",
+  steps:[
+    "生熟分板：至少两块，生肉海鲜一块、熟食果蔬一块。",
+    "每周养护：粗盐撒板面，用半颗柠檬切面反复搓擦，静置 5 分钟后温水冲净。",
+    "洗完立放通风处阴干，忌平放积水、忌暴晒开裂。",
+    "实木砧板每月涂一层食品级矿物油防裂。"
+  ],
+  why:"盐的渗透压杀菌并带走异味分子，柠檬酸辅助消毒去腥；立放让双面同时干燥——砧板的霉与裂全是「潮湿+积水」养出来的。",
+  tags:["新手","快手","厨具"],
+  links:[
+    {type:"doc", name:"易有料 • 50 个生活实用小技巧", url:"https://h5detail.yiyouliao.com/rivers/newsfeed/1536235174142947329/ID3FZSPC72I21N8.html"}
+  ]
+},
+{
+  vol:1, chapter:"食材鉴别", icon:"💦",
+  title:"鸡蛋新鲜度 • 水浮法一眼判",
+  pain:"冰箱里的鸡蛋不知放多久了，打坏一颗坏一锅菜。",
+  steps:[
+    "把蛋放入清水碗：平躺水底 = 很新鲜。",
+    "一头翘起直立 = 已存放一两周，尽快吃。",
+    "浮上水面 = 气室过大已坏，直接丢弃。",
+    "辅以摇一摇：有明显水晃声的不新鲜。"
+  ],
+  why:"蛋壳有数千个气孔，存放越久内部水分蒸发越多、气室越大——气室大小就是新鲜度的天然计时器。水浮法是老一辈传下来最可靠的物理检验。",
+  tags:["新手","快手","保存"],
+  links:[]
+},
+{
+  vol:1, chapter:"剩馔改造", icon:"🍱",
+  title:"剩菜复热分类学",
+  pain:"剩菜回锅不是干柴就是腥气倍增，热完还不如不吃。",
+  steps:[
+    "肉类回热：淋少许水或高汤盖盖焖，蒸汽防柴。",
+    "米饭回热：洒水盖盖，微波炉中高火 2 分钟。",
+    "海鲜蔬菜当餐吃完——隔夜亚硝胺与腥味双杀，回热救不回来。",
+    "所有剩菜 2 小时内冷藏封存，复热必须彻底滚沸。"
+  ],
+  why:"回热难吃是水分二次流失：蒸汽隔离层能让肉重新吸收水分。真正的安全线不在「热透」而在「存得对」——室温久放的剩菜，热透也救不了细菌毒素。",
+  tags:["新手","快手","改造"],
+  links:[]
+},
+{
+  vol:1, chapter:"米面主食", icon:"🍵",
+  title:"焖烧壶免火粥 • 睡前下料早上开锅",
+  pain:"想早上喝热粥又不想早起，外卖粥又贵又没锅气。",
+  steps:[
+    "睡前把米和开水装入焖烧壶，预热一遍倒掉再装二次开水。",
+    "拧紧盖子平放静置一夜。",
+    "早起开盖即得软糯热粥，温度刚好入口。",
+    "银耳汤、煮蛋、小豆汤同法皆宜。"
+  ],
+  why:"焖烧壶是真空保温容器：沸水预热的余温持续在 70°C 以上焖熟食物——用「时间」换「火候」，零看管零燃气。这是现代版的「冷灶慢煨」。",
+  tags:["新手","慢工","主食"],
+  links:[]
+},
+{
+  vol:1, chapter:"快手处理", icon:"🌭",
+  title:"牙签剥香肠 • 包装一滑即开",
+  pain:"火腿肠的金属环扣死活拧不开，剪子牙咬全都狼狈。",
+  steps:[
+    "取一根牙签，从香肠顶端封口处刺穿包装。",
+    "沿封口边缘向下滑动一圈，包装膜整圈裂开。",
+    "一撕即开，肠体完整不碎。",
+    "没有牙签时，剪刀剪开头部封口处同样顺滑。"
+  ],
+  why:"火腿肠的封口是「热封铝扣」结构，膜在扣位最脆弱——牙签从扣位切入是顺结构剥开，硬拧是逆结构硬掰。抖音百万赞技能的经典款，两秒解决多年困扰。",
+  tags:["新手","快手","处理","抖音"],
+  classic:"抖音点赞 100w+ 生活技能，凤凰网与人民日报客户端均收录过这一招。",
+  links:[
+    {type:"doc", name:"凤凰网 • 抖音百万赞生活技能", url:"https://i.ifeng.com/c/7f8mkZ7rWz5"}
+  ]
+},
+{
+  vol:1, chapter:"快手处理", icon:"📀",
+  title:"微波炉炸花生米 • 少油版",
+  pain:"炒花生米费油又容易炒糊，火候难拿捏。",
+  steps:[
+    "花生米平铺盘中，淋一小勺油拌匀。",
+    "微波炉高火 3 分钟，中途取出翻拌一次。",
+    "听到「噼啪」声变密后停火，趁热撒盐。",
+    "放凉后咔嚓酥脆，绝不回软。"
+  ],
+  why:"微波让花生内部水分子高频振动生热，由内而外脱水——比铁锅外煎内湿更均匀；「噼啪」声是水汽冲破种皮的信号，声音变密即熟透。邪修做菜流派的代表作品。",
+  tags:["新手","快手","处理","小红书"],
+  classic:"「邪修做菜」热潮的代表招式——知乎高赞说透本质：愿意下厨不愿洗碗，邪修把工序换成了微波炉。",
+  links:[
+    {type:"doc", name:"网易 • 邪修食谱盘点", url:"https://www.163.com/dy/article/K6RS105M0522945C.html"},
+    {type:"doc", name:"什么值得买 • 邪修做菜甄别", url:"https://post.m.smzdm.com/p/aqrznne7"}
+  ]
+},
+{
+  vol:2, chapter:"快手腌渍", icon:"🥗",
+  title:"韩式辣白菜速成版",
+  pain:"正宗辣白菜要腌半个月，想吃的时候远水难解近渴。",
+  steps:[
+    "大白菜撕大片，盐腌 2 小时杀水，冲净挤干。",
+    "酱料：辣椒粉 60g + 蒜泥 30g + 姜末 10g + 鱼露 20ml + 糖 20g + 苹果梨泥半个。",
+    "戴手套把酱料逐片抹匀，码入无油密封盒。",
+    "室温放半天催发酵，转冷藏 2~3 天风味最佳。"
+  ],
+  why:"苹果梨泥的果糖是乳酸菌的「燃料」，把半个月的发酵路径压缩到三天；鱼露提供氨基酸鲜味底。急食版牺牲了陈化层次，换来的是立等可吃的酸辣脆。",
+  tags:["新手","慢工","腌渍"],
+  links:[]
+},
+{
+  vol:2, chapter:"快手腌渍", icon:"🥒",
+  title:"俄式酸黄瓜 • 夏日开胃罐",
+  pain:"买的酸黄瓜添加剂一堆，自己又怕做坏。",
+  steps:[
+    "小黄瓜切条，与蒜片、莳萝（或茴香）码入烫过的罐中。",
+    "盐水：水 500ml + 盐 15g + 糖 10g 煮开放凉，加白醋 50ml。",
+    "盐水没过黄瓜，封罐冷藏 3 天即成。",
+    "取食用干净筷，酸脆开胃配肉绝搭。"
+  ],
+  why:"低温慢酸比室温发酵更可控：醋提前打底定酸度，低温抑制杂菌让乳酸菌独走。罐子烫过、食材无生水，是发酵类小菜的通行证。",
+  tags:["新手","慢工","腌渍"],
+  links:[]
+},
+{
+  vol:2, chapter:"蜜渍糖渍", icon:"🍋",
+  title:"柠檬蜂蜜渍 • 一罐喝一冬",
+  pain:"柠檬买回来切片泡两天就干瘪发苦，蜂蜜柚子茶又嫌麻烦。",
+  steps:[
+    "柠檬用盐搓洗表皮去蜡，彻底擦干。",
+    "切成 3mm 薄片，去籽（籽是苦味源）。",
+    "无水无油的玻璃罐里，一层柠檬一层蜂蜜码满。",
+    "冷藏 3 天后可取两片冲温水，可存一个月。"
+  ],
+  why:"高糖环境产生高渗透压让微生物脱水——蜂蜜渍是零添加的防腐术；去籽去蜡是去苦味的两道关。冲泡水温要低于 60°C，护住蜂蜜的活性与柠檬的维C。",
+  tags:["新手","快手","蜜渍"],
+  links:[]
+},
+{
+  vol:2, chapter:"熬煮果酱", icon:"🍓",
+  title:"基础果酱熬煮法",
+  pain:"熬果酱不是稀得像糖水，就是糊锅发黑，白瞎一筐水果。",
+  steps:[
+    "水果切块加砂糖（约果重的 1/4）腌 1 小时出水。",
+    "小火慢熬，撇净浮沫，边熬边压碎果肉。",
+    "熬至滴落成片不散（温度约 105°C）即关火。",
+    "趁热装入开水烫过晾干的罐中倒扣放凉，形成真空封。"
+  ],
+  why:"果胶+糖+酸是凝胶三要素：腌出水让果胶溶出，105°C 是果胶成胶的温度线；趁热装罐倒扣是自制「巴氏消毒」——这三点齐了，果酱能存半年。",
+  tags:["进阶","慢工","熬煮"],
+  links:[]
+},
+{
+  vol:2, chapter:"发酵甜酿", icon:"🍶",
+  title:"自制酒酿 • 睡前拌米早上香",
+  pain:"想喝甜酒酿蛋总要去买，自己做又怕长毛失败。",
+  steps:[
+    "糯米蒸熟摊凉至 30°C 左右。",
+    "拌入甜酒曲（按说明书比例），中间挖一个小孔。",
+    "密封置 30°C 左右环境（电饭煲保温档旁最稳）。",
+    "24~36 小时出酒香、小孔渗出酒液即成。"
+  ],
+  why:"酒曲里的根霉菌先糖化、酵母再产酒——两菌接力。挖孔是观察窗兼氧气通道；全程容器无油无生水，失败九成败在杂菌。出酒香就是收工信号，过头会酸。",
+  tags:["进阶","慢工","发酵"],
+  links:[]
+},
+{
+  vol:2, chapter:"油封浸渍", icon:"🍢",
+  title:"蒜香橄榄油 • 拌面蘸料万金油",
+  pain:"想给白水煮面加点灵魂，超市酱料又全是添加剂。",
+  steps:[
+    "大蒜切薄片，与迷迭香（或小葱）一起入冷锅冷油。",
+    "全程小火慢浸 10~15 分钟，至蒜片微黄即离火。",
+    "彻底放凉后装入开水消毒的玻璃瓶，冷藏可存两周。",
+    "拌面、蘸面包、炒青菜，一滴入魂。"
+  ],
+  why:"冷油慢浸让蒜的挥发性香气温和溶出而不焦糊——热油炸蒜是另一风味（蒜油），冷浸更清爽持久。油封+冷藏双保险防肉毒杆菌，两周内吃完最稳。",
+  tags:["新手","快手","油封"],
+  links:[]
+},
+{
+  vol:3, chapter:"纱窗门窗", icon:"📰",
+  title:"纱窗免拆清洗 • 湿报纸五分钟",
+  pain:"纱窗积灰想拆下来洗，拆装半小时还装不回去。",
+  steps:[
+    "废旧报纸用抹布打湿，整张贴在纱窗背面。",
+    "等 5 分钟让报纸吸透灰尘。",
+    "整张揭下，灰尘全被报纸带走。",
+    "油污重的厨房纱窗：先喷洗洁精水再贴报纸。"
+  ],
+  why:"湿报纸的纤维是天然吸尘刷，贴附让灰尘「迁移」进纸而非飘散在屋里；报纸干了会粘连难揭，所以五分钟是黄金时长。免拆化零为整，年度最省力清洁技巧之一。",
+  tags:["新手","快手","清洁"],
+  links:[
+    {type:"doc", name:"新浪财经 • 五个居家妙招", url:"https://finance.sina.com.cn/wm/2026-10-25/doc-iniwmtkt6383607.shtml"}
+  ]
+},
+{
+  vol:3, chapter:"卫浴清洁", icon:"💧",
+  title:"淋浴房水垢 • 白醋柠檬双杀",
+  pain:"淋浴房玻璃上白花花一层水垢，越擦越花像磨砂玻璃。",
+  steps:[
+    "喷壶装白醋（可加半颗柠檬汁增强），喷满玻璃静置 10 分钟。",
+    "顽固垢用厨房纸蘸醋贴敷 15 分钟（湿敷法）。",
+    "刮板或鱼鳞布自上而下擦净。",
+    "最后干布抛光，玻璃恢复通透。"
+  ],
+  why:"水垢是碳酸钙与皂垢的混合沉积，醋酸溶解钙盐、柠檬酸螯合金属离子——双酸接力比单用白醋效率更高。有实测对照称其除垢效率优于部分市售清洁剂，且零化学残留。",
+  tags:["新手","快手","清洁"],
+  links:[
+    {type:"doc", name:"头条 • 小苏打白醋全屋清洁实测", url:"https://m.toutiao.com/article/7701233011953599026"}
+  ]
+},
+{
+  vol:3, chapter:"换季收纳", icon:"👗",
+  title:"羽绒服收纳 • 忌压缩袋久存",
+  pain:"羽绒服塞进压缩袋抽真空，来年拿出来不蓬松了，保暖性明显下降。",
+  steps:[
+    "洗净彻底晾干后，宽松折叠放入透气的棉布收纳袋。",
+    "衣柜内悬挂或平叠，留出呼吸空间。",
+    "收纳处放樟木条或真空包装的干燥剂防潮防蛀。",
+    "短途旅行（一两周）用压缩袋无妨——长期半年以上才是杀手。"
+  ],
+  why:"羽绒的保暖来自绒朵间锁住的静态空气——长期压缩会让绒枝结构性疲劳回弹无力。透气袋+干燥防蛀，是来年「一抖就蓬」的关键。",
+  tags:["新手","快手","收纳"],
+  links:[]
+},
+{
+  vol:3, chapter:"织物养护", icon:"👘",
+  title:"真丝丝绸洗涤法",
+  pain:"真丝衬衫水洗一次就发白起皱，干洗店又贵又远。",
+  steps:[
+    "30°C 以下冷水，中性洗涤剂（真丝专用或洗发水应急）。",
+    "轻柔手搓 3 分钟，忌浸泡过久、忌机洗搅打。",
+    "清水漂净后，水中滴几滴白醋固色增亮。",
+    "毛巾卷压吸水，阴处平铺晾干——忌拧绞、忌暴晒。"
+  ],
+  why:"真丝是蛋白质纤维，怕碱、怕高温、怕暴晒——洗发水也是蛋白质温和清洁剂，是应急正解；白醋中和残留碱分让丝面恢复光泽。拧绞会永久破坏纤维排列。",
+  tags:["进阶","快手","织物"],
+  links:[]
+},
+{
+  vol:3, chapter:"除湿防霉", icon:"☂",
+  title:"黄梅天防霉 • 衣柜三道防线",
+  pain:"一到梅雨季，柜子里衣服上霉点星星点点，鞋子里一股霉味。",
+  steps:[
+    "第一道：除湿盒挂衣柜内、鞋柜放活性炭包，定期更换。",
+    "第二道：衣物之间留呼吸缝，别塞满；呢大衣用透气防尘罩。",
+    "第三道：晴天集中晾晒一波，紫外线的杀菌力除湿机替代不了。",
+    "报纸卷进靴筒吸潮防变形，一举两得。"
+  ],
+  why:"霉菌需要「湿度 75% 以上 + 无通风 + 有养分」三条件——除湿盒断湿度、留缝通空气、晾晒断孢子。三道防线断掉任意一条，霉就起不来。",
+  tags:["新手","快手","收纳"],
+  links:[]
+},
+{
+  vol:3, chapter:"卫浴清洁", icon:"🚽",
+  title:"马桶圈与毛巾分开消毒",
+  pain:"总觉得卫生间里毛巾有味道，马桶怎么刷还是有味。",
+  steps:[
+    "马桶圈座每周用 84 消毒液（按比例稀释）擦拭，停留 10 分钟再冲水。",
+    "毛巾每周开水煮 5 分钟或微波高火 2 分钟（打湿后）。",
+    "牙刷远离马桶区 2 米以上或收纳进柜。",
+    "冲水时盖上马桶盖——气溶胶能喷到两米高。"
+  ],
+  why:"冲水的气溶胶效应会把细菌喷散到整个卫生间——盖盖冲水是最便宜的卫生习惯；毛巾吸湿性强是细菌温床，与马桶区物理隔离 + 定期高温，比任何除味剂都治本。",
+  tags:["新手","快手","卫生"],
+  links:[]
+},
+{
+  vol:3, chapter:"清扫心法", icon:"🏠",
+  title:"拖地顺序学 • 一次拖净的路径规划",
+  pain:"拖完地回头看，脚印水印一片，越拖越脏。",
+  steps:[
+    "先扫后拖：干尘扫净再湿拖，忌一拖带灰。",
+    "从房间最深处往门口方向拖，人始终站在「未拖区」。",
+    "边角先擦（踢脚线、桌腿下），大面积最后收尾。",
+    "拖把水浑了立刻换——半桶脏水等于给全屋敷浆糊。"
+  ],
+  why:"拖地的核心是「路径规划」：从内到外避免自己踩刚拖的地；边角先做防死角遗漏。它像刷墙的 W 手法一样，是有标准作业顺序的。",
+  tags:["新手","快手","清洁"],
+  links:[]
+},
+{
+  vol:3, chapter:"家电自洁", icon:"🌬",
+  title:"空调滤网两月一洗",
+  pain:"空调越吹越没劲，风里一股土腥味，电费还高。",
+  steps:[
+    "断电开面板，抽出滤网（卡扣式，勿硬掰）。",
+    "中性洗涤剂温水刷洗，阴干后装回。",
+    "蒸发器翅片用空调清洁剂喷一遍，静置后开机排污。",
+    "每两月一次，换季启用前必洗。"
+  ],
+  why:"滤网积灰让风量下降、换热效率降低——脏网让空调「多干活少出力」，电费白白多付；土腥味是滤网和蒸发器上的霉菌代谢物。两月一洗，制冷更快、空气更净、电费更低。",
+  tags:["新手","快手","家电"],
+  links:[]
+},
+{
+  vol:3, chapter:"织物养护", icon:"🛏",
+  title:"地毯小苏打干洗法",
+  pain:"地毯脏了不能机洗，溅上饮料留印子，请人洗一次好几百。",
+  steps:[
+    "小苏打均匀撒满地毯表面，静置 1~2 小时（过夜更佳）。",
+    "软毛刷顺毛向刷理，让苏打入绒吸味。",
+    "吸尘器彻底吸净，绒面蓬松如新。",
+    "局部污渍：毛巾蘸白醋水按压吸污，忌来回擦。"
+  ],
+  why:"小苏打多孔结构吸附绒毛深处的异味与油脂，干洗免水防霉——地毯最怕的不是脏而是湿透；局部污渍「按压」是把污渍吸上来，「来回擦」是把污渍揉进去。",
+  tags:["新手","快手","织物"],
+  links:[]
+},
+{
+  vol:3, chapter:"收纳整理", icon:"🗑",
+  title:"垃圾桶双层套袋法",
+  pain:"垃圾袋一装汤水就漏，换袋时桶底脏水淋漓。",
+  steps:[
+    "桶内先套一层袋，装一层简单垃圾垫底。",
+    "再套第二层为「工作袋」，日常扔垃圾都进这层。",
+    "工作袋满了直接拎走，下层永远是干净的备用底。",
+    "桶口用压圈固定双层，不滑落。"
+  ],
+  why:"双层袋的本质是「备份系统」：漏了第一层还有第二层兜底，换袋时桶底永远干净——这是把工程冗余思维用在allest家务上，隐形家务时间直接减半。",
+  tags:["新手","快手","收纳"],
+  links:[
+    {type:"doc", name:"头条 • 网友亲测生活小窍门", url:"https://www.toutiao.com/article/7236940400836149795/"}
+  ]
+},
+/* ====== 200 条扩充计划 • 第二叠 ====== */
+{
+  vol:4, chapter:"水路小修", icon:"💦",
+  title:"淋浴喷头堵塞 • 塑料袋绑浸法",
+  pain:"花洒出水越来越细、水孔半堵，洗个澡像淋细雨。",
+  steps:[
+    "塑料袋装白醋（可兑一半温水），把花洒头整个浸入。",
+    "袋口绑扎在喷头杆上，静置 2~4 小时（过夜更彻底）。",
+    "拆袋后开水冲淋一分钟左右，冲出溶解的垢渣。",
+    "顽固孔用牙签逐孔捅通。"
+  ],
+  why:"花洒堵塞是钙垢堵孔——醋酸泡浸是免拆洗的最优解：不用卸下喷头就能让溶液从正面和背面同时作业。两个月泡一次，出水永远有力。",
+  tags:["新手","快手","水电"],
+  links:[]
+},
+{
+  vol:4, chapter:"水路小修", icon:"💨",
+  title:"地漏返味 • 存水弯自查法",
+  pain:"卫生间下水道臭味一阵一阵，除味剂治标不治本。",
+  steps:[
+    "先灌水测试：往地漏倒一大杯水，臭味若消失——是存水弯干涸了。",
+    "长期不用的地漏（客卫、洗衣池）每周补一杯水维持水封。",
+    "常用地漏换带磁芯/硅胶芯的防臭地漏芯，几十块钱。",
+    "检查地漏盖是否扣严，缝隙用密封泥补。"
+  ],
+  why:"存水弯的「水封」是隔绝下水道臭气的唯一物理屏障——水干了臭气长驱直入。补水是最便宜的修复；防臭芯是水封失效时的机械备份。",
+  tags:["新手","快手","水电"],
+  links:[]
+},
+{
+  vol:4, chapter:"门窗五金", icon:"🚪",
+  title:"门窗异响与合页润滑",
+  pain:"开门「吱呀」一声能传遍全家，关窗还漏风呼呼响。",
+  steps:[
+    "合页响：缝纫机油或凡士林点在合页轴心，开合几次分布均匀。",
+    "合页松：拧紧螺丝；螺丝孔滑丝的用牙签+胶水填孔再拧。",
+    "门窗漏风：测量缝隙宽度，贴对应厚度毛条或密封胶条。",
+    "窗框老化的密封条整条撕下换新，告别啸叫风声。"
+  ],
+  why:"异响是金属轴摩擦与螺丝松动；漏风是密封条老化失去弹性——两者都是「渐进式损耗」，定期上油、及时换条就能压住。冬天漏一条缝，暖气费多一档。",
+  tags:["新手","快手","修缮"],
+  links:[]
+},
+{
+  vol:4, chapter:"墙与家具", icon:"🖼",
+  title:"墙纸翘边与鼓包修补",
+  pain:"墙纸边角翘起来，越翘越难看，手贱撕了又撕出大洞。",
+  steps:[
+    "翘边：用电熨斗隔着布低温熨压，让胶重新活化贴合。",
+    "贴合失败的：卷起翘边，涂薄层墙纸胶再压平。",
+    "鼓包气泡：针扎孔排气后注胶压平。",
+    "压平后用干净毛巾压实 1 分钟，收边整齐。"
+  ],
+  why:"墙纸胶是再湿性胶——受热受潮会重新恢复粘性，熨斗和注胶都是在「重启」它。动手越早越简单，翘边拖久了边缘积灰就回不去了。",
+  tags:["新手","快手","修缮"],
+  links:[]
+},
+{
+  vol:4, chapter:"用电安全", icon:"💡",
+  title:"换灯泡安全与省心法",
+  pain:"换灯泡够不着、怕触电，拧不下来还怕拧碎。",
+  steps:[
+    "先断电：关灯开关不算数，最好拉总闸或确认开关控制的火线已断。",
+    "灯泡烫时等两分钟再换；逆时针拧下，顺时针拧上。",
+    "够不着用稳当的梯子，忌踮脚踩桌椅单人硬够。",
+    "拧不动的旧灯泡：用宽胶带贴成环拉拽，或断电后用橡胶手套增加摩擦。"
+  ],
+  why:"开关关的是火线还是零线取决于接线，总闸才是绝对安全线；灯丝余温烫手、碎裂割手，等一等、垫一层都是必要的。宽胶带「贴环拧」是老电工的巧招。",
+  tags:["新手","快手","安全"],
+  links:[]
+},
+{
+  vol:4, chapter:"墙与家具", icon:"📐",
+  title:"挂画承重与打孔判断",
+  pain:"挂画掉下来砸坏相框，墙面粉碎性掉皮，孔位越打越多。",
+  steps:[
+    "判断墙型：指节敲击，声音清脆 = 空心砖/轻体墙，沉闷 = 承重墙。",
+    "承重墙直接打膨胀螺丝；轻体墙必须用胀塞或飞机膨胀栓。",
+    "承重墙避开水电管线区（一般是横平竖直的线路槽）。",
+    "不想打孔：3M 无痕胶挂轻物，承重上限看产品标注。"
+  ],
+  why:"轻体墙的砖是空心蜂窝结构，普通螺丝「咬不住」——胀塞的原理是撑开砖孔形成机械锁死。挂画脱落十有八九是「墙型判断错+选错锚固件」。",
+  tags:["进阶","快手","修缮"],
+  links:[]
+},
+{
+  vol:4, chapter:"家电延寿", icon:"🎸",
+  title:"家具螺丝与松动向日常保养",
+  pain:"椅子嘎吱响、桌子晃悠、床架咯吱——家具整体老化预警。",
+  steps:[
+    "定期（每季）巡检一遍家具的可见螺丝，拧紧松动件。",
+    "木榫结构松动：拆开后榫头涂木工白胶再组装，夹紧过夜。",
+    "金属框椅响：连接处点蜡或凡士林缓冲。",
+    "桌腿不稳：在短腿下贴家具毛毡垫微调高度。"
+  ],
+  why:"家具的响动来自连接件微位移——螺丝拧紧、榫头补胶都是在「消灭位移空间」。每季一次十分钟巡检，能把大修拖到无限远。",
+  tags:["新手","快手","修缮"],
+  links:[]
+},
+{
+  vol:5, chapter:"微信技巧", icon:"💬",
+  title:"微信隐藏功能五连",
+  pain:"微信用了十年，一半的功能根本不知道在哪。",
+  steps:[
+    "重要消息设提醒：长按消息 → 提醒，到点自动弹出，当闹钟用。",
+    "折叠不想看的群：群设置 → 消息免打扰 → 折叠该群聊。",
+    "引用回复防误会：长按消息 → 引用，多人群里再也不串线。",
+    "聊天记录迁移：我 → 设置 → 聊天 → 聊天记录迁移与备份，换机必用。",
+    "收音识别：语音转文字——长按语音消息转文字，开会不方便听时救急。"
+  ],
+  why:"微信把最实用的功能都埋进了「长按」菜单里——长按是一切隐藏入口的钥匙。用熟这五连，微信从聊天工具升级成任务管理器。",
+  tags:["新手","快手","数码"],
+  links:[]
+},
+{
+  vol:5, chapter:"数据安全", icon:"📍",
+  title:"手机防丢三道锁",
+  pain:"手机一丢，照片账单聊天记录全裸奔，损失远超一台机器。",
+  steps:[
+    "开启系统级查找：苹果「查找」/ 安卓「查找手机」，并确认远程定位与抹除权限已开。",
+    "SIM 卡设 PIN 码：丢机后他人无法用你的卡收验证码——防丢的第零道锁。",
+    "锁屏关闭短信预览：验证码不裸奔在锁屏上。",
+    "记下各账号应急申诉路径：手机丢后第一小时是黄金抢救期。"
+  ],
+  why:"手机丢失的真正风险是「验证码劫持」——SIM 卡 PIN 码和锁屏防预览这两道锁，能挡住九成的关联账户入侵。查找功能负责找机，前两道锁负责保账户。",
+  tags:["进阶","快手","数码"],
+  links:[]
+},
+{
+  vol:5, chapter:"效率工具", icon:"📷",
+  title:"截图与长截图进阶",
+  pain:"聊天记录截图一张一张截，发给对方像发连环画。",
+  steps:[
+    "安卓：截图后点「滚动截屏」，一屏到底自动拼接。",
+    "iPhone：截屏后点左下缩略图 → 「整页」选项，输出 PDF 长图。",
+    "电脑端：微信 Alt+A 截图默认最顺手；浏览器 F12 开发者工具可截整页长图。",
+    "截聊天记录记得隐去无关隐私再发。"
+  ],
+  why:"长截图的本质是「把滚动信息压缩成一张平面文档」——发归档、留证据、转存知识都用它。学会长截图，聊天记录终于能像文件一样传。",
+  tags:["新手","快手","数码"],
+  links:[]
+},
+{
+  vol:5, chapter:"效率工具", icon:"🔖",
+  title:"浏览器书签同步与页面找回",
+  pain:"昨天看到的网页找不到了，换台电脑书签全没有。",
+  steps:[
+    "登录浏览器账号（Chrome/Edge 都免费），书签历史自动云同步。",
+    "误关页面：Ctrl+Shift+T 一键恢复刚关闭的标签页。",
+    "收藏按「文件夹+层级」管理，超过两层说明该清理了。",
+    "重要资料存「离线副本」（Ctrl+S 存网页），防网站失效。"
+  ],
+  why:"Ctrl+Shift+T 是浏览器最被低估的快捷键——它能救回手滑关闭的一切；书签云同步解决「多设备知识断链」。网页会失效，离线副本不会。",
+  tags:["新手","快手","数码"],
+  links:[]
+},
+{
+  vol:5, chapter:"数码养护", icon:"🔀",
+  title:"蓝牙耳机多设备切换",
+  pain:"耳机连着手机，想接电脑会议还得断开重连，来回折腾。",
+  steps:[
+    "耳机支持「多点连接」的（看说明书）：同时配对手机+电脑，来电话自动切换。",
+    "不支持多点的：养成先断后连的习惯顺序，减少配对混乱。",
+    "左右耳断连单耳的：放回盒中关盖 10 秒重置。",
+    "重连失败进「忘记此设备」重新配对，配对记录会累积冲突。"
+  ],
+  why:"多点连接是耳机的「双卡双待」；配对记录堆太多会互相抢占连接权限——定期清理配对列表，蓝牙问题消失一大半。",
+  tags:["进阶","快手","数码"],
+  links:[]
+},
+{
+  vol:5, chapter:"数据安全", icon:"💽",
+  title:"U盘安全弹出与数据救援",
+  pain:"U盘拔得太猛提示损坏，重要的文件说没就没。",
+  steps:[
+    "养成先「安全弹出」再拔的习惯——系统可能在后台写缓存。",
+    "U盘提示「需要格式化」：千万别点格式化！先用数据恢复软件（Recuva 等免费工具）扫描。",
+    "恢复成功的文件先存到电脑硬盘，再考虑修复 U盘。",
+    "重要文件遵循 3-2-1 备份法则（见同卷），U盘只当搬运工不当仓库。"
+  ],
+  why:"「需要格式化」提示 = 文件索引损坏但数据多半还在——直接格式化是亲手按删除键；恢复软件读的是底层原始数据。U盘寿命有限，它的岗位定位是「快递员」不是「仓库」。",
+  tags:["进阶","快手","数码"],
+  links:[]
+},
+{
+  vol:5, chapter:"手机养护", icon:"🚱",
+  title:"手机进水正确处理",
+  pain:"手机掉水里，第一反应是开机看看还活着没——这一下可能就送走了它。",
+  steps:[
+    "立即捞出、立即关机——通电是进水机死亡的第一原因。",
+    "擦干表面，SIM 卡槽打开晾干。",
+    "放进干燥剂或生米堆里 24~48 小时（大米是干燥剂的平替）。",
+    "忌用吹风机热风吹——高温会把水汽推得更深、伤屏幕胶层。",
+    "晾够时间后尝试开机；失败立即送修，不要反复试。"
+  ],
+  why:"水本身不毁机，毁机的是「水+电」——短路烧主板。关机断电是黄金一分钟；大米/干燥剂是慢速吸湿环境。吹风机的高温风反而加速水汽内渗。",
+  tags:["新手","快手","数码"],
+  links:[]
+},
+{
+  vol:5, chapter:"用电安全", icon:"⚡",
+  title:"充电器与线材安全",
+  pain:"杂牌快充头便宜大碗，用着却总担心会不会出事。",
+  steps:[
+    "认准 3C 认证标志与品牌——快充协议不兼容轻则慢充，重则发热异常。",
+    "大功率充电器（笔记本/平板）别常年插在床头无监管充电。",
+    "充电线发热、破皮、接头松动立即更换——线比头更容易出事。",
+    "边充边玩发热明显时（尤其游戏），先摘手机壳散热。"
+  ],
+  why:"快充是大功率电力传输，认证标志代表它能安全协商电压电流；线的破损与接触不良是充电起火的头号现场。发热异常是唯一的预警信号，别忽视它。",
+  tags:["新手","快手","安全"],
+  links:[]
+},
+{
+  vol:6, chapter:"选种布置", icon:"☀",
+  title:"阳台朝向选植物法",
+  pain:"看别人家阳台绿意盎然，自家买啥死啥——先看朝向再买花。",
+  steps:[
+    "南向阳台（日照 6h+）：月季、茉莉、多肉、番茄辣椒随便挑。",
+    "东向阳台（晨光 3~4h）：绣球、矾根、绿萝、薄荷这类喜半阴。",
+    "北向阳台（散射光）：绿萝、一叶兰、蕨类、万年青等耐阴军团。",
+    "西晒阳台：选耐晒耐旱的，夏天加遮阳网防「烤肉」。"
+  ],
+  why:"植物的光需求是刚性指标，光照不匹配，浇水施肥都白搭——「买花先看阳台」比「买花先看颜值」重要一百倍。这是园艺小白与老手的分水岭。",
+  tags:["新手","快手","种植"],
+  links:[]
+},
+{
+  vol:6, chapter:"繁殖播种", icon:"🌰",
+  title:"种子催芽泡水温",
+  pain:"播种十天不出苗，扒开土一看种子都憋坏了。",
+  steps:[
+    "大粒种子（豆类、向日葵）：40°C 温水泡 4~6 小时唤醒。",
+    "小粒种子（生菜、番茄）：常温湿纸巾催芽，露白再播种。",
+    "硬壳种子（牵牛花）：温水浸泡过夜或轻磨种皮划口。",
+    "催芽后播浅土，覆土深度约为种子直径的两倍。"
+  ],
+  why:"泡水软化种皮打破休眠，露白播种把「出土失败」的风险提前消化——催芽是给种子做「预检」，出苗率能翻倍。覆土过深是小芽拱不出来的头号死因。",
+  tags:["新手","快手","种植"],
+  links:[]
+},
+{
+  vol:6, chapter:"四季养护", icon:"🌬",
+  title:"绿植越冬保命三件事",
+  pain:"一入冬绿植成批枯死，开春只剩空盆。",
+  steps:[
+    "控水：冬季植物半休眠，蒸发量骤减——浇水频率减半，土干透再浇。",
+    "断肥：休眠期根系不吸收，施肥等于烧根。",
+    "远离暖气与冷风口：暖气直吹烤叶，窗缝冷风吹根。",
+    "少搬动：频繁换位置打乱它已适应的光照微环境。"
+  ],
+  why:"冬季死苗的头号原因不是冻，是「按夏天的节奏浇水」——低温下水分不蒸发，盆土长湿就是烂根温室。控水+离暖气，越冬存活率直接翻倍。",
+  tags:["新手","快手","种植"],
+  links:[]
+},
+{
+  vol:6, chapter:"土壤管理", icon:"⚗",
+  title:"土壤酸碱自查与改良",
+  pain:"花总是叶黄长不大，查了水查了肥，没想过是土的问题。",
+  steps:[
+    "简易测试：取一撮土分两份，滴白醋起泡 = 碱性土；撒小苏打起泡 = 酸性土；都不泡 = 中性。",
+    "喜酸植物（栀子、杜鹃、蓝莓）黄叶多为碱性土缺铁。",
+    "改良偏碱：浇硫酸亚铁稀释液，或掺松针土、腐叶土。",
+    "改良偏酸：撒少量草木灰或石灰石粉。"
+  ],
+  why:"pH 决定铁等微量元素是否可被吸收——很多「缺铁黄叶」其实是「铁被碱性锁住了」。白醋+小苏打的家庭版双测试，是化学里酸碱反应最接地气的应用。",
+  tags:["进阶","快手","种植"],
+  links:[]
+},
+{
+  vol:6, chapter:"水培养护", icon:"🍃",
+  title:"水培瓶绿藻治理",
+  pain:"水培瓶壁长满绿藻，水几天就绿得像抹茶，根也跟着蔫。",
+  steps:[
+    "换瓶遮光：绿藻靠光生长，换不透明瓶或给瓶身贴纸遮光。",
+    "勤换水：每周至少一次，换水时轻搓根上黏液。",
+    "每次换水加一两滴双氧水或水培营养液（含抑菌成分）。",
+    "藻太严重就彻底洗瓶刷根，从头再来。"
+  ],
+  why:"绿藻与植物抢氧气和养分——它长得好，根就长不好。遮光是釜底抽薪（没有光藻就绝育），换水是稀释藻种。水培的核心从来不是水，是根的呼吸。",
+  tags:["新手","快手","种植"],
+  links:[]
+},
+{
+  vol:6, chapter:"四季养护", icon:"🌞",
+  title:"多肉度夏三件套",
+  pain:"多肉熬得过冬熬不过夏，一夏天过去只剩空盆黑腐杆。",
+  steps:[
+    "遮阳：35°C 以上拉遮阳网，正午直晒就是烤肉现场。",
+    "控水：夏季休眠期断水或半月沿盆边少量给水，忌浇透。",
+    "通风：风扇都是好装备——闷热不通风是黑腐的直接诱因。",
+    "黑腐苗头（化水、掉叶、茎发黑）立刻砍头抢救，切口晾干再插。"
+  ],
+  why:"多肉原产高海拔干旱区，休眠期根系几乎停工——夏浇透水等于让它在「停工状态」泡脚，黑腐立至。遮阳+控水+通风，三件套缺一不可。",
+  tags:["进阶","慢工","种植"],
+  links:[]
+},
+{
+  vol:6, chapter:"抢救复健", icon:"🏥",
+  title:"烂根抢救手术",
+  pain:"浇水浇多了叶子发蔫发黄，一拔出来根全黑了。",
+  steps:[
+    "脱盆抖土，清水冲净根系看清全貌。",
+    "剪刀消毒，把发黑软烂的根全部剪掉，切口齐整。",
+    "多菌灵溶液浸泡 20 分钟（或草木灰抹切口），阴凉处晾干伤口。",
+    "换全新疏松土重栽，一周内不浇水不晒，缓苗后再正常养护。"
+  ],
+  why:"烂根是不可逆的——剪掉是唯一解，晾干伤口防二次感染。重栽用新土是关键一步：旧土里的致病菌就是烂根的凶手，回旧土等于送它再犯一次病。",
+  tags:["进阶","快手","种植"],
+  links:[]
+},
+{
+  vol:6, chapter:"施肥心法", icon:"🌾",
+  title:"肥料三要素速记 • 薄肥勤施",
+  pain:"施肥全凭感觉，不是黄叶就是烧根，肥料钱白花。",
+  steps:[
+    "记住口诀：氮长叶（N）、磷催花（P）、钾壮根（K）。",
+    "观叶植物选高氮，花期前换高磷，球根多肉偏钾。",
+    "浓度宁稀勿浓：说明书浓度再稀释一半起步。",
+    "薄肥勤施：生长季每两周一次淡肥，忌一次猛喂。"
+  ],
+  why:"NPK 是植物三大刚需：氮造叶绿素、磷促花芽、钾强健组织。「薄肥勤施」的本质是模拟自然界缓慢的营养释放——一次性浓肥的渗透压会反拔根内水分，这就是烧根。",
+  tags:["进阶","快手","种植"],
+  links:[]
+},
+{
+  vol:7, chapter:"喂养心法", icon:"🐕",
+  title:"换粮七日过渡法",
+  pain:"新粮一到直接换上，狗猫第二天就拉稀绝食。",
+  steps:[
+    "第 1~2 天：新粮占比 25%，旧粮 75%。",
+    "第 3~4 天：新旧各半。",
+    "第 5~6 天：新粮 75%，旧粮 25%。",
+    "第 7 天起全换新粮；期间软便就放慢节奏，退回上一步。"
+  ],
+  why:"宠物肠道菌群对食物配方高度敏感，七日过渡给菌群留出「换防时间」——直接换粮等于让肠道工人瞬间改行，软便呕吐是最诚实的抗议。",
+  tags:["新手","快手","猫犬"],
+  links:[]
+},
+{
+  vol:7, chapter:"猫犬日常", icon:"🐾",
+  title:"狗洗澡频率与水温",
+  pain:"狗一洗澡就挠痒掉皮屑，勤洗澡反而越洗越脏。",
+  steps:[
+    "频率：两周一次为宜——皮肤油脂被洗掉反而引发瘙痒皮炎。",
+    "水温：38°C 左右（比人感觉略温不烫）。",
+    "必须用宠物专用香波：人的沐浴露 pH 偏酸，狗皮肤偏中性偏碱，用人用品 = 破坏皮肤屏障。",
+    "洗完吹干到根——潮湿底毛是湿疹与真菌的温床。"
+  ],
+  why:"狗皮肤的角质层比人薄，频繁洗+人用香波双重破坏屏障；「洗得越勤越痒」是屏障受损的恶性循环。吹干毛根是很多皮肤病预防的分水岭。",
+  tags:["新手","快手","猫犬"],
+  links:[]
+},
+{
+  vol:7, chapter:"猫犬日常", icon:"🐈",
+  title:"骗猫多喝水四法",
+  pain:"猫天生喝水少，泌尿系统疾病是家猫头号健康威胁。",
+  steps:[
+    "湿粮代餐：罐头含水量 70%+，是最有效的补水方式。",
+    "流动水源：猫对流动水有本能偏好，饮水机或循环水碗喝水率翻倍。",
+    "多点位放碗：卧室、客厅各放一碗，顺手就喝。",
+    "碗选宽口浅底：胡须不碰壁（须应激）猫才愿意低头喝。"
+  ],
+  why:"猫祖先来自沙漠，口渴机制天生迟钝——等它渴了喝，早就不够了。骗水四法各攻一个行为学开关：本能（流动）、便利（多点）、舒适（宽碗）、隐性补水（湿粮）。",
+  tags:["新手","快手","猫犬"],
+  links:[]
+},
+{
+  vol:7, chapter:"猫犬日常", icon:"🌫",
+  title:"猫砂除臭与选购",
+  pain:"猫砂盆一开盖满屋跑味，猫还动不动乱拉。",
+  steps:[
+    "膨润土+豆腐砂混合使用：结块好又可冲厕，取两家之长。",
+    "铲屎每日一次——臭味 90% 来自堆积的结块。",
+    "每月整盆更换一次，旧盆用无味清洁剂清洗晾干。",
+    "猫突然乱拉，先排查猫砂更换、盆位变动与尿路疾病，别急着骂。"
+  ],
+  why:"猫的排泄行为对「砂的触感与气味」极度敏感——频繁换砂品牌、香精味重的砂都会引发抗议性乱拉；乱拉本身还可能是尿路感染求救信号。除味的根子在「勤铲」。",
+  tags:["新手","快手","猫犬"],
+  links:[]
+},
+{
+  vol:7, chapter:"猫犬日常", icon:"🐩",
+  title:"遛狗爆冲矫正",
+  pain:"一出门狗就拖着你狂奔，胳膊遛出了腱鞘炎。",
+  steps:[
+    "装备：胸背带（前扣式更佳）代替项圈——爆冲时不再勒脖子。",
+    "原理训练：狗一拉紧绳，立刻停下不动；绳松了才继续走。",
+    "「松绳=前进，拉紧=静止」的因果建立约需一两周。",
+    "配合零食奖励随行到位的瞬间，正向强化。"
+  ],
+  why:"爆冲是「拉扯=继续走」的错误学习结果——你被拖走时它达成了目的。停下不动是反其道而行：让它明白拉绳只会让世界静止。前扣胸背的物理转向辅助，让训练事半功倍。",
+  tags:["进阶","慢工","猫犬"],
+  links:[]
+},
+{
+  vol:7, chapter:"健康监测", icon:"👋",
+  title:"宠物胖瘦摸判法",
+  pain:"宠物圆圆的很可爱？肥胖是关节炎糖尿病的定时炸弹。",
+  steps:[
+    "摸肋骨：轻按能摸到肋骨但看不见 = 标准身材。",
+    "摸不到肋骨 = 超重；肋骨清晰可见 = 偏瘦。",
+    "俯视看腰线：胸宽腰窄应有「沙漏」轮廓。",
+    "超重的换减重粮、控制零食、加大运动量，减重同人类——慢慢来。"
+  ],
+  why:"肋骨手感是最直观的体况评分（BCS）——毛会骗人，手感不会。家养宠物肥胖率过半，主人的「多吃是爱」正是慢性病的起跑线。",
+  tags:["新手","快手","健康"],
+  links:[]
+},
+{
+  vol:7, chapter:"水族小宠", icon:"🌊",
+  title:"鱼缸绿水藻治理",
+  pain:"缸水几天就绿得像绿豆汤，换水也压不住。",
+  steps:[
+    "查光照：缸放窗边直晒 = 藻类自助餐，挪位或遮光。",
+    "换水加频但不加量：每周两次每次 1/4，稀释藻密度。",
+    "引入工具鱼虾：黑壳虾、小精灵鱼是天然除藻队。",
+    "定量喂食：残饵是藻类的化肥，宁少勿多。"
+  ],
+  why:"绿水是悬浮藻类爆发——光照+残饵富营养化是两大温床。工具生物是生态治理（吃藻），定量喂食是源头治理（断粮），比猛药除藻剂更可持续。",
+  tags:["进阶","快手","水族"],
+  links:[]
+},
+/* ====== 200 条扩充计划 • 第三叠 ====== */
+{
+  vol:8, chapter:"急救常识", icon:"🤐",
+  title:"打嗝急救三板斧",
+  pain:"打嗝停不下来，喝水憋气全是瞎试，越急越嗝。",
+  steps:[
+    "屏息法：深吸气后憋住 10~20 秒，再缓缓呼出，重复两三次。",
+    "弯腰喝水：上半身弯至 90°，从这个姿势喝几口温水。",
+    "纸袋法：对纸袋缓慢呼吸，重吸呼出的二氧化碳。",
+    "持续数小时不止的顽固打嗝，就医排查。"
+  ],
+  why:"打嗝是膈肌痉挛：屏息让血液 CO₂ 浓度回升抑制痉挛反射，弯腰喝水以双重刺激（温度+体位）安抚膈肌，纸袋法直接提升 CO₂——三条路殊途同归，都是给膈肌「踩刹车」。",
+  tags:["新手","快手","急救"],
+  links:[]
+},
+{
+  vol:8, chapter:"出行健康", icon:"🤢",
+  title:"晕车预防与缓解",
+  pain:"一坐车就脸色发白冷汗直冒，旅游的心情全毁在车上。",
+  steps:[
+    "出发前 30~60 分钟服晕车药（按说明书），临时吃效果差。",
+    "选座：汽车坐前排，火车面向行进方向，船坐中后部靠窗。",
+    "眼睛看远方地平线，忌看手机看书——屏幕加剧感官冲突。",
+    "新鲜姜片贴肚脐或含服；风油精涂太阳穴。"
+  ],
+  why:"晕车的根源是感官冲突：内耳前庭说「在动」，眼睛盯着屏幕说「没动」，大脑解析混乱就吐给你看。看远方让两种信号对齐；姜酚有止呕的循证证据。",
+  tags:["新手","快手","护理"],
+  links:[]
+},
+{
+  vol:8, chapter:"疼痛处理", icon:"🛌",
+  title:"落枕正确处理",
+  pain:"一觉醒来脖子动不了，硬掰想「掰回来」反而更痛。",
+  steps:[
+    "急性期（24~48h）冷敷收缩痉挛肌肉，每次 15 分钟。",
+    "48 小时后转热敷促循环，配合非常缓慢的颈部活动。",
+    "疼点可轻柔按揉，但忌暴力按压和强行转头。",
+    "三天无缓解或手麻，就医排除颈椎问题；枕头高度一拳为宜。"
+  ],
+  why:"落枕是颈部肌肉痉挛性收缩——急性期冷敷消肿、后期热敷松解，顺序反了会让炎症加重。硬掰的风险是肌肉撕裂甚至颈椎损伤，「等」比「掰」更需要勇气。",
+  tags:["新手","慢工","护理"],
+  links:[]
+},
+{
+  vol:8, chapter:"急救常识", icon:"🚑",
+  title:"扭伤 RICE 原则",
+  pain:"崴脚后揉一揉、热敷一下、走两步——第二天肿成馒头。",
+  steps:[
+    "R 休息：立即停止活动，避免患肢负重。",
+    "I 冰敷：毛巾裹冰袋敷 15~20 分钟，每 2~3 小时一次。",
+    "C 加压：弹性绷带适度包裹，减轻肿胀。",
+    "E 抬高：患肢垫高过心脏，助血液回流。",
+    "48 小时内严禁热敷、揉搓、酒精擦——肿胀加剧都是它们干的。"
+  ],
+  why:"扭伤的本质是软组织出血水肿：前 48 小时一切操作都为了「止血消肿」，热敷揉搓只会让血管更扩张。RICE 是国际通行的运动损伤第一响应标准。",
+  tags:["新手","快手","急救"],
+  links:[]
+},
+{
+  vol:8, chapter:"作息调理", icon:"😌",
+  title:"眼疲劳热敷法",
+  pain:"盯屏幕一天，眼睛干涩发烫，滴眼药水也不解乏。",
+  steps:[
+    "40°C 左右热毛巾（或蒸汽眼罩）敷闭眼 10~15 分钟。",
+    "敷完做几组眨眼练习：轻闭 2 秒、紧闭 2 秒，重复 10 次。",
+    "配合 20-20-20 法则（见久坐条）长期养护。",
+    "干眼严重的就医排查，别常年靠眼药水硬撑。"
+  ],
+  why:"干涩一半源于睑板腺堵塞——它分泌的油脂层防止泪液过快蒸发，热敷让油脂融化重新铺开。这是物理层面的「疏通」，眼药水只是表面补水。",
+  tags:["新手","快手","护理"],
+  links:[]
+},
+{
+  vol:8, chapter:"作息调理", icon:"🌅",
+  title:"晨起温水润肠法",
+  pain:"便秘、起床没精神，咖啡越喝越多胃越来越差。",
+  steps:[
+    "起床后先喝 200~300ml 温开水，小口慢饮。",
+    "等待 10~20 分钟再早餐——给肠胃「开机时间」。",
+    "早餐安排带膳食纤维的（燕麦、全麦、水果）。",
+    "固定如厕时间培养生物钟，有便意绝不憋。"
+  ],
+  why:"夜间不进水，晨起血液粘稠度最高——温水同时完成补水、唤醒胃肠蠕动两件事；胃结肠反射在早餐后最活跃，规律作息给肠道上闹钟。",
+  tags:["新手","快手","作息"],
+  links:[]
+},
+{
+  vol:8, chapter:"周期护理", icon:"🌙",
+  title:"生理期保暖缓解",
+  pain:"生理期腰腹坠痛，冷饮冰淇淋管不住嘴，疼起来只能硬扛。",
+  steps:[
+    "热敷为主：暖宝宝或热水袋敷小腹，血管舒张缓解痉挛性疼痛。",
+    "忌冷饮冰品——低温让盆腔血管收缩、痛经加重。",
+    "红糖水的安慰来自「温热的糖水」本身，不迷信其疗效。",
+    "痛到影响生活的（警惕子宫内膜异位等），止痛药与就医都不丢人。"
+  ],
+  why:"原发性痛经的机制是子宫平滑肌痉挛与前列腺素作用——外部热敷的血管舒张与药物抑制前列腺素是两条正路。「忍着」不是坚韧，是给疼痛 meter 续时间。",
+  tags:["新手","快手","护理"],
+  links:[]
+},
+{
+  vol:8, chapter:"用药常识", icon:"🤧",
+  title:"感冒初期干预",
+  pain:"一感冒就瞎吃药，中西药混着吃，好得慢还伤肝。",
+  steps:[
+    "先停工休息半天：感冒是自限性疾病，睡眠是第一味药。",
+    "补水加湿：温水多喝、室内加湿，缓解鼻塞咽干。",
+    "对症用药：鼻塞用通鼻、咳嗽用镇咳——只买对症状的。",
+    "复方感冒药只吃一种！多种叠加 = 对乙酰氨基酚过量伤肝。",
+    "高烧超 3 天、呼吸困难、精神萎靡，直接就医。"
+  ],
+  why:"感冒 90% 是病毒感染，抗生素无效；药物只缓解症状不缩短病程。复方制剂里都含对乙酰氨基酚，叠加服用是每年真实发生的肝损伤案例来源。",
+  tags:["新手","快手","药箱"],
+  links:[]
+},
+{
+  vol:8, chapter:"皮肤小恙", icon:"👄",
+  title:"口腔溃疡应对",
+  pain:"溃疡一长一两周，吃饭说话都钻心疼，反反复复。",
+  steps:[
+    "局部用药：西瓜霜喷剂或溃疡贴膜，隔离创面加速愈合。",
+    "淡盐水漱口每日数次，减少继发感染。",
+    "忌辛辣烫硬食物——机械刺激会让溃疡面变大。",
+    "频繁发作（每月数次）查 B 族维生素与免疫状态，规律作息是根。"
+  ],
+  why:"口腔溃疡与免疫、营养、压力、创伤四因素相关——局部药管「这一颗」，规律作息与 B 族摄入管「下一颗」。反复长在固定位置的要就医排查。",
+  tags:["新手","快手","护理"],
+  links:[]
+},
+{
+  vol:8, chapter:"作息调理", icon:"🚽",
+  title:"久坐族痔疮预防",
+  pain:"久坐如厕刷手机，痔疮悄悄找上门，坐立难安才后悔。",
+  steps:[
+    "如厕限时 5 分钟——手机不带进厕所是最有效的处方。",
+    "温水坐浴：40°C 温水坐 10 分钟，促进局部循环。",
+    "多纤维多水：蔬果全谷让排便通畅，减少如厕用力。",
+    "每小时起身活动，久坐久站都是它的帮凶。"
+  ],
+  why:"痔疮是肛门静脉丛长期充血曲张——久坐、久蹲、用力排便三大推手全部指向「马桶时光」。限时五分钟这个反人性处方，是肛肠科医生最常说也最少人听的。",
+  tags:["新手","快手","作息"],
+  links:[]
+},
+{
+  vol:9, chapter:"出行安全", icon:"🔦",
+  title:"酒店防偷拍 • 入住第一课",
+  pain:"住酒店总觉得房间不放心，又不知道从哪查起。",
+  steps:[
+    "先查「正对床和浴室」的重点位：电视、烟感、路由器、插座、台灯、装饰画、花洒区域。",
+    "关灯拉窗帘，让房间全黑——打开手机摄像头缓慢扫视，屏幕出现红点 = 可疑镜头（部分苹果机型过滤红光不可用）。",
+    "手电筒照射所有有孔的面板通风口，镜头弧面会反光。",
+    "试插每一个插座面板：装了「面板型」摄像头的插孔往往失效。",
+    "发现可疑立即报警并留存证据，勿自行拆除。"
+  ],
+  why:"针孔摄像头靠镜头反光与红外补光暴露自己——黑暗环境是让它「现形」的舞台。警方提示「面板型」最常见，试插座是简单有效的反向验证。光明网、人民日报、央视均有系统排查教程。",
+  tags:["进阶","快手","安全"],
+  classic:"「一个针孔摄像头可邀百人在线观看」——警方披露的黑色产业链让排查不再是多疑，是必需。",
+  links:[
+    {type:"doc", name:"光明网 • 躲避隐藏摄像头全解", url:"https://m.gmw.cn/2024-10/04/content_1303862716.htm"},
+    {type:"doc", name:"人民日报 • 酒店防偷拍指南", url:"https://www.peopleapp.com/rmharticle/30025229744"}
+  ]
+},
+{
+  vol:9, chapter:"出行安全", icon:"🚪",
+  title:"被困电梯科学自救",
+  pain:"电梯突然停住， claustrophobia 瞬间拉满，扒门爬窗的念头疯狂上头。",
+  steps:[
+    "按警铃/对讲按钮呼救——它直连值班室，是最快的求救通道。",
+    "打 119 或电梯内标示的救援电话，报清楼栋与电梯位置。",
+    "等待时远离电梯门，间歇性呼救保存体力。",
+    "轿厢不是密闭空间——有通风系统，不会窒息。",
+    "严禁扒门爬出：电梯随时可能启动，坠落井道才是真致命。"
+  ],
+  why:"「扒门坠亡」的悲剧每年都有——被困本身几乎无危险，危险的是不规范自救。消防部门明确：电梯有防坠安全钳，「急速下坠」近乎不可能，按亮所有楼层按钮也非科学做法。",
+  tags:["新手","快手","安全"],
+  classic:"应急管理部消防救援局与新华网均有专项指南——记住一句话：等待救援永远比自救爬出安全。",
+  links:[
+    {type:"doc", name:"新华网 • 被困电梯科学自救指南", url:"https://www.news.cn/politics/20250222/d886f4a7912546a0963e38d4143e36ac/c.html"},
+    {type:"doc", name:"应急管理部消防救援局 • 电梯自救", url:"https://www.119.gov.cn/kp/zjts/2022/420.shtml"}
+  ]
+},
+{
+  vol:9, chapter:"出行安全", icon:"⚠",
+  title:"乘电梯日常禁忌",
+  pain:"等电梯时习惯性靠门站着，关门瞬间的「手挡门」也从不觉得危险。",
+  steps:[
+    "勿倚靠电梯门——门体仅是铁皮结构，轿厢未到位时倚靠可能坠入井道。",
+    "勿用身体挡门——光幕式感应对玻璃、雨伞等透明细物失效，改用按钮。",
+    "勿在轿厢内蹦跳——会触发保护装置困梯。",
+    "超载报警后主动退出，强挤入是最危险的乘梯行为。"
+  ],
+  why:"电梯事故多发生在「门」上：倚靠、挡门、扒门全与门相关。维修师傅的原话是「电梯门只是一层铁皮」——这句话值得每个坐电梯的人记住。",
+  tags:["新手","快手","安全"],
+  links:[
+    {type:"doc", name:"光明网 • 千万别倚靠电梯门", url:"https://m.gmw.cn/toutiao/2026-04/03/content_1304404293.htm"}
+  ]
+},
+{
+  vol:9, chapter:"出行贴士", icon:"🚄",
+  title:"高铁选座与出行贴士",
+  pain:"抢到票才发现选错了座位，一路腰酸背闷。",
+  steps:[
+    "长途优先靠窗（A/F）：风景+不打扰；常去洗手间选过道（C/D）。",
+    "三人排中间 B 座最尴尬，两人同行选 D/F 一排。",
+    "二等座 3+2 布局，一等座 2+2 更宽敞；慢车常选下铺方便起身。",
+    "充电口位置因车型而异，上车先找；大件行李放车厢两端行李架。"
+  ],
+  why:"高铁座位编码有规律：字母代表位置（A/F 靠窗、C/D 过道），懂编码等于自带选座外挂。出行体验的一半由座位决定，另一半由「提前十分钟到站」决定。",
+  tags:["新手","快手","出行"],
+  links:[]
+},
+{
+  vol:9, chapter:"出行安全", icon:"❄",
+  title:"冬季行车除霜预热",
+  pain:"冬天前挡玻璃白茫茫一片，哈气擦了又结，上路心慌。",
+  steps:[
+    "除霜正解：启动后开空调暖气+前挡除霜模式（风向直吹玻璃）+ AC 同开除湿。",
+    "外冰用冰铲或除冰剂，忌雨刮器硬刮硬撬——毁胶条还留痕。",
+    "车内人呼气是结霜主因，内循环改外循环可缓解。",
+    "热车 30 秒~1 分钟即可低速行驶，原地长时间怠速热车反而积碳。"
+  ],
+  why:"车内玻璃结霜是「呼气水汽遇冷玻璃凝结」——AC 制冷除湿+暖风吹玻璃是双管齐下的正解；雨刮器刮冰是雨刮胶条的头号杀手。现代车无需原地久热，低速缓行热车更科学。",
+  tags:["进阶","快手","出行"],
+  links:[]
+},
+{
+  vol:9, chapter:"出行安全", icon:"🌧",
+  title:"暴雨天行车守则",
+  pain:"暴雨天开车心里没底，积水路段不敢过又绕不开。",
+  steps:[
+    "降速拉距：雨刮开到最快档，车速减半、车距加倍。",
+    "积水路段先观察：水深超半个车轮（约 30cm）果断绕行。",
+    "过积水低挡匀速、不停车不换挡；涉水后轻踩刹车排水膜。",
+    "水中熄火立即熄钥匙弃车撤离——二次点火 = 发动机报废。"
+  ],
+  why:"积水熄火后二次点火，水会通过进气道进入气缸（液体不可压缩）顶弯连杆——这是暴雨天最贵的错误操作。保险公司对「涉水二次点火」通常拒赔，宁绕十里不涉一坑。",
+  tags:["进阶","快手","安全"],
+  links:[]
+},
+{
+  vol:9, chapter:"出行贴士", icon:"🚃",
+  title:"火车卧铺选铺学",
+  pain:"买卧铺全靠手气，上铺爬上爬下腰酸背痛。",
+  steps:[
+    "下铺：方便起坐、能坐人，但人来人往隐私差、易被借座。",
+    "中铺：折中——安静且不用爬太高，睡觉最舒服。",
+    "上铺：最清静，但爬梯颠簸段难受，老人小孩慎选。",
+    "购票时可留意选铺服务；长途夜车中铺是平衡之选，带老人娃优先下铺。"
+  ],
+  why:"三种铺位对应三种出行性格：社交型选下铺、安静型选中铺、独行轻装选上铺。铺位没有绝对好坏，只有「与行程匹配与否」。",
+  tags:["新手","快手","出行"],
+  links:[]
+},
+{
+  vol:9, chapter:"出行健康", icon:"💺",
+  title:"长途飞行健康守则",
+  pain:"十小时飞行下机腿肿脚胀耳朵疼，落地半天缓不过来。",
+  steps:[
+    "每 1~2 小时起身走动或做脚踝绕环——预防久坐静脉血栓。",
+    "起降时做吞咽/打哈欠/嚼 gum，平衡耳压（耳朵疼的根源）。",
+    "机舱湿度极低（20% 以下），多涂保湿、多喝水、少喝酒（酒精加重脱水与时差）。",
+    "颈枕选支撑颈曲的 U 型款；下机按当地时间立刻调整作息治时差。"
+  ],
+  why:"机舱是「低温干燥+低气压+久坐」的三重挑战：血栓风险来自久坐静止，耳痛来自气压差——起身走动和吞咽动作，各对应一个问题的免费解法。",
+  tags:["新手","快手","健康"],
+  links:[]
+},
+{
+  vol:10, chapter:"省钱心法", icon:"⛽",
+  title:"加油省钱技巧",
+  pain:"油价一涨心里一紧，加油从不看时间不看券。",
+  steps:[
+    "会员日与 App 优惠券：多数连锁油站有固定日折扣，叠券更省。",
+    "加油加「中份」：加满箱让车多载油反增油耗，按需加 200~300 更经济。",
+    "夜间或清晨加油（温度低时油品体积略缩）——说法有争议但无害。",
+    "保持胎压正常、清理后备箱重物，省油从车况开始。"
+  ],
+  why:"真正的油耗大头是驾驶习惯与车况：胎压低 1 个点油耗升约 1%，后备箱每 50kg 增耗 1~2%——「怎么开」比「何时加」省钱得多。会员日折扣则是确定性收益。",
+  tags:["新手","快手","省钱"],
+  links:[]
+},
+{
+  vol:10, chapter:"省钱心法", icon:"📮",
+  title:"快递寄件比价法",
+  pain:"寄个快递随手给楼下驿站，一个月下来运费比商品还贵。",
+  steps:[
+    "常见寄法比价：驿站散单 > 上门取件官方价 > 电商平台寄件（拼多多/淘宝寄件入口常有补贴价）。",
+    "轻小件比「抛重」：体积大重量轻按体积算费——压缩打包直接省钱。",
+    "同城急件比外卖跑腿与闪送报价。",
+    "批量寄件找网点谈价，或拼单合寄。"
+  ],
+  why:"快递定价是「首重+续重+体积重」三要素，不同渠道对三者的折扣策略完全不同——同一件货差价能到一倍。寄件前 30 秒比价，是最高频的省钱动作。",
+  tags:["新手","快手","省钱"],
+  links:[]
+},
+{
+  vol:10, chapter:"省钱心法", icon:"📞",
+  title:"话费宽带组合优化",
+  pain:"每月话费全默认套餐，宽带单拉一条，钱花得稀里糊涂。",
+  steps:[
+    "查套餐：App 里看当前套餐与实际用量，超量或大量闲置都要调。",
+    "手机+宽带+电视的融合套餐常比单办便宜一半以上。",
+    "老用户比价新用户价——携号转网的威胁往往能换来优惠挽留方案。",
+    "副卡共享流量给家人，比每人一档划算。"
+  ],
+  why:"运营商的定价逻辑是「默认套餐收割懒人」：融合套餐与挽留优惠都存在，但只给主动开口的人。每年一次的话费体检，平均能省下两顿火锅。",
+  tags:["新手","快手","省钱"],
+  links:[]
+},
+{
+  vol:10, chapter:"省钱心法", icon:"🍱",
+  title:"外卖红包叠加法",
+  pain:"外卖越点越贵，配送费包装费加起来比餐费还高。",
+  steps:[
+    "多平台比价：同一商家在美团/饿了么价格与红包力度常不同。",
+    "叠加三件套：平台红包 + 店铺券 + 满减凑单，下单前先把券领齐。",
+    "拼单分摊配送费与满减门槛，人越多越省。",
+    "商家自有小程序下单常有直减——绕开平台抽成商家也乐意。"
+  ],
+  why:"外卖定价是「平台价+配送+包装」三段叠加，每一段都有独立的优惠入口——分开领券再合并结算，是外卖界的「组合拳」。 routinely 比价能省 20% 起步。",
+  tags:["新手","快手","省钱"],
+  links:[]
+},
+{
+  vol:10, chapter:"省水省电", icon:"🔛",
+  title:"峰谷电价利用法",
+  pain:"电费单看不懂，明明用电习惯差不多，比邻居家贵一截。",
+  steps:[
+    "查询本地是否已开通峰谷电价，一通电话或 App 申请即可切换。",
+    "峰段（多为白天）电贵、谷段（多为深夜）电便宜一半上下。",
+    "把洗衣机、洗碗机、电热水器预约到谷段运行。",
+    "电动车用户谷段充电，成本直降过半。"
+  ],
+  why:"峰谷电价是电网的「错峰补贴」——把用电从高峰挪到低谷，个人省电费、电网减压力，双赢的政策红利却常年无人认领。智能家电的预约功能就是为它准备的。",
+  tags:["进阶","快手","省钱"],
+  links:[]
+},
+{
+  vol:10, chapter:"旧物流通", icon:"📖",
+  title:"二手书与教材循环",
+  pain:"教材毕业就当废纸卖，想看的书全价买读完吃灰。",
+  steps:[
+    "购书先查二手平台（多抓鱼/孔网/闲鱼），九成新书有八九成的二手替代。",
+    "教材在毕业季反着来：收购价贱卖价高——反向操作在学期初把旧书卖出。",
+    "工具类常青书值得买新的；流行小说读完即出，回血过半。",
+    "图书馆与电子书资源先用后买，很多书根本不用拥有。"
+  ],
+  why:"书的价值在「读」不在「拥有」——二手循环让一本书服务更多读者，也让你的书架成本下降七成。教材的买卖时间差（毕业季贱卖、开学季高价）是信息差套利的教科书案例。",
+  tags:["新手","快手","理财"],
+  links:[]
+},
+{
+  vol:10, chapter:"省钱心法", icon:"🏠",
+  title:"家庭组共享会员",
+  pain:"视频音乐网盘会员一大堆，每个都是自动续费，钱包越来越薄。",
+  steps:[
+    "视频会员开家庭组：多平台支持 2~5 人拼车，人均价格直降。",
+    "音乐、云盘、办公软件同样有家庭/学生认证价。",
+    "家人朋友合组拼车，账单与权限分工清楚。",
+    "只保留真正高频使用的个人会员，其余靠拼车。"
+  ],
+  why:"会员定价的隐藏结构是「个人价贵、人均拼车价廉」——平台靠家庭组扩大付费盘子，用户靠拼车拿五折。这是少有的平台主动让利的灰色福利，不用白不用。",
+  tags:["新手","快手","省钱"],
+  links:[]
+},
+{
+  vol:11, chapter:"线上礼仪", icon:"💬",
+  title:"微信红包礼仪",
+  pain:"群里发红包没人接、抢了红包不知道说啥、数字总踩雷。",
+  steps:[
+    "节日红包选吉利数：520、666、888、999；普通往来 8.88、66.66 也用心。",
+    "群红包配上文字：光发红包像发广告，一句话祝福才是灵魂。",
+    "抢到红包回一句感谢或回发一个——礼尚往来在线上也成立。",
+    "工作群慎发私人红包；借钱转账别用红包（红包无转账凭证效力）。"
+  ],
+  why:"线上红包把「随礼」压缩到几秒钟，但礼仪的内核没变：心意要说出来、往来要有回应、场合要分得清。红包数字是新的民俗语言，学一学不亏。",
+  tags:["新手","快手","人情"],
+  links:[]
+},
+{
+  vol:11, chapter:"宴请之道", icon:"🥂",
+  title:"敬酒词万能公式",
+  pain:"酒桌上轮到自己敬酒，脑子一片空白，只会说「我干了您随意」。",
+  steps:[
+    "公式：称呼 + 感谢/赞美 + 具体事例 + 祝愿。",
+    "敬长辈：「王叔，今年多亏您帮我看房，这份情记着了，祝您身体健康，我先干为敬。」",
+    "敬领导：「李总，跟着您这个项目学到很多，尤其是上次帮我兜了小错误，祝咱们团队明年更上一层楼。」",
+    "敬同辈朋友：轻松版——「老张，认识十年了，废话不多说，都在酒里，干了！」"
+  ],
+  why:"敬酒的本质是「让对方在几秒内感到被看见」——具体事例比华丽辞藻有力一百倍。公式给你骨架，真诚才是血肉；不喝酒的用茶代酒，态度到了就是礼到了。",
+  tags:["进阶","快手","人情"],
+  links:[]
+},
+{
+  vol:11, chapter:"节令生活", icon:"🏮",
+  title:"春节年前采购时间表",
+  pain:"年前三天才想起置办年货，超市抢空、快递停运、价格翻倍。",
+  steps:[
+    "腊月二十前：坚果炒货、酒水饮料、干货海产——耐放的大宗先囤。",
+    "腊月二十三（小年）前：新衣采购完毕（年后涨价没商量的传统）。",
+    "腊月二十五前：生鲜肉类入库冷冻、水果礼盒到位。",
+    "腊月二十八前：蔬菜鲜货最后一批；同时清点红包封、春联、灯笼等节庆件。"
+  ],
+  why:"年前采购的敌人是「时间窗口」：快递停运、菜价上涨、超市关门三个节点都在倒计时——按耐储程度倒排采购顺序，是年货版的「关键路径法」。",
+  tags:["新手","快手","节令"],
+  links:[]
+},
+{
+  vol:11, chapter:"礼俗常识", icon:"🕯",
+  title:"扫墓祭祖宜忌",
+  pain:"第一次牵头扫墓，流程不懂、规矩不清，怕失礼先人。",
+  steps:[
+    "时间：清明前后两周皆可，避开正午烈日，上午为宜。",
+    "常备物品：香烛纸钱、鲜花（菊花为宜）、先人爱吃的点心水果、清扫工具。",
+    "流程大意：清理墓地杂草 → 摆供 → 上香敬酒 → 烧纸叩拜 → 收拾带走垃圾。",
+    "防火第一：纸钱在指定焚烧点或容器内烧，离开前确认火星彻底熄灭。",
+    "孩童孕妇身体不适者量力而行；各地方言差异大，随家族长辈安排为准。"
+  ],
+  why:"扫墓的核心是「清理 + 追思」两件事：除草修缮是对先人居所的照料，供香叩拜是记忆的仪式化。各地风俗差异极大，以家族传统为准——规矩为人服务，不是相反。",
+  tags:["新手","快手","节令"],
+  links:[]
+},
+{
+  vol:11, chapter:"送礼之道", icon:"🎀",
+  title:"伴手礼选择学",
+  pain:"出差旅游回来不知道带什么，随便买点又被说敷衍。",
+  steps:[
+    "首选「本地独有 + 便于携带 + 保质期长」三合一：当地名产糕点、茶叶、小工艺品。",
+    "按对象分装：长辈送养生茶食、同事送独立小包装零食、孩子送文创小物。",
+    "避雷：易碎易腐、气味浓烈、超区忌讳物（见送礼避雷条）。",
+    "包装不拆封直接送——「本地亲手挑」的故事比礼本身更暖。"
+  ],
+  why:"伴手礼的功能是「把这段旅程的思念具象化」——本地性是灵魂，便携与保质期是工程底线。一份讲得出产地故事的伴手礼，胜过电商秒发的通用礼盒。",
+  tags:["新手","快手","人情"],
+  links:[]
+},
+{
+  vol:11, chapter:"宴请之道", icon:"📝",
+  title:"请客点菜心法",
+  pain:"组织饭局最怕点菜：点少了尴尬、点多了浪费、忌口踩雷。",
+  steps:[
+    "数量公式：人数 + 1~2 道菜，其中硬菜按每两人一道配。",
+    "结构：两荤素凉菜开场，硬菜（鱼/肉）撑场，一道汤收尾，主食最后问。",
+    "事前问忌口：发菜单给客人挑或问「有没有不吃的」——体贴值千金。",
+    "地域平衡：本地特色菜必须有一道；辣度提前确认。",
+    "买单姿态：提前悄悄结账，是最成熟的东道主礼仪。"
+  ],
+  why:"点菜是「为他人的胃做规划」：数量公式防尴尬、结构搭配防单调、忌口调查防雷区。饭局的成败一半在菜上桌之前——好的东道主连买单都已经悄悄完成了。",
+  tags:["进阶","快手","人情"],
+  links:[]
+},
+{
+  vol:11, chapter:"礼俗常识", icon:"💒",
+  title:"婚宴接亲速览",
+  pain:"第一次当伴郎伴娘或参加接亲，全程懵，怕掉链子。",
+  steps:[
+    "时间线：接亲车队提前集结 → 新郎堵门游戏（红包备足）→ 找婚鞋 → 奉茶改口 → 出门拍照。",
+    "伴郎任务：管好红包与证件戒指、挡酒、活跃气氛；伴娘任务：补妆、拿包、提醒流程。",
+    "婚宴：新人迎宾 → 入场仪式 → 敬酒分桌进行 → 送客伴手礼。",
+    "随礼红包写清姓名交签到处登记，别塞新人手里——记账需要。"
+  ],
+  why:"婚礼是一台「多线程并行的大工程」：接亲堵门是气氛组、改口敬茶是仪式核、敬酒分桌是体力战。伴郎伴娘的价值就在帮新人扛住所有琐碎——流程烂熟于心，现场才从容。",
+  tags:["新手","快手","人情"],
+  links:[]
+},
+/* ====== 卷十二 · 结绳篇 ====== */
+{
+  vol:12, chapter:"基础必学", icon:"🔗",
+  title:"平结 • 捆扎之王",
+  pain:"捆箱子绑包裹，随便绕两圈一拉就散，越用力越松。",
+  steps:[
+    "两绳端交叉：左绳压住右绳，绕一圈。",
+    "再换右绳压住左绳，绕一圈——口诀「左压右，右压左」。",
+    "同时拉紧四端，结面平整对称。",
+    "检验：结形呈两个并排的环即正确；若一高一低就是打成了死结（外号「奶奶结」），解开时越拉越死。"
+  ],
+  why:"平结是摩擦与对称力的杰作：两次交叉方向相反，绳的张力互相锁死。它是礼物包装、捆扎书本、绑绷带的核心结——北师大版小学劳动手册把它列为第一课，配的口诀正是「左压右，右压左」。",
+  tags:["新手","快手","捆扎"],
+  classic:"平结被收入北师大版《劳动实践指导手册》，是学校绳结课的入门第一结。",
+  links:[
+    {type:"doc", name:"北师大版劳动手册 • 小小绳结用处大", url:"https://zy.21cnjy.com/12457207"},
+    {type:"doc", name:"香港童军 • 平结图解 PDF", url:"https://www.ekr117scout.org.hk/wp-content/uploads/2018/08/Knotting.pdf"},
+    {type:"doc", name:"Animated Knots • 平结动画", url:"https://www.animatedknots.com/reef-knot"}
+  ]
+},
+{
+  vol:12, chapter:"基础必学", icon:"✨",
+  title:"神仙扣 • 万能活结一拉就开",
+  pain:"行李捆好了到位，到地方解绳解十分钟，指甲都抠疼了。",
+  steps:[
+    "绳子在固定桩（或被捆物）上绕一圈，左手捏住绳身。",
+    "绳头从前方绳体上再绕一圈，穿至绳后。",
+    "整体拉紧——受力时越拉越紧。",
+    "解时只拉绳头一拉即散，全程无需解开受力部分。"
+  ],
+  why:"神仙扣（万能活结）的机密在「受力方向与解锁方向垂直」：主绳的拉力把绳圈压死，绳头却游离在受力系统之外。晾衣、捆货、拖车，凡是「要拉紧还要快解」的场景它都通吃。",
+  tags:["新手","快手","捆扎"],
+  links:[
+    {type:"doc", name:"头条 • 实用绳结多款整理", url:"https://www.toutiao.com/a7647033787154481704"}
+  ]
+},
+{
+  vol:12, chapter:"袋口收纳", icon:"👝",
+  title:"袋口收紧结",
+  pain:"垃圾袋、米袋、快递袋收口随便一系，一提就漏一倒就散。",
+  steps:[
+    "绳在袋口旁先打出一个绳圈，贴在袋口侧边。",
+    "绳头绕过整个袋口一周，穿过刚才的绳圈。",
+    "两手分别拉绳头与绳圈，袋口瞬间收紧。",
+    "解开时反向一抽绳头即开。"
+  ],
+  why:"绳圈在这里是「滑轮组」的雏形：绳头穿过圈后再拉，力被放大且方向改变——收口快、咬得紧、解开快，三性合一。米面杂粮袋、腌菜坛口、外卖汤袋通用。",
+  tags:["新手","快手","捆扎"],
+  links:[
+    {type:"doc", name:"头条 • 袋口收紧结与挂钩结", url:"https://www.toutiao.com/a7647033787154481704"}
+  ]
+},
+{
+  vol:12, chapter:"吊物承重", icon:"⚖",
+  title:"吊物结 • 提瓶扛重一手抓",
+  pain:"油桶、玻璃瓶没有提手，用手拎勒得生疼还打滑。",
+  steps:[
+    "把绳子摆成一个 S 形。",
+    "捏住 S 中间的弯曲部位，形成两个圈。",
+    "绳头沿绳主体缠绕几圈，穿进前端的扣里。",
+    "一拉收紧成活口——瓶口/罐口从两圈中穿过即可吊提。"
+  ],
+  why:"S 形双圈把重量分散到两个接触环，且活口随瓶型自锁——这是无提手容器的人力外挂。桶装水、大油瓶、瓷坛子，一根绳解决搬运难题，解开也只要一抽。",
+  tags:["进阶","快手","捆扎"],
+  links:[
+    {type:"doc", name:"生活小智慧 • 八种一生受用的绳结", url:"https://www.ilife97.com/?p=39037"}
+  ]
+},
+{
+  vol:12, chapter:"吊挂固定", icon:"👕",
+  title:"挂钩结 • 晾衣防滑不脱落",
+  pain:"晾衣绳上挂东西，风一吹就滑到一处挤成一团，还动不动掉地上。",
+  steps:[
+    "绳（或衣架挂钩端）穿过挂钩/横杆。",
+    "绳头贴在主绳上，围着主绳与绳头连续绕两圈。",
+    "拉起绳头，从主绳后方穿回双绳圈。",
+    "整理拉紧——挂点越受力咬得越死，风越大越稳。"
+  ],
+  why:"这是「双套结」的变体：绕圈产生的是自增摩擦——拉力越大圈越紧。晾衣、挂工具、绑帐篷风绳，凡是要「挂在杆上还怕滑」的都用它。",
+  tags:["新手","快手","捆扎"],
+  links:[
+    {type:"doc", name:"头条 • 袋口收紧结与挂钩结", url:"https://www.toutiao.com/a7647033787154481704"}
+  ]
+},
+{
+  vol:12, chapter:"捆绑固定", icon:"📏",
+  title:"双半结 • 捆柱形物之王",
+  pain:"把梯子、水管、扫把捆成一捆运输，走到半路散架。",
+  steps:[
+    "绳绕过物体一圈。",
+    "绳头压住主绳，再绕物体一圈（这就是「半结」）。",
+    "重复绕第二圈，让绳头穿进最后形成的绳环，拉紧。",
+    "检查：两圈互相锁压，物体怎么晃都不松。"
+  ],
+  why:"双半结是捆圆柱的教科书解法：第一圈建立接触，第二圈锁定第一圈——两圈互为保险。相比平结只适合「绳对绳」，它对「绳对杆」场景专精，挪树、捆竿、拖重物通吃。",
+  tags:["新手","快手","捆扎"],
+  links:[
+    {type:"doc", name:"头条 • 绳结捆绑十用法", url:"https://m.toutiao.com/article/7614938564563829258"},
+    {type:"doc", name:"两步路 • 45 种户外绳结图解", url:"https://app.2bulu.com/community/gotohuatinfo.htm?id=zWOgmOZHGqo="},
+    {type:"doc", name:"Animated Knots • 双半结动画", url:"https://www.animatedknots.com/two-half-hitches"}
+  ]
+},
+{
+  vol:12, chapter:"搬家运输", icon:"📦",
+  title:"搬家绑绳 • 选材与捆箱法",
+  pain:"搬家捆箱子，绳子勒进纸箱、松松垮垮还磨手。",
+  steps:[
+    "选绳：尼龙绳结实耐磨适合绑车上重物；棉绳软不伤表面适合怕磨物品；打包编织绳轻便便宜。",
+    "箱捆「十字法」：先纵向绕一圈拉紧，再横向绕一圈拉紧，交叉处打死结收尾。",
+    "绳与箱角之间垫报纸或旧衣，分散压强防勒穿。",
+    "上车固定：绳端打双半结锁在车架锚点上（见上条）。"
+  ],
+  why:"搬家捆扎事故九成是「绳选错+直接勒」：尼龙绳勒穿纸箱、棉绳绑车遇雨松脱。按「承重选材质、按物件选结法、按摩擦加护垫」三步走，箱子稳到开快车都不响。",
+  tags:["进阶","快手","捆扎"],
+  links:[
+    {type:"doc", name:"两步路 • 45 种户外绳结图解", url:"https://app.2bulu.com/community/gotohuatinfo.htm?id=zWOgmOZHGqo="}
+  ]
+},
+{
+  vol:12, chapter:"接续延长", icon:"➰",
+  title:"接绳结 • 短绳变长绳",
+  pain:"绳子差半米够不到，接的地方一受力就滑开。",
+  steps:[
+    "两根绳头对齐并排。",
+    "左绳压右绳从下方穿上来，形成一个半结。",
+    "换右绳压左绳从下方穿上来，形成第二个半结。",
+    "两端同时拉紧——两绳合体，受力均匀不断开。"
+  ],
+  why:"接绳结（编式接结）让两个半结互相咬合对方的绳身——拉力越大咬得越死，这是「用对方的力量锁住对方」的智慧。晾衣绳接长、拖车绳续命、露营绳扩距全靠它。",
+  tags:["进阶","快手","捆扎"],
+  links:[
+    {type:"doc", name:"头条 • 绳结捆绑十用法", url:"https://m.toutiao.com/article/7614938564563829258"},
+    {type:"doc", name:"香港童军总会 • 接绳结/称人结图解 PDF", url:"https://scout.org.hk/uploads/tc/hkscouting/hks33-_36-37_.pdf"},
+    {type:"doc", name:"Animated Knots • 接绳结动画", url:"https://www.animatedknots.com/sheet-bend"}
+  ]
+},
+{
+  vol:12, chapter:"日常高频", icon:"👟",
+  title:"鞋带永不松结",
+  pain:"系好的鞋带跑两步就松，一天弯腰系八回。",
+  steps:[
+    "常规蝴蝶结打好后，问题出在「平结变死结」——两个环交叉方向反了。",
+    "修正：打基础结时遵循「左压右再右压左」，保证蝴蝶结主体是平结结构。",
+    "加固版：蝴蝶结的两个环再互相穿一次收紧（双环结），运动跑跳不散。",
+    "仍易松的，换圆鞋带为扁鞋带——摩擦面更大。"
+  ],
+  why:"「奶奶结」与「平结」的差别只是第二次交叉的方向——方向对了鞋带自然耐松，方向错了怎么用力系都白搭。这是被系了半辈子却少有人点破的小秘密。",
+  tags:["新手","快手","日常"],
+  links:[
+    {type:"doc", name:"GIF 动图 • 结绳方法大全", url:"https://qqhbx.com/huibao/1327538.html"}
+  ]
+},
+{
+  vol:12, chapter:"收纳整理", icon:"🎁",
+  title:"长绳绕盘收纳法",
+  pain:"晾衣绳、数据线、水管随便一塞就打死结，用时解半天。",
+  steps:[
+    "绳对折搭在肘与手之间，绕「8 字」缠绕——让绳自然交叉不扭转。",
+    "绕到最后留一段绳尾。",
+    "绳尾沿绕好的绳圈中段绕两三圈。",
+    "穿过顶端圈眼拉紧成「蝴蝶状」挂起——用时抽头即开，永不打结。"
+  ],
+  why:"打死结的根源是缠绕时的「扭转累积」——8 字绕法让每次交叉都正反抵消，绳内部无内应力，怎么绕都顺。这是攀岩、航海、舞台灯光行业通用的收绳基本功。",
+  tags:["新手","快手","收纳"],
+  links:[]
+},
+{
+  vol:12, chapter:"图像教程", icon:"📖",
+  title:"绳结图像教程双站 • 动画图解随时查",
+  pain:"绳结光看文字步骤像读天书——绳头绕哪边、穿哪个圈，全凭想象，学一个忘一个。",
+  steps:[
+    "Knots 3D（中文站）：200+ 种绳结的 3D 动画，可 360° 旋转任意角度看绳的走向，配合分步播放。",
+    "Animated Knots by Grog：全球第一的绳结分步动画站，按攀岩/航海/钓鱼/童军/家居/搜救分类，每结逐帧演示。",
+    "两步路「45 种户外绳结图文详解」：中文实拍图逐步对照，适合跟着手机练。",
+    "GIF 动图结绳大全：每个结一张循环动图，看一眼动作路径就懂。",
+    "练法建议：用直径 8mm 左右的粗棉绳练习（手感清晰），每天十分钟练一个结，一周成肌肉记忆。"
+  ],
+  why:"绳结是「空间操作」型知识——文字只能描述逻辑，图像才能传递空间关系。动画站的正确用法：先看动画整体流程，再逐帧暂停跟打，最后不看屏盲打三遍。两个站互补：Knots 3D 胜在可旋转的 3D 视角，Animated Knots 胜在分类场景全。",
+  tags:["新手","快手","图解"],
+  links:[
+    {type:"doc", name:"Knots 3D • 中文 3D 绳结动画站", url:"https://knots3d.com/zh-CN"},
+    {type:"doc", name:"Animated Knots • 全球第一绳结动画站", url:"https://www.animatedknots.com/"},
+    {type:"doc", name:"两步路 • 45 种户外绳结图文详解", url:"https://app.2bulu.com/community/gotohuatinfo.htm?id=zWOgmOZHGqo="},
+    {type:"doc", name:"GIF 动图 • 结绳方法大全", url:"https://qqhbx.com/huibao/1327538.html"}
+  ]
+},
+{
+  vol:12, chapter:"求生救援", icon:"🧗",
+  title:"称人结 • 绳结之王 求生必修",
+  pain:"需要一个永不滑脱、随时能套在人或重物上的绳环——几乎每个求生场景都要它。",
+  steps:[
+    "在绳上先打一个固定的小绳环（「树前有个洞」）。",
+    "绳头从环的下方向上穿出（「跑出一只小白兔」）。",
+    "绕过主绳一圈（「绕树跑一圈」）。",
+    "再穿回原来的小绳环（「又跑回洞里」），拉紧即成。",
+    "检验：拉主绳，绳环大小固定不变且不滑脱——这就是可信赖的救命环。"
+  ],
+  why:"称人结被誉为「绳结之王」：绳环受力不缩小不滑脱，松开时一抖即解——这两个矛盾的特性它同时具备。救援吊人、系船泊树、吊物上楼皆宜；民间记忆法「小白兔钻洞」出自流传百年的打法口诀，百度百科与香港童军教程均收录此结。",
+  tags:["进阶","快手","求生"],
+  classic:"香港童军绳结教材称其为「求生必具绳结，用途甚广，必须熟习」——平时系船拴树，急时能救命。",
+  links:[
+    {type:"doc", name:"百度百科 • 称人结（含记忆法图解）", url:"https://baike.baidu.com/item/%E7%A7%B0%E4%BA%BA%E7%BB%93/8806401"},
+    {type:"doc", name:"香港童军总会 • 绳结结法说明 PDF", url:"https://scout.org.hk/uploads/tc/hkscouting/hks33-_36-37_.pdf"},
+    {type:"doc", name:"Animated Knots • 称人结动画", url:"https://www.animatedknots.com/bowline"}
+  ]
+},
+{
+  vol:12, chapter:"防脱绳尾", icon:"8️⃣",
+  title:"八字结 • 防脱制动的万能点",
+  pain:"绳子末端不打个结，拉的时候整条从孔洞滑走，东西掉了一地。",
+  steps:[
+    "绳头绕主绳一圈，形成一个环。",
+    "绳头从上向下穿过这个环。",
+    "拉紧——结形呈「8」字即成。",
+    "升级版「双八字结」：绳对折成双股后打八字结，再把绳环套过整个结收紧，即得一个牢靠的固定绳环。"
+  ],
+  why:"八字结的妙处是「受力后依然好解」——它靠形状自锁而非压死绳身，拉得再紧也抖一抖就开。它是绳尾防脱、灯绳钮扣、攀岩安全带的基准结，攀岩界还流传一句话：八字结打不好，今天别上场。",
+  tags:["新手","快手","防脱"],
+  links:[
+    {type:"doc", name:"两步路 • 45 种户外绳结图解", url:"https://app.2bulu.com/community/gotohuatinfo.htm?id=zWOgmOZHGqo="},
+    {type:"doc", name:"GIF 动图 • 八字结演示", url:"https://qqhbx.com/huibao/1327538.html"}
+  ]
+},
+{
+  vol:12, chapter:"露营装备", icon:"⛺",
+  title:"营绳结 Taut-Line • 风绳松紧随时调",
+  pain:"帐篷风绳白天紧夜里松，雨后布面松垮滴水，重新打结要重搭半个帐篷。",
+  steps:[
+    "绳环先固定在营钉上。",
+    "绳尾交叉做出一个环，绳尾穿过绳环。",
+    "预留长度后，在主绳上连续绕两圈。",
+    "再打一个半结锁住，拉紧即成。",
+    "调松紧：捏住绳结沿主绳推上推下——绷紧挡风、放松排水，一秒切换。"
+  ],
+  why:"营绳结（Taut-line hitch）本质是「摩擦滑锁」：绕圈产生摩擦力锁住主绳，但推挤时又能滑动——它是给风绳装了个「无级调节器」。多圈缠绕方向要一致，反了会打滑。",
+  tags:["进阶","快手","露营"],
+  links:[
+    {type:"doc", name:"GoCampingHK • 露营四结必修", url:"https://gocamping.hk/%E6%96%B0%E6%89%8B%E5%BF%85%E8%AE%80-4%E7%A8%AE%E5%AF%A6%E7%94%A8%E7%B9%A9%E7%B5%90%E6%96%B9%E6%B3%95/"},
+    {type:"doc", name:"Animated Knots • 营绳结动画", url:"https://www.animatedknots.com/midshipmans-hitch"}
+  ]
+},
+{
+  vol:12, chapter:"露营装备", icon:"⛺",
+  title:"万能风绳结 • 天幕防风一秒锁",
+  pain:"天幕风绳绑了又松、解了又难，大风一来幕布哗哗响一整夜。",
+  steps:[
+    "风绳穿过天幕挂点后，绕过下方主绳。",
+    "食指中指并拢插进绳圈，夹住绳子向外拽出。",
+    "捏住绳结整体下拉锁紧——一步到位。",
+    "解结：捏住绳头轻轻一抖，整结瞬间散开。"
+  ],
+  why:"它把「锁紧」和「速解」做成同一个动作的两面：拉力方向咬死，抖动方向散开。露营老手在风中收天幕，别人解一根绳的功夫他已经收完两根杆。",
+  tags:["进阶","快手","露营"],
+  links:[
+    {type:"doc", name:"什么值得买 • 露营三结教学", url:"https://post.m.smzdm.com/zz/p/agw9o0lm"}
+  ]
+},
+{
+  vol:12, chapter:"接续延长", icon:"🪢",
+  title:"渔人结 • 湿绳接绳防滑王",
+  pain:"两条滑溜溜的尼龙绳相接，平结一受力就滑开，湿了更没救。",
+  steps:[
+    "两根绳头并排放置。",
+    "绳 A 在绳 B 身上打一个单结，拉紧。",
+    "绳 B 同样在绳 A 身上打一个单结，拉紧。",
+    "两绳向两端拉——两个结互相咬死，越拉越紧。",
+    "升级「双渔人结」：每端各打两个单结，湿滑细绳更保险。"
+  ],
+  why:"渔人结让两个单结各自咬住对方的绳身——「你缠住我、我缠住你」的互相锁死结构。尼龙绳表面光滑、遇水更滑，平结在它面前会滑开，渔人结却是钓鱼线、露营拉绳的标准接法。",
+  tags:["进阶","快手","捆扎"],
+  links:[
+    {type:"doc", name:"GoCampingHK • 露营四结必修", url:"https://gocamping.hk/%E6%96%B0%E6%89%8B%E5%BF%85%E8%AE%80-4%E7%A8%AE%E5%AF%A6%E7%94%A8%E7%B9%A9%E7%B5%90%E6%96%B9%E6%B3%95/"}
+  ]
+},
+{
+  vol:12, chapter:"求生救援", icon:"🚨",
+  title:"双八结 • 救援承重安全锁",
+  pain:"需要把人或重物可靠地吊起——普通绳结在致命载荷下可能松脱变形。",
+  steps:[
+    "绳索对折形成双股。",
+    "在对折处以双股一起打一个八字结。",
+    "把对折端穿回八字结的环中，收紧成型——得到一个双股承重绳环。",
+    "受力检查：绳环均匀受力、结形不变形才可用于承重。"
+  ],
+  why:"双八结把八字结的形状自锁放大到双股——受力均匀、牢固性极高，是山地与高空救援中固定人员、吊运伤员的常用承重结。绵竹市应急管理局的救援培训将其列为必修三结之一——记住：任何承重结使用前都要做拉力检查。",
+  tags:["进阶","快手","求生"],
+  classic:"绵竹市应急管理局救援培训原文：「一个规范的绳结，就是守护生命的最后一道防线。」承重绳结用前必检，用后必查。",
+  links:[
+    {type:"doc", name:"绵竹市应急管理局 • 救援绳索打结指南", url:"https://www.mz.gov.cn/gk/zfxxgk/fdzdnr/cdmsxx/aqsc/1647813.htm"}
+  ]
+},
+{
+  vol:12, chapter:"搬运捆扎", icon:"🧳",
+  title:"布角活扣 • 捆被褥快打快解",
+  pain:"捆被子褥子，绳子勒进布里又滑又乱，拆的时候解半天。",
+  steps:[
+    "布角理顺，绳子垫在布角下方。",
+    "绳绕出一个绳圈。",
+    "把布角塞进绳圈里。",
+    "直接拉紧——活扣成型，受力锁死，反向一拉即解。"
+  ],
+  why:"布角自己充当了「防滑塞块」：绳圈咬布角的摩擦远大于咬绳的摩擦，所以锁得住又解得快。搬被子、捆冬衣、打包快递布包，全程不伤织物。",
+  tags:["新手","快手","搬运"],
+  links:[
+    {type:"doc", name:"头条 • 实用绳结多款整理", url:"https://www.toutiao.com/a7647033787154481704"}
+  ]
+},
+{
+  vol:12, chapter:"吊挂固定", icon:"🌷",
+  title:"吊兰结 • 花盆悬空美学",
+  pain:"想给阳台做悬空绿植，花盆没处挂，买吊架又丑又贵。",
+  steps:[
+    "绳子对折挂上挂钩，两股绳自然垂下。",
+    "花盆放在两股绳上，绳沿盆身向上交叉打一个结。",
+    "另一端绳穿过对侧，两边同时拉起。",
+    "调整绳高不超过盆高，两股一收——吊兰结自动锁紧盆身。"
+  ],
+  why:"两股绳交叉后形成的结构随盆形自锁：盆越重收得越紧，且任何角度都不会滑脱。一根绳子让普通花盆变成空中绿植，成本为零。",
+  tags:["新手","快手","捆扎"],
+  links:[
+    {type:"doc", name:"生活小智慧 • 八种一生受用的绳结", url:"https://www.ilife97.com/?p=39037"}
+  ]
+},
+{
+  vol:12, chapter:"求生救援", icon:"🪜",
+  title:"连续单结 • 应急逃脱绳梯结",
+  pain:"紧急情况需要沿绳下降或攀爬，光滑的绳身根本抓不住。",
+  steps:[
+    "在一条绳子上连续打多个单结。",
+    "尽量让结与结之间保持等距（约一掌宽）。",
+    "每一结都拉紧定型。",
+    "使用时结点即为抓握与踩踏的止滑点，徒手也能借力。"
+  ],
+  why:"连续单结是「绳梯化」的最简方案——每个结都是一个止滑台阶。它的难点在等距与拉紧：不熟练时间隔不均，受力时会松散错位。日常多练，急时才真用得上；此结源自经典求生绳结教程的紧急逃脱章节。",
+  tags:["进阶","慢工","求生"],
+  links:[
+    {type:"doc", name:"图文 • 53 种绳子打结方法大全", url:"http://t.cpw.com.cn/rj/2023/0703/98458.html"}
+  ]
+},
+/* ====== 卷十三 · 育雏篇 ====== */
+{
+  vol:13, chapter:"喂养照护", icon:"👶",
+  title:"拍嗝标准姿势 • 空心掌三式",
+  pain:"喂完奶不拍嗝宝宝吐奶呛奶，拍了半天又拍不出嗝。",
+  steps:[
+    "首选肩上趴姿：竖抱让宝宝下巴靠在肩头，头部略高于身体。",
+    "手拢成空心掌（手掌微弓，中间悬空），从背部由下往上轻拍。",
+    "备选腿上坐姿：让宝宝坐在腿上面朝侧方，一手托下巴托胸，另一手轻拍背。",
+    "拍出嗝后竖抱静置 5~10 分钟再缓缓放平，防反流。"
+  ],
+  why:"拍嗝的力学核心是「空心掌」——掌心悬空产生低频震动而非拍击，帮助胃内气泡上浮排出；头高身低的体位让气体顺位上行。喂奶 45° 倾斜+奶嘴充满奶液，从源头减少吞气。",
+  tags:["新手","快手","照护"],
+  classic:"本条采自南方日报产科护理指南与亲子天下儿科医师专题——「头高身低、空心掌、竖抱静置」三要素为临床共识。",
+  links:[
+    {type:"doc", name:"南方日报 • 新生儿居家科学护理指南", url:"https://www.nfnews.com/content/voAp9K9l6R.html"},
+    {type:"doc", name:"亲子天下 • 婴儿拍嗝姿势 5 大重点", url:"https://www.parenting.com.tw/article/5095429"}
+  ]
+},
+{
+  vol:13, chapter:"穿衣冷暖", icon:"🌡",
+  title:"娃冷热判断 • 摸后颈不摸手脚",
+  pain:"宝宝手脚冰凉，奶奶说冷了要加衣，妈妈说不能捂——到底听谁的。",
+  steps:[
+    "伸手摸宝宝后颈与后背（不是手脚！）。",
+    "温热干爽无汗 = 温度刚好。",
+    "后背出汗黏腻 = 穿多了，减衣。",
+    "后颈发凉 = 再添一件薄衣。"
+  ],
+  why:"新生儿末梢循环差，手脚偏凉是正常生理现象，拿手脚判断冷热必然过度捂热——「小孩无六月」是流传最广的过时观念，捂热综合征比着凉危险得多。后颈是躯干核心区，才是温度计。",
+  tags:["新手","快手","照护"],
+  classic:"「摸后颈不摸手脚」出自南方日报刊发的产科护理指南——它同时辟了「手脚凉就是冷」与「小孩无六月」两大流传最广的育儿谣言。",
+  links:[
+    {type:"doc", name:"南方日报 • 新生儿居家科学护理指南", url:"https://www.nfnews.com/content/voAp9K9l6R.html"}
+  ]
+},
+{
+  vol:13, chapter:"睡眠管理", icon:"🌛",
+  title:"新生儿哄睡四件套",
+  pain:"宝宝抱睡放不下、落地醒，全家轮班哄到天亮。",
+  steps:[
+    "环境：室温 22~25°C、湿度 50~60%、光线柔和——舒适是入睡的前提。",
+    "白噪音：吹风机声、雨声类低频白噪音模拟子宫环境，安抚效果明确。",
+    "襁褓包裹：适度包住上肢抑制惊跳反射（莫罗反射），注意留出腿部活动空间。",
+    "放下时机：等深睡眠（呼吸均匀、四肢松软）再放，先放屁股再放头，撤手时按住一会儿再离开。",
+    "宝宝哼唧别立刻抱——先观察，浅睡眠期的扭动常会自行续睡。"
+  ],
+  why:"哄睡的科学顺序是「先排因再安抚」：冷热、胀气、惊跳反射都排除了，白噪音+襁褓+正确放下时机的组合拳才有效。三甲医院新生儿科医师特别提示：哼唧不等于醒了，贸然抱起反而弄醒深睡。",
+  tags:["新手","快手","照护"],
+  links:[
+    {type:"doc", name:"民福康 • 新生儿哄睡技巧（三甲医师）", url:"https://m.mfk.com/ask/18789927.shtml"}
+  ]
+},
+{
+  vol:13, chapter:"喂养照护", icon:"🍼",
+  title:"呛奶应急处理",
+  pain:"宝宝吃奶突然呛咳、脸色发青，新手爸妈当场吓傻。",
+  steps:[
+    "轻微呛咳：立即停止喂奶，让宝宝侧躺或脸侧向一边，轻拍背让奶流出。",
+    "不要竖抱呛奶中的宝宝——奶液可能继续深入气道。",
+    "呛后观察：呼吸顺畅、面色红润即无碍，下次喂奶注意姿势。",
+    "持续呛咳、面色发紫、呼吸异常：立即侧位清理口鼻并呼叫急救。"
+  ],
+  why:"呛奶的黄金处置是「侧」字——侧位让口鼻内的奶顺重力流出而不是灌回气道。预防端的三件事：45° 喂奶体位、奶嘴孔大小合适、喂完拍嗝——都指向同一个目标「少吞气、缓流速」。",
+  tags:["新手","快手","急救"],
+  links:[
+    {type:"doc", name:"健康科普报 • 新生儿护理小技巧", url:"https://www.jkkpb.com/content?idx=70785a594166754d63776b2535626571253564"}
+  ]
+},
+{
+  vol:13, chapter:"皮肤照护", icon:"🌸",
+  title:"红屁屁护理与预防",
+  pain:"宝宝屁眼周围红一片，一碰就哭，反复发作好不了。",
+  steps:[
+    "勤换：小便 2~3 小时一查，大便立刻换——红屁屁 90% 是「闷+湿」泡出来的。",
+    "晾：每次换完让小屁屁光着透气 10~15 分钟（垫隔尿垫防意外）。",
+    "护臀霜隔离：氧化锌软膏薄涂一层，形成防水膜。",
+    "已破皮渗液时忌再用湿巾猛擦，用温水冲洗棉柔巾蘸干；两天不见好或化脓，就医。"
+  ],
+  why:"红屁屁（尿布皮炎）的病理是「长期湿热+粪便酶刺激」——治疗三件套「勤换、晾干、隔离」各断一条病路。凡是可以「光着透气」的时间，都是最好的药。",
+  tags:["新手","快手","照护"],
+  links:[
+    {type:"doc", name:"南方日报 • 新生儿居家科学护理指南", url:"https://www.nfnews.com/content/voAp9K9l6R.html"}
+  ]
+},
+{
+  vol:13, chapter:"脐部护理", icon:"✂",
+  title:"新生儿脐部护理",
+  pain:"肚脐残端不敢碰，怕碰坏又怕发炎，长辈还说要绑硬币。",
+  steps:[
+    "每日 1~2 次消毒：75% 医用酒精 + 无菌棉签。",
+    "手法：轻轻捏起脐周皮肤充分暴露脐窝，棉签从脐窝中心螺旋向外擦拭。",
+    "保持干燥：尿布前端折低避开脐部，纸尿裤别盖住残端。",
+    "自然脱落（1~2 周），勿人为抠除；出现红肿渗液异味，就医。"
+  ],
+  why:"脐部是出生后唯一的开放性创口，护理核心是「清洁+干燥」两条——绑硬币、涂草药等土法全是感染源。螺旋向外擦拭保证污物不带回创面中心。",
+  tags:["新手","快手","照护"],
+  classic:"「绑硬币压脐」等土法被南方日报护理指南明确辟谣——清洁干燥才是唯一正解。",
+  links:[
+    {type:"doc", name:"南方日报 • 新生儿居家科学护理指南", url:"https://www.nfnews.com/content/voAp9K9l6R.html"}
+  ]
+},
+{
+  vol:13, chapter:"辅食喂养", icon:"🍠",
+  title:"辅食添加铁原则",
+  pain:"六个月要加辅食了，网上说法五花八门，不知道先喂啥。",
+  steps:[
+    "六个月起添加，第一口辅食首选强化铁米粉——配方明确、致敏低、好消化。",
+    "一次只加一种新食材，连喂 2~3 天观察有无皮疹腹泻（排查过敏）。",
+    "由稀到稠、由少到多、由细到粗，循序渐进不跳级。",
+    "一岁前不加盐不加蜂蜜（婴儿肉毒杆菌风险），以奶为主辅食为辅。"
+  ],
+  why:"六月龄后宝宝体内的铁储备耗尽，第一口辅食的核心目标是「补铁」而非「尝味道」——强化铁米粉是国际共识的起点。一次一种+观察三天，是排查过敏的金标准节奏。",
+  tags:["新手","快手","喂养"],
+  links:[]
+},
+{
+  vol:13, chapter:"哭闹应对", icon:"😭",
+  title:"娃哭排查五步清单",
+  pain:"宝宝突然大哭，全家围着转也不知哪不对，越哄越哭。",
+  steps:[
+    "第一步查饿：距离上次喂奶多久？给手指碰嘴角看有无觅食反射。",
+    "第二步查困：揉眼打哈欠抓耳 = 过度疲劳信号，赶紧哄睡。",
+    "第三步查胀气：腿往肚子蜷、脸憋红——飞机抱或顺时针摩腹。",
+    "第四步查体感：摸后颈判断冷热，检查尿布、衣物标签摩擦。",
+    "五步全过仍在哭且精神差，测体温并就医——哭声异常本身就是信号。"
+  ],
+  why:"婴儿哭是唯一的表达语言：有来医生等医学科普平台的共识是「先找原因再哄」——饿困胀热五步覆盖九成日常哭因，剩下的交给体温计和专业医生。",
+  tags:["新手","快手","照护"],
+  links:[
+    {type:"doc", name:"有来医生 • 哄新生儿睡觉的办法", url:"https://m.youlai.cn/jingbian/article/B65374mlVV8.html"}
+  ]
+},
+{
+  vol:13, chapter:"出行安全", icon:"🚗",
+  title:"安全座椅要点",
+  pain:"总觉得抱着娃坐车更放心，安全座椅又贵又占地方装了吃灰。",
+  steps:[
+    "反向安装是婴儿座椅的铁律：1 岁内宝宝颈椎脆弱，正向急刹时头部前甩会致命。",
+    "安装后「晃动测试」：抓握座椅根部左右晃，位移超过 2.5cm 就重新固定。",
+    "绑带松紧以「能塞进两指」为准——过松刹车失效，过紧勒伤。",
+    "冬季羽绒服先脱再绑——厚羽绒在碰撞中会压缩，绑带瞬间变松。"
+  ],
+  why:"碰撞测试数据反复证明：怀抱无法对抗惯性——30km/h 急刹时 10kg 的娃会产生 300kg 的冲击力，任何大人都抱不住。反向安装+晃动测试+脱羽绒服，三条都是血换来的细节。",
+  tags:["进阶","快手","安全"],
+  links:[]
+},
+/* ====== 现有卷补遗 ====== */
+{
+  vol:1, chapter:"懒人料理", icon:"🥘",
+  title:"电饭煲一锅出焖饭",
+  pain:"下班到家又累又饿，炒菜煮饭洗碗一条龙，想想就点外卖。",
+  steps:[
+    "米淘好加水（比正常煮饭略少），铺切块的鸡腿肉或腊肠。",
+    "加配料：香菇丁、胡萝卜丁、豌豆玉米粒，一勺生抽一勺蚝油一勺油。",
+    "正常煮饭模式一键启动，饭熟料熟全程零看管。",
+    "开盖拌匀撒葱花，一锅有肉有菜有饭有味。"
+  ],
+  why:"焖饭的原理是「蒸汽循环统一烹饪」：肉类油脂渗入米饭，蔬菜受热均匀不出水——这是「邪修做菜」流派的集大成：把工序交给电饭煲，把洗碗压缩到一只锅。",
+  tags:["新手","快手","主食","小红书"],
+  links:[
+    {type:"doc", name:"什么值得买 • 邪修做菜甄别", url:"https://post.m.smzdm.com/p/aqrznne7"}
+  ]
+},
+{
+  vol:1, chapter:"调味储存", icon:"🥢",
+  title:"葱姜蒜冷冻油块 • 调味预制术",
+  pain:"每次炒菜现切葱姜蒜，砧板案台洗三遍，累觉不爱。",
+  steps:[
+    "葱姜蒜按常用比例切好碎末，装入硅胶冰格。",
+    "倒入食用油没过，冷冻成块。",
+    "炒菜时直接丢一两块下锅爆香，等于现切现炒。",
+    "姜末辣椒圈等同理，分格预制一周的量。"
+  ],
+  why:"油封隔绝空气防止氧化变色与冻烧，冷冻锁住挥发性香气物质——用时油块直接下锅既是「油」又是「料」。这是预制菜逻辑的正向使用：预制的不是菜，是麻烦。",
+  tags:["新手","快手","储存"],
+  links:[]
+},
+{
+  vol:3, chapter:"收纳整理", icon:"🐰",
+  title:"玩具收纳分区法",
+  pain:"娃的玩具铺满全屋，刚收好五分钟又翻出来，天天收拾天天乱。",
+  steps:[
+    "分区原则：按「玩法」分箱而非按种类——积木区、拼图区、过家家区、户外区。",
+    "透明箱+图卡标签：娃不识字也认得图，自己收自己找。",
+    "轮换制：2/3 收进高柜，1/3 在外，每周轮换——旧玩具重现自带新鲜感。",
+    "收纳箱低矮开放，让娃「够得着」才收得回去。"
+  ],
+  why:"玩具混乱的根源是「全部可及+无归位路径」——分区给玩具定址，轮换制降低在管数量，低矮开放让娃成为收纳的执行者而不是破坏者。这是蒙氏教育「有准备的环境」的家庭版。",
+  tags:["新手","快手","收纳"],
+  links:[]
+},
+{
+  vol:3, chapter:"收纳整理", icon:"🗝",
+  title:"玄关固定动线法",
+  pain:"每天出门找钥匙翻包倒柜，快递放玄关转身就忘。",
+  steps:[
+    "设「着陆区」：玄关挂钩+小托盘，进门钥匙、工牌、耳机全部落盘。",
+    "口诀「进门三步落」：包上钩、钥匙进盘、鞋入位，三步完成。",
+    "托盘旁贴待办便签：快递要寄、文件要带，出门必扫一眼。",
+    "每周日复位整理一次，动线系统不崩盘。"
+  ],
+  why:"找东西的时间成本来自「放置的随机性」——着陆区把「随手一放」变成「固定一放」，物品有了地址就永远不会失联。行为学上这叫「锚点设计」：动线越短，习惯越稳。",
+  tags:["新手","快手","收纳"],
+  links:[]
+},
+{
+  vol:3, chapter:"冰箱管理", icon:"📇",
+  title:"冰箱标签与先进先出",
+  pain:"冰箱深处总有过期食材，买重了扔了又心疼。",
+  steps:[
+    "透明盒分格：熟食区、生肉区、果蔬区、调料区，盒外贴内容+日期标签。",
+    "先进先出（FIFO）：新买的放后排，旧的放前排——像超市货架一样排布。",
+    "设「尽快吃」专栏：临期食材集中一格，做饭先翻这格。",
+    "每周清库一次：清点+擦格，顺便定下周菜单。"
+  ],
+  why:"冰箱浪费的本质是「库存不可见」——标签+分区让所有食材有「身份证」，FIFO 排布让旧货先消耗。这一套来自餐饮业的库存管理（先进先出原则），搬进家庭冰箱同样灵。",
+  tags:["新手","快手","收纳"],
+  links:[]
+},
+];
+
+/* ================= 渲染与检索 ================= */
+const state = { vol:"all", diff:"all", time:"all", q:"" };
+
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function hl(s){
+  const safe = esc(s);
+  if(!state.q) return safe;
+  try{
+    const re = new RegExp(state.q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"gi");
+    return safe.replace(re, m => "<mark>"+m+"</mark>");
+  }catch(e){ return safe; }
+}
+function tipMatches(t){
+  if(state.vol!=="all" && t.vol!==state.vol) return false;
+  if(state.diff!=="all" && !t.tags.includes(state.diff)) return false;
+  if(state.time!=="all" && !t.tags.includes(state.time)) return false;
+  if(state.q){
+    const blob = (t.title+t.pain+t.steps.join("")+t.why+t.tags.join("")+t.chapter).toLowerCase();
+    if(!blob.includes(state.q.toLowerCase())) return false;
+  }
+  return true;
+}
+
+function renderNav(){
+  const nav = document.getElementById("volNav");
+  let html = `<div class="vol-chip ${state.vol==="all"?"active":""}" data-vol="all">全书检索</div>`;
+  VOLS.forEach(v=>{
+    const star = v.isNew ? '<span class="star">★</span>' : "";
+    if(v.ready){
+      html += `<div class="vol-chip ${state.vol===v.id?"active":""}" data-vol="${v.id}">卷${v.id} • ${v.name}${star}</div>`;
+    }else{
+      html += `<div class="vol-chip wip" title="此卷编纂中，全量版即将呈现">卷${v.id} • ${v.name}${star} <small>编纂中</small></div>`;
+    }
+  });
+  nav.innerHTML = html;
+  nav.querySelectorAll(".vol-chip[data-vol]").forEach(el=>{
+    el.addEventListener("click",()=>{
+      state.vol = el.dataset.vol==="all" ? "all" : Number(el.dataset.vol);
+      renderNav(); render();
+    });
+  });
+}
+
+function render(){
+  const box = document.getElementById("content");
+  const hits = TIPS.filter(tipMatches);
+  document.getElementById("hitCount").textContent = hits.length;
+  document.getElementById("statTotal").textContent = TIPS.length;
+
+  if(hits.length===0){
+    box.innerHTML = "";
+    document.getElementById("emptyBox").style.display = "block";
+    return;
+  }
+  document.getElementById("emptyBox").style.display = "none";
+
+  let html = "";
+  VOLS.filter(v=>v.ready).forEach(v=>{
+    const items = hits.filter(t=>t.vol===v.id);
+    if(items.length===0) return;
+    html += `
+    <section class="vol-block" id="vol${v.id}">
+      <div class="vol-head">
+        <div class="vol-num" style="background:${v.color}">
+          <span class="n">卷${v.id}</span><span class="zh">${v.name}</span>
+        </div>
+        <div class="vol-title">
+          <h2>${v.name} • ${v.field}</h2>
+          <div class="origin">📜 ${v.origin}</div>
+        </div>
+      </div>
+      <div class="grid">`;
+    let no = 0;
+    TIPS.forEach(t=>{ if(t.vol===v.id) no++; });
+    items.forEach(t=>{
+      const idx = TIPS.filter(x=>x.vol===t.vol).indexOf(t)+1;
+      const diffTag = t.tags.includes("进阶") ? `<span class="tag hard">进阶修炼</span>` : `<span class="tag easy">新手入门</span>`;
+      const timeTag = t.tags.includes("慢工") ? `<span class="tag slow">慢工 • 数日/数时</span>` : `<span class="tag fast">快手 • 30分钟内</span>`;
+      const otherTags = t.tags.filter(x=>x!=="新手"&&x!=="进阶"&&x!=="快手"&&x!=="慢工")
+        .map(x=>`<span class="tag">${esc(x)}</span>`).join("");
+      const links = (t.links||[]).map(l=>{
+        const cls = l.type==="video" ? "video" : "";
+        const label = l.type==="video" ? "▶" : "📄";
+        return `<a class="link-btn ${cls}" href="${l.url}" target="_blank" rel="noopener">${label} ${esc(l.name)}<span class="lt">直达</span></a>`;
+      }).join("");
+      const classic = t.classic ? `<div class="classic"><span class="cl-tag">📜 古法溯源</span>${t.classic}</div>` : "";
+      html += `
+      <article class="card">
+        <div class="card-top" style="background:${v.color}">
+          <div class="c-icon">${t.icon}</div>
+          <div class="c-chapter">${v.name} • ${esc(t.chapter)}</div>
+          <div class="c-no">术 ${String(idx).padStart(2,"0")}</div>
+        </div>
+        <div class="card-body">
+          <h3>${hl(t.title)}</h3>
+          <div class="pain"><b>痛点</b> • ${hl(t.pain)}</div>
+          <ol class="steps">${t.steps.map(s=>`<li>${hl(s)}</li>`).join("")}</ol>
+          <div class="why"><b>格物</b> • ${hl(t.why)}</div>
+          <div class="tagrow">${diffTag}${timeTag}${otherTags}</div>
+          ${links?`<div class="links">${links}</div>`:""}
+        </div>
+        ${classic}
+      </article>`;
+    });
+    html += `</div></section>`;
+  });
+  box.innerHTML = html;
+}
+
+/* 绑定工具栏 */
+document.getElementById("q").addEventListener("input", e=>{ state.q = e.target.value.trim(); render(); });
+document.getElementById("qClear").addEventListener("click", ()=>{ document.getElementById("q").value=""; state.q=""; render(); });
+function bindFilter(id, key){
+  const box = document.getElementById(id);
+  box.querySelectorAll("button").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      box.querySelectorAll("button").forEach(b=>b.classList.remove("on"));
+      btn.classList.add("on");
+      state[key] = btn.dataset.v;
+      render();
+    });
+  });
+}
+bindFilter("fDiff","diff");
+bindFilter("fTime","time");
+
+renderNav();
+render();
+</script>
+</body>
+</html>
